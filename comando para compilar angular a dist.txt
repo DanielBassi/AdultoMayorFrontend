@@ -1,0 +1,6 @@
+ng build 
+
+copiar /dist a C:\inetpub\adultomayor
+
+dar permisos a la ruta C:\inetpub\adultomayor al grupo IUSR  y a usuario IIS_USRS 
+
