@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-/* export class ActivitiesService {
 
-  constructor(private http: HttpClient) { }
-
-  actividades() {
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
-  }
-} */
 export class Employee {
   ID: number;
 
@@ -353,6 +347,13 @@ const states: State[] = [{
 
 
 export class ActivitiesService {
+  ROOT_SERVE: string = environment.API_URL
+  constructor(private http: HttpClient) { };
+
+  actividadesCalendario() {
+    return this.http.get(`${this.ROOT_SERVE}/api/Actividad/Calendario`);
+  }
+
   getEmployees() {
     return employees;
   }
