@@ -25,11 +25,10 @@ export class IndicatorsComponent implements OnInit, OnDestroy {
   }
 
   rowValidating(event: any){
-    console.log(event);
+
   }
 
   editorPreparing(event: any){
-    console.log(event);
   }
 
   ngOnDestroy(): void {

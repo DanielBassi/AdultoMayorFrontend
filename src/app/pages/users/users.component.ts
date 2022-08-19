@@ -26,11 +26,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   rowValidating(event: any){
-    console.log(event);
+    
   }
 
   editorPreparing(event: any){
-    console.log(event);
+    
   }
 
   ngOnDestroy(): void {

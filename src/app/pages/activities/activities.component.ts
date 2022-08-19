@@ -1,5 +1,5 @@
 import { NgModule, Component, enableProdMode } from '@angular/core';
-import { ActivitiesService, Employee, State } from 'src/app/services/activities.service';
+import { ActivitiesService } from 'src/app/services/activities.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { DxDataGridModule } from 'devextreme-angular';
@@ -12,16 +12,16 @@ if (!/localhost/.test(document.location.host)) {
   selector: 'app-activities',
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.css'],
-  providers: [ActivitiesService]
+  /* providers: [ActivitiesService] */
 })
 export class ActivitiesComponent {
-  dataSource: Employee[];
-
-  states: State[];
+  
+  dataSource: any[];
+  states: any[];
   
   constructor(private activitiesService:ActivitiesService) { 
-    this.dataSource = activitiesService.getEmployees();
-    this.states = activitiesService.getStates();
+    this.dataSource = null;
+    this.states = null;
   }
 }
 @NgModule({

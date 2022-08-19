@@ -38,7 +38,6 @@ export class AuthService {
         (res: IJwtResponse) => {
           if (res) {
             //guardar token
-            console.log( res );
             this.savetoken(res.value.jwtToken);
           }
         })
