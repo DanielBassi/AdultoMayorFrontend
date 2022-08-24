@@ -1,4 +1,4 @@
-import { NgModule, Component, enableProdMode } from '@angular/core';
+import { NgModule, Component, enableProdMode, OnInit } from '@angular/core';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -14,15 +14,25 @@ if (!/localhost/.test(document.location.host)) {
   styleUrls: ['./activities.component.css'],
   /* providers: [ActivitiesService] */
 })
-export class ActivitiesComponent {
+export class ActivitiesComponent implements OnInit {  
+  constructor(private activitiesService:ActivitiesService) {}
+  actividades : any;
+  estados: any;
   
-  dataSource: any[];
-  states: any[];
-  
-  constructor(private activitiesService:ActivitiesService) { 
-    this.dataSource = null;
-    this.states = null;
+  ngOnInit(): void{
+    this.listarActividades();
+    this.estados=["activo","inactivo"];
   }
+
+  listarActividades(){
+    this.activitiesService
+    .actividades()
+    .subscribe((response:any)=>{
+      this.actividades=response;
+    });
+  }
+  
+
 }
 @NgModule({
   imports: [

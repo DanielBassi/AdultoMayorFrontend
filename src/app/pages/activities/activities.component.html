@@ -10,38 +10,10 @@
                 <div class="col-12">
 
                     <div class="card">
-                        <!-- <div class="card-header">
-                            <h3 class="card-title">Lista de actividades</h3>
-                            <div class="col-12 text-right"><a class="btn btn-info btn-sm" href="#">
-                                    <i class="fas fa-plus"></i>
-                                    Agregar actividad
-                                </a></div>
-                        </div> -->
-                        <!-- https://js.devexpress.com/Demos/WidgetsGallery/Demo/DataGrid/PopupEditing/Angular/Light/ -->
-                        <!-- <dx-data-grid 
-                          id="gridContainer" 
-                          [dataSource]="dataSource" 
-                          [remoteOperations]="false" 
-                          [allowColumnReordering]="true" 
-                          [rowAlternationEnabled]="true" 
-                          [showBorders]="true"
-                        >
-                            <dxo-filter-row [visible]="true"></dxo-filter-row>
-                            <dxo-paging [enabled]="true"></dxo-paging>
-                            <dxi-column dataField="name" caption="Nombre Programa"></dxi-column>
-                            <dxi-column dataField="name" caption="Subindice"></dxi-column>
-                            <dxi-column dataField="name" caption="Nombre Actividad"></dxi-column>
-                            <dxi-column dataField="name" caption="Creador de la actividad"></dxi-column>
-                            <dxi-column dataField="" caption="fecha"></dxi-column>
-                            <dxi-column dataField="name" caption="Descripcion"></dxi-column>
-                            <dxi-column dataField="name" caption="Estado"></dxi-column>
-                            <dxi-column dataField="" caption="Ver Actividad"></dxi-column>
-                            
-                        </dx-data-grid> -->
                         <div id="data-grid-demo">
                           <dx-data-grid
                             id="gridContainer"
-                            [dataSource]="dataSource"
+                            [dataSource]="actividades"
                             keyExpr="ID"
                             [showBorders]="true"
                           >
@@ -53,7 +25,7 @@
                               [allowDeleting]="true"
                             >
                               <dxo-popup
-                                title="Employee Info"
+                                title="Información de la Actividad"
                                 [showTitle]="true"
                                 [width]="700"
                                 [height]="525"
@@ -61,360 +33,47 @@
                               </dxo-popup>
                               <dxo-form>
                                 <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                                  <dxi-item dataField="FirstName"></dxi-item>
-                                  <dxi-item dataField="LastName"></dxi-item>
-                                  <dxi-item dataField="Prefix"></dxi-item>
-                                  <dxi-item dataField="BirthDate"></dxi-item>
-                                  <dxi-item dataField="Position"></dxi-item>
-                                  <dxi-item dataField="HireDate"></dxi-item>
+                                  <dxi-item dataField="Programa_nombre" caption="Nombre Programa"></dxi-item>
+                                  <dxi-item dataField="Subindice_nombre" caption="Subindice"></dxi-item>
+                                  <dxi-item dataField="Nombre" caption="Nombre Actividad"></dxi-item>
+                                  <dxi-item dataField="Usuario_nombre" caption="Creador de la Actividad"></dxi-item>
+                                  <dxi-item dataField="Fecha" caption="Fecha" dataType="date"></dxi-item>
+                                  <dxi-item dataField="Estado" caption="Estado"
+                                    editorType="dxSelectBox"
+                                    [editorOptions]="{ dataSource: estados }"
+                                  ></dxi-item>
                                   <dxi-item
-                                    dataField="Notes"
-                                    editorType="dxTextArea"
+                                    dataField="Descripcion"
+                                    caption="Descripcion Actividad"
+                                    
                                     [colSpan]="2"
                                     [editorOptions]="{ height: 100 }"
                                   >
                                   </dxi-item>
                                 </dxi-item>
                         
-                                <dxi-item
-                                  itemType="group"
-                                  caption="Home Address"
-                                  [colCount]="2"
-                                  [colSpan]="2"
-                                >
-                                  <dxi-item dataField="StateID"></dxi-item>
-                                  <dxi-item dataField="Address"></dxi-item>
-                                </dxi-item>
+                                
                               </dxo-form>
                             </dxo-editing>
                         
-                            <dxi-column dataField="Prefix" caption="Title" [width]="70"></dxi-column>
-                            <dxi-column dataField="FirstName"></dxi-column>
-                            <dxi-column dataField="LastName"></dxi-column>
-                            <dxi-column dataField="BirthDate" dataType="date"> </dxi-column>
-                            <dxi-column dataField="Position" [width]="170"> </dxi-column>
-                            <dxi-column dataField="HireDate" dataType="date"> </dxi-column>
-                            <dxi-column dataField="StateID" caption="State" [width]="125">
+                            <dxi-column dataField="Programa_nombre" caption="Nombre Programa" ></dxi-column>
+                            <dxi-column dataField="Subindice_nombre" caption="Subindice"></dxi-column>
+                            <dxi-column dataField="Nombre" caption="Nombre Actividad"></dxi-column>
+                            <dxi-column dataField="Usuario_nombre" caption="Creador de la Actividad"></dxi-column>
+                            <dxi-column dataField="Fecha" caption="Fecha" dataType="date" [width]="70"> </dxi-column>
+                            <dxi-column dataField="Descripcion" caption="Descripcion Actividad"></dxi-column>
+                            <dxi-column dataField="Estado" caption="Estado" > </dxi-column>
+                            
+                           <!--  <dxi-column dataField="StateID" caption="State" [width]="125">
                               <dxo-lookup [dataSource]="states" displayExpr="Name" valueExpr="ID">
                               </dxo-lookup>
-                            </dxi-column>
+                              
+                            </dxi-column> -->
                             <dxi-column dataField="Address" [visible]="false"> </dxi-column>
                             <dxi-column dataField="Notes" [visible]="false"> </dxi-column>
                           </dx-data-grid>
                         </div>
-                        
 
-
-                        <!-- /.card-header -->
-                        <!-- <div class="card-body">
-                <table class="row-border hover">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>First name</th>
-                        <th>Last name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Foo</td>
-                        <td>Bar</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Someone</td>
-                        <td>Youknow</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Iamout</td>
-                        <td>Ofinspiration</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Yoda</td>
-                        <td>Skywalker</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>Patrick</td>
-                        <td>Dupont</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Barack</td>
-                        <td>Obama</td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>François</td>
-                        <td>Holland</td>
-                      </tr>
-                      <tr>
-                        <td>8</td>
-                        <td>Michel</td>
-                        <td>Popo</td>
-                      </tr>
-                      <tr>
-                        <td>9</td>
-                        <td>Chuck</td>
-                        <td>Norris</td>
-                      </tr>
-                      <tr>
-                        <td>10</td>
-                        <td>Simon</td>
-                        <td>Robin</td>
-                      </tr>
-                      <tr>
-                        <td>11</td>
-                        <td>Louis</td>
-                        <td>Lin</td>
-                      </tr>
-                      <tr>
-                        <td>12</td>
-                        <td>Zelda</td>
-                        <td>Link</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>PROGRAMA SEGURIDAD Y SALUD EN EL TRABAJO</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>PROGRAMA GESTION DOCUMENTAL</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>REGISTRO DE NOVEDADES, ENTRADA Y SALIDA DE CELADURIA</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ASESORAMIENTO, COORDINACIÓN Y EJECUCIÓN DE PROGRAMAS PARA EL BENEFICIO DE LOS ADULTOS MAYORES</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CLUBES DEL ADULTO MAYOR</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>COORDINACION INTER E INTRAINSTITUCIONAL E INTERSECTORIAL</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CUIDADO Y PROTECCIÓN DEL MEDIO AMBIENTE</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ENCUENTROS INTERGENERACIONALES: “CICLO DE VIDA: NIÑOS-JÓVENES-ADULTOS- ABUELITOS</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>GRUPO DE APOYO ADULTOS MAYORES SIEMPRE UNIDOS</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>GRUPO FOLCLÓRICO DEL ADULTO MAYOR.</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>MANTENIMIENTO Y DOTACION DE INSTALACIONES FISICAS.</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Acciones</th>
-                      </tr>
-                  </tfoot>
-                </table>
-              </div> -->
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
