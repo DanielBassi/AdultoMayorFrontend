@@ -10,339 +10,56 @@
                 <div class="col-12">
 
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Lista de programas</h3>
-                            <div class="col-12 text-right"><a class="btn btn-info btn-sm" href="#">
-                                    <i class="fas fa-plus"></i>
-                                    Agregar programa
-                                </a></div>
-                        </div>
+                        
                         <!-- https://js.devexpress.com/Demos/WidgetsGallery/Demo/DataGrid/PopupEditing/Angular/Light/ -->
                         <dx-data-grid 
                           id="gridContainer" 
-                          [dataSource]="dataSource" 
+                          [dataSource]="programas" 
                           [remoteOperations]="false" 
                           [allowColumnReordering]="true" 
                           [rowAlternationEnabled]="true" 
                           [showBorders]="true"
+                          
                         >
                             <dxo-filter-row [visible]="true"></dxo-filter-row>
                             <dxo-paging [enabled]="false"></dxo-paging>
+                            <dxo-editing
+                              mode="popup"
+                              [allowUpdating]="true"
+                              [allowAdding]="true"
+                              [allowDeleting]="true"
+                            >
+                              <dxo-popup
+                                title="Información de la Actividad"
+                                [showTitle]="true"
+                                [width]="700"
+                                [height]="525"
+                              >
+                              </dxo-popup>
+                              <dxo-form>
+                                <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                                  <dxi-item dataField="nombre" caption="Nombre Programa"></dxi-item>
+                                  <dxi-item dataField="subindice" caption="Subindice"
+                                    editorType="dxSelectBox"
+                                    [editorOptions]="{ dataSource: subindices }"
+                                  ></dxi-item>
+                                  <dxi-item
+                                    dataField="descripcion"
+                                    caption="Descripcion Actividad"
+                                    
+                                    [colSpan]="2"
+                                    [editorOptions]="{ height: 100 }"
+                                  >
+                                  </dxi-item>
+                                </dxi-item>
+                        
+                                
+                              </dxo-form>
+                            </dxo-editing>
                             <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
                             <dxi-column dataField="" caption="Acciones"></dxi-column>
                         </dx-data-grid>
 
-
-                        <!-- /.card-header -->
-                        <!-- <div class="card-body">
-                <table class="row-border hover">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>First name</th>
-                        <th>Last name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Foo</td>
-                        <td>Bar</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Someone</td>
-                        <td>Youknow</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Iamout</td>
-                        <td>Ofinspiration</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Yoda</td>
-                        <td>Skywalker</td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>Patrick</td>
-                        <td>Dupont</td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>Barack</td>
-                        <td>Obama</td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>François</td>
-                        <td>Holland</td>
-                      </tr>
-                      <tr>
-                        <td>8</td>
-                        <td>Michel</td>
-                        <td>Popo</td>
-                      </tr>
-                      <tr>
-                        <td>9</td>
-                        <td>Chuck</td>
-                        <td>Norris</td>
-                      </tr>
-                      <tr>
-                        <td>10</td>
-                        <td>Simon</td>
-                        <td>Robin</td>
-                      </tr>
-                      <tr>
-                        <td>11</td>
-                        <td>Louis</td>
-                        <td>Lin</td>
-                      </tr>
-                      <tr>
-                        <td>12</td>
-                        <td>Zelda</td>
-                        <td>Link</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>PROGRAMA SEGURIDAD Y SALUD EN EL TRABAJO</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>PROGRAMA GESTION DOCUMENTAL</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>REGISTRO DE NOVEDADES, ENTRADA Y SALIDA DE CELADURIA</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ASESORAMIENTO, COORDINACIÓN Y EJECUCIÓN DE PROGRAMAS PARA EL BENEFICIO DE LOS ADULTOS MAYORES</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CLUBES DEL ADULTO MAYOR</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>COORDINACION INTER E INTRAINSTITUCIONAL E INTERSECTORIAL</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CUIDADO Y PROTECCIÓN DEL MEDIO AMBIENTE</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>ENCUENTROS INTERGENERACIONALES: “CICLO DE VIDA: NIÑOS-JÓVENES-ADULTOS- ABUELITOS</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>GRUPO DE APOYO ADULTOS MAYORES SIEMPRE UNIDOS</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>GRUPO FOLCLÓRICO DEL ADULTO MAYOR.</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>MANTENIMIENTO Y DOTACION DE INSTALACIONES FISICAS.</td>
-                    <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            Ver manual operativo
-                        </a>
-                        <a class="btn btn-warning btn-sm" href="#">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Editar
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-minus">
-                            </i>
-                            Eliminar
-                        </a>
-                    </td>
-                  </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Acciones</th>
-                      </tr>
-                  </tfoot>
-                </table>
-              </div> -->
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
