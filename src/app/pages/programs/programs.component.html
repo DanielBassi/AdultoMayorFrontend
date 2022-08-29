@@ -10,17 +10,11 @@
                 <div class="col-12">
 
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Lista de programas</h3>
-                            <div class="col-12 text-right"><a class="btn btn-info btn-sm" href="#">
-                                    <i class="fas fa-plus"></i>
-                                    Agregar programa
-                                </a></div>
-                        </div>
+                        
                         <!-- https://js.devexpress.com/Demos/WidgetsGallery/Demo/DataGrid/PopupEditing/Angular/Light/ -->
                         <dx-data-grid 
                           id="gridContainer" 
-                          [dataSource]="dataSource" 
+                          [dataSource]="programasDTO" 
                           [remoteOperations]="false" 
                           [allowColumnReordering]="true" 
                           [rowAlternationEnabled]="true" 
@@ -28,8 +22,30 @@
                         >
                             <dxo-filter-row [visible]="true"></dxo-filter-row>
                             <dxo-paging [enabled]="false"></dxo-paging>
+                            <dxo-editing
+                              mode="popup"
+                              [allowUpdating]="true"
+                              [allowAdding]="true"
+                              [allowDeleting]="true"
+                            >
+                              <dxo-popup
+                                title="Información de la Actividad"
+                                [showTitle]="true"
+                                [width]="700"
+                                [height]="300"
+                              >
+                              </dxo-popup>
+                              <dxo-form>
+                                <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                                  <dxi-item dataField="nombre" caption="Nombre Programa"></dxi-item>
+                                  
+                                </dxi-item>
+                        
+                                
+                              </dxo-form>
+                            </dxo-editing>
                             <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
-                            <dxi-column dataField="" caption="Acciones"></dxi-column>
+                            
                         </dx-data-grid>
 
 

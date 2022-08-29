@@ -11,7 +11,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
   constructor(private programaService: ProgramaService) {}
 
-  dataSource: any;
+  programasDTO: any;
 
   ngOnInit(): void {
     this.programas();
@@ -21,7 +21,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.programaService
       .programas()
       .subscribe((response: any) => {
-        this.dataSource = response;
+        this.programasDTO = response;
       });
   }
 

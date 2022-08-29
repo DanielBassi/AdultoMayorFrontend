@@ -15,4 +15,8 @@ export class ActivitiesService {
   actividades(){
     return this.http.get(`${this.ROOT_SERVE}/api/Actividad`);
   }
+  programas(){
+    return this.http.get(`${this.ROOT_SERVE}/api/Program`);
+  }
+  
 }

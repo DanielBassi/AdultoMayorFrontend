@@ -14,10 +14,10 @@
                           <dx-data-grid
                             id="gridContainer"
                             [dataSource]="actividades"
-                            keyExpr="ID"
                             [showBorders]="true"
                           >
-                            <dxo-paging [enabled]="false"></dxo-paging>
+                            <dxo-paging [enabled]="true"></dxo-paging>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
                             <dxo-editing
                               mode="popup"
                               [allowUpdating]="true"
@@ -33,17 +33,23 @@
                               </dxo-popup>
                               <dxo-form>
                                 <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                                  <dxi-item dataField="Programa_nombre" caption="Nombre Programa"></dxi-item>
-                                  <dxi-item dataField="Subindice_nombre" caption="Subindice"></dxi-item>
-                                  <dxi-item dataField="Nombre" caption="Nombre Actividad"></dxi-item>
-                                  <dxi-item dataField="Usuario_nombre" caption="Creador de la Actividad"></dxi-item>
-                                  <dxi-item dataField="Fecha" caption="Fecha" dataType="date"></dxi-item>
-                                  <dxi-item dataField="Estado" caption="Estado"
+                                  <dxi-item [colSpan]="2" editorType="dxSelectBox" [label]="{text:'Nombre Programa'}" dataField="idAmbito" [editorOptions]="{ dataSource: programasDTO,  
+                                    displayExpr: 'nombre',  
+                                    valueExpr: 'programa_nombre',
+                                    showClearButton:'true'
+                                  }">
+                                  </dxi-item>
+                                  
+                                  <dxi-item dataField="subindice_nombre" caption="Subindice" [editorOptions]="{ readOlny: true }"></dxi-item>
+                                  <dxi-item dataField="nombre" caption="Nombre Actividad"></dxi-item>
+                                  <dxi-item dataField="usuario_nombre" caption="Creador de la Actividad"></dxi-item>
+                                  <dxi-item dataField="fecha" caption="Fecha" dataType="date"></dxi-item>
+                                  <dxi-item dataField="estado" caption="Estado"
                                     editorType="dxSelectBox"
                                     [editorOptions]="{ dataSource: estados }"
                                   ></dxi-item>
                                   <dxi-item
-                                    dataField="Descripcion"
+                                    dataField="descripcion"
                                     caption="Descripcion Actividad"
                                     
                                     [colSpan]="2"
@@ -56,13 +62,13 @@
                               </dxo-form>
                             </dxo-editing>
                         
-                            <dxi-column dataField="Programa_nombre" caption="Nombre Programa" ></dxi-column>
-                            <dxi-column dataField="Subindice_nombre" caption="Subindice"></dxi-column>
-                            <dxi-column dataField="Nombre" caption="Nombre Actividad"></dxi-column>
-                            <dxi-column dataField="Usuario_nombre" caption="Creador de la Actividad"></dxi-column>
-                            <dxi-column dataField="Fecha" caption="Fecha" dataType="date" [width]="70"> </dxi-column>
-                            <dxi-column dataField="Descripcion" caption="Descripcion Actividad"></dxi-column>
-                            <dxi-column dataField="Estado" caption="Estado" > </dxi-column>
+                            <dxi-column dataField="programa_nombre" caption="Nombre Programa" ></dxi-column>
+                            <dxi-column dataField="subindice_nombre" caption="Subindice"></dxi-column>
+                            <dxi-column dataField="nombre" caption="Nombre Actividad"></dxi-column>
+                            <dxi-column dataField="usuario_nombre" caption="Creador de la Actividad"></dxi-column>
+                            <dxi-column dataField="fecha" caption="Fecha" dataType="date" [width]="70"> </dxi-column>
+                            <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
+                            <dxi-column dataField="estadoActividad_Descripcion" caption="Estado" > </dxi-column>
                             
                            <!--  <dxi-column dataField="StateID" caption="State" [width]="125">
                               <dxo-lookup [dataSource]="states" displayExpr="Name" valueExpr="ID">
