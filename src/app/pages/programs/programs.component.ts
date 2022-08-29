@@ -14,10 +14,11 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   programasDTO: any;
 
   ngOnInit(): void {
-    this.programas();
+    this.listarProgramas();
+    this.subindices = [1,2,3,4];
   }
 
-  programas(){
+  listarProgramas(){
     this.programaService
       .programas()
       .subscribe((response: any) => {
