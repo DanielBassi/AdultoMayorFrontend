@@ -12,10 +12,10 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   constructor(private programaService: ProgramaService) {}
 
   programasDTO: any;
-
+  
   ngOnInit(): void {
     this.listarProgramas();
-    this.subindices = [1,2,3,4];
+    
   }
 
   listarProgramas(){

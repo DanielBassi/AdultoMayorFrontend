@@ -32,15 +32,36 @@
                               >
                               </dxo-popup>
                               <dxo-form>
+
                                 <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                                  <dxi-item [colSpan]="2" editorType="dxSelectBox" [label]="{text:'Nombre Programa'}" dataField="idAmbito" [editorOptions]="{ dataSource: programasDTO,  
+                                  <dxi-item alignment="bottom" [colSpan]="2" [label]="{ text: 'Nombre Programa' }">
+                                    <div *dxTemplate>
+                                        <dx-select-box 
+                                        [dataSource]="programasDTO"
+                                        id="programaId"
+                                        displayExpr="nombre"
+                                        valueExpr="nombre"
+                                        [value]="currentProgram"
+                                        (onSelectionChanged)="getProgramBySelection($event)"
+                                        [showClearButton]="true">
+                                        </dx-select-box>
+                                    </div>
+                                </dxi-item>
+                                  <!-- <dxi-item [colSpan]="2" [isRequired]="true" editorType="dxSelectBox" [label]="{text:'Nombre Programa'}" dataField="programa_nombre" [editorOptions]="{ dataSource: programasDTO,  
                                     displayExpr: 'nombre',  
-                                    valueExpr: 'programa_nombre',
+                                    valueExpr: 'id',
+                                    showClearButton:'true',
+                                    onSelectionChange: getProgramBySelection()
+                                  }">
+                                  </dxi-item> -->
+
+                                  <dxi-item [colSpan]="1"  editorType="dxSelectBox" [label]="{text:'Subindice'}" dataField="subindice_nombre" [editorOptions]="{ dataSource:  subindicesDTO,  
+                                    displayExpr: 'nombre',  
+                                    valueExpr: 'nombre',
                                     showClearButton:'true'
                                   }">
                                   </dxi-item>
                                   
-                                  <dxi-item dataField="subindice_nombre" caption="Subindice" [editorOptions]="{ readOlny: true }"></dxi-item>
                                   <dxi-item dataField="nombre" caption="Nombre Actividad"></dxi-item>
                                   <dxi-item dataField="usuario_nombre" caption="Creador de la Actividad"></dxi-item>
                                   <dxi-item dataField="fecha" caption="Fecha" dataType="date"></dxi-item>
