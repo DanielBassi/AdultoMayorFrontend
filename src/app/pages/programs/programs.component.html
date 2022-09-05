@@ -30,15 +30,27 @@
                               [allowDeleting]="true"
                             >
                               <dxo-popup
-                                title="Información de la Actividad"
+                                title="Información del programa"
                                 [showTitle]="true"
                                 [width]="700"
-                                [height]="300"
+                                [height]="700"
                               >
                               </dxo-popup>
                               <dxo-form>
                                 <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                                  <dxi-item dataField="nombre" caption="Nombre Programa"></dxi-item>
+                                  <dxi-item [colSpan]="2" dataField="nombre" caption="Nombre Programa"></dxi-item>
+                                  <dxi-item [colSpan]="2" dataField="componentes" caption="componentes">
+                                    <dx-data-grid
+                                      id="grid-componentes"
+                                      [dataSource]="programasDTO" 
+                                      
+
+                                    >
+                                    <dxi-item dataField="nombre" caption="Nombre componente"></dxi-item>
+                                    <dxi-item dataField="nombre" caption="Nombre componente"></dxi-item>
+
+                                    </dx-data-grid>
+                                  </dxi-item>
                                   
                                 </dxi-item>
                         
