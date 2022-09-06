@@ -26,12 +26,35 @@ export class ActivitiesComponent implements OnInit {
 	currentProgram: number;
 	currentProgramDTO: any;
 
+	popupVisible: boolean = false;
+
+  	isVisible:boolean = false;
+  	message= 'El usuario ha sido agregado exitosamente';
+  	type= 'success';
+
 	constructor(private activitiesService: ActivitiesService) { }
 	actividades: any;
+	actividad:any;
 	estados: any;
 	programasDTO: any;
 	subindicesDTO: any;
 
+	buttonOptionsSave = {
+		text: 'Guardar',
+			type: 'success',
+			icon: 'fa fa-save',
+			width: '200',
+			onClick: () => {
+			  this.actividad.estado = true;
+			  
+			  	this.activitiesService.insertActividad(this.actividad).subscribe((res:any) => {
+					this.isVisible = true;
+					this.listarActividades();
+				
+				});
+				this.popupVisible = false;
+		  	},
+	  }
 
 	ngOnInit(): void {
 		this.listarActividades();
@@ -70,6 +93,10 @@ export class ActivitiesComponent implements OnInit {
 		console.log(eventName.data);
 		
 	}
+	showPopUp = () => this.popupVisible = true;
+	hidePopUp = () => this.popupVisible = false;
+	showToast = () => this.isVisible = true;
+	hideToast = () => this.isVisible= false;
 
 }
 @NgModule({

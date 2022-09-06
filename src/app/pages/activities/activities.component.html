@@ -8,49 +8,15 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-
+          <div class="col-lg-2 mb-2">
+            <dx-button type="success" text="Agregar actividad" icon="fa fa-plus" (onClick)="showPopUp()"></dx-button>
+          </div>
           <div class="card">
             <div id="data-grid-demo">
-              <dx-data-grid id="gridContainer" [dataSource]="actividades" [showBorders]="true" (onRowInserting)="logEvent($event)">
-                <dxo-paging [enabled]="true"></dxo-paging>
+              <dx-data-grid id="gridContainer" [dataSource]="actividades" [showBorders]="true">
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
-                  <dxo-popup title="Información de la Actividad" [showTitle]="true" [width]="700" [height]="525">
-                  </dxo-popup>
-                  <dxo-form>
-
-                    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                      <dxi-item alignment="bottom" [colSpan]="2" [label]="{ text: 'Nombre Programa' }" dataField="programa_nombre">
-                        <div *dxTemplate>
-                          <dx-select-box [dataSource]="programasDTO" id="programaId" displayExpr="nombre" valueExpr="nombre"
-                            [value]="currentProgram" (onSelectionChanged)="getProgramBySelection($event)"
-                            [showClearButton]="true">
-                          </dx-select-box>
-                        </div>
-                      </dxi-item>
-
-                      <dxi-item [colSpan]="1" editorType="dxSelectBox" [label]="{text:'Subindice'}"
-                        dataField="subindice_nombre" [editorOptions]="{ 
-                                    dataSource:  currentProgramDTO?.subindices,  
-                                    displayExpr: 'nombre',  
-                                    valueExpr: 'nombre',
-                                    showClearButton:'true'
-                                  }">
-                      </dxi-item>
-
-                      <dxi-item dataField="nombre" caption="Nombre Actividad"></dxi-item>
-                      <dxi-item dataField="usuario_nombre" caption="Creador de la Actividad"></dxi-item>
-                      <dxi-item dataField="fecha" caption="Fecha" dataType="date"></dxi-item>
-                      <dxi-item dataField="estado" caption="Estado" editorType="dxSelectBox"
-                        [editorOptions]="{ dataSource: estados }"></dxi-item>
-                      <dxi-item dataField="descripcion" caption="Descripcion Actividad" [colSpan]="2"
-                        [editorOptions]="{ height: 100 }">
-                      </dxi-item>
-                    </dxi-item>
-
-
-                  </dxo-form>
-                </dxo-editing>
+                <dxo-paging [enabled]="true"></dxo-paging>
+        
 
                 <dxi-column dataField="programa_nombre" caption="Nombre Programa"></dxi-column>
                 <dxi-column dataField="subindice_nombre" caption="Subindice"></dxi-column>
@@ -59,15 +25,63 @@
                 <dxi-column dataField="fecha" caption="Fecha" dataType="date" [width]="70"> </dxi-column>
                 <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
                 <dxi-column dataField="estadoActividad_Descripcion" caption="Estado"> </dxi-column>
-
-                <!--  <dxi-column dataField="StateID" caption="State" [width]="125">
-                              <dxo-lookup [dataSource]="states" displayExpr="Name" valueExpr="ID">
-                              </dxo-lookup>
-                              
-                            </dxi-column> -->
-                <dxi-column dataField="Address" [visible]="false"> </dxi-column>
-                <dxi-column dataField="Notes" [visible]="false"> </dxi-column>
+                <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center">
+                  <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+                    <dx-button class="positionButon" hint="Editar" text="Editar" type="default">
+                      Editar
+                    </dx-button>
+                    <dx-button class="positionButon" hint="Eliminar" text="Eliminar" type="danger">
+                      Eliminar
+                    </dx-button>
+                  </div>
+                </dxi-column> 
               </dx-data-grid>
+
+              <dx-popup [width]="700" [height]="550" [showTitle]="true" title="Crear nueva actividad" [dragEnabled]="false"
+                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+                <dx-form id="form" [colCount]="2" [(formData)]="actividad" labelLocation="top" [disabled]="false" [readOnly]="false">
+                  
+
+                  <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                    <dxi-item alignment="bottom" [colSpan]="2" [label]="{ text: 'Nombre Programa' }" dataField="programa_nombre">
+                      <div *dxTemplate>
+                        <dx-select-box [dataSource]="programasDTO" id="programaId" displayExpr="nombre" valueExpr="nombre"
+                           (onSelectionChanged)="getProgramBySelection($event)"
+                          [showClearButton]="true">
+                        </dx-select-box>
+                      </div>
+                    </dxi-item>
+
+                    <dxi-item [colSpan]="1" editorType="dxSelectBox" [label]="{text:'Subindice'}"
+                      dataField="subindice_nombre" [editorOptions]="{ 
+                                  dataSource:  currentProgramDTO?.subindices,  
+                                  displayExpr: 'nombre',  
+                                  valueExpr: 'nombre',
+                                  showClearButton:'true'
+                                }">
+                    </dxi-item>
+
+                    <dxi-item dataField="nombre" caption="Nombre Actividad"></dxi-item>
+                    <dxi-item dataField="usuario_nombre" caption="Creador de la Actividad"></dxi-item>
+                    <dxi-item dataField="fecha" caption="Fecha" dataType="date"></dxi-item>
+                    <dxi-item dataField="estado" caption="Estado" editorType="dxSelectBox"
+                      [editorOptions]="{ dataSource: estados }"></dxi-item>
+                    <dxi-item dataField="descripcion" caption="Descripcion Actividad" [colSpan]="2"
+                      [editorOptions]="{ height: 100 }">
+                    </dxi-item>
+                  </dxi-item>
+          
+                  <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                    [buttonOptions]="buttonOptionsSave">
+                  </dxi-item>
+          
+                </dx-form>
+              </dx-popup>
+        
+              <dx-toast [(visible)]="isVisible" [type]="type" [message]="message">
+              </dx-toast>
+
+              
             </div>
 
             <!-- /.card-body -->

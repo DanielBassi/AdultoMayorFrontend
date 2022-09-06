@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ActivitiesService {
+	
   ROOT_SERVE: string = environment.API_URL
   constructor(private http: HttpClient) { };
 
@@ -24,5 +25,8 @@ export class ActivitiesService {
     });
     return this.http.get(`${this.ROOT_SERVE}/api/Subindice/ListarByProgramaId`,{params});
   }
+  insertActividad(actividad: any) {
+		return this.http.post(`${this.ROOT_SERVE}/api/Actividad`, { ...actividad });
+	}
   
 }

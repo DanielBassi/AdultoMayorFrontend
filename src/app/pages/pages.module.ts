@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProgramsComponent } from './programs/programs.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
-import { DxButtonModule, DxDataGridModule, DxSelectBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxSelectBoxModule ,DxToastModule,DxTemplateModule} from 'devextreme-angular';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 
@@ -28,13 +28,17 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DxDataGridModule,
     DxButtonModule,
     DashboardModule,
-    DxSelectBoxModule
+    DxSelectBoxModule,
+    DxPopupModule,
+    DxFormModule,
+    DxToastModule,
+    DxTemplateModule
   ],
   exports:[
     UsersComponent,
     ProgramsComponent,
     ActivitiesComponent,
-    IndicatorsComponent
+    IndicatorsComponent,
   ]
 })
 export class PagesModule { }
