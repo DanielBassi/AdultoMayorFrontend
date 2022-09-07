@@ -15,13 +15,33 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "globalize": [
+        "node_modules/globalize/dist/globalize"
+      ],
+      "globalize/*": [
+        "node_modules/globalize/dist/globalize/*"
+      ],
+      "cldr": [
+        "node_modules/cldrjs/dist/cldr"
+      ],
+      "cldr/*": [
+        "node_modules/cldrjs/dist/cldr/*"
+      ],
+      "jszip": [
+        "node_modules/jszip/dist/jszip.min.js"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -38,6 +38,8 @@ export class ActivitiesComponent implements OnInit {
 	estados: any;
 	programasDTO: any;
 	subindicesDTO: any;
+	maxLength: null;
+	value:string;
 
 	buttonOptionsSave = {
 		text: 'Guardar',

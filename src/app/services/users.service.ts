@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { IUsuarioDTO } from '../models/IUsuarioDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class UsersService {
     return this.http.get(`${this.ROOT_SERVE}/api/User`);
   }
 
-  insertUsuario(user: any): Observable<any>{
+  insertUsuario(user: IUsuarioDTO): Observable<any>{
     return this.http.post(`${this.ROOT_SERVE}/api/User`, { ...user });
   }
 
-  editUsuario(user:any): Observable<any>{
+  editUsuario(user:IUsuarioDTO): Observable<any>{
     return this.http.put(`${this.ROOT_SERVE}/api/User`, { ...user });
   }
 

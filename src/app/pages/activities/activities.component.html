@@ -39,35 +39,50 @@
 
               <dx-popup [width]="700" [height]="550" [showTitle]="true" title="Crear nueva actividad" [dragEnabled]="false"
                 [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
-                <dx-form id="form" [colCount]="2" [(formData)]="actividad" labelLocation="top" [disabled]="false" [readOnly]="false">
+                <dx-form id="form" [colCount]="2" [(formData)]="actividad" labelLocation="top" [disabled]="false" [readOnly]="false" >
                   
 
                   <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                    <dxi-item alignment="bottom" [colSpan]="2" [label]="{ text: 'Nombre Programa' }" dataField="programa_nombre">
+                    <dxi-item alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" dataField="programa_id" isRequired="true">
                       <div *dxTemplate>
-                        <dx-select-box [dataSource]="programasDTO" id="programaId" displayExpr="nombre" valueExpr="nombre"
+                        <dx-select-box [dataSource]="programasDTO" id="programaId" displayExpr="nombre" valueExpr="id"
                            (onSelectionChanged)="getProgramBySelection($event)"
                           [showClearButton]="true">
                         </dx-select-box>
                       </div>
+                      
+                        <dxi-validation-rule type="required" ></dxi-validation-rule>
+                      
                     </dxi-item>
 
-                    <dxi-item [colSpan]="1" editorType="dxSelectBox" [label]="{text:'Subindice'}"
+                    <dxi-item isRequired="true" [colSpan]="1" editorType="dxSelectBox" [label]="{text:'Subindice'}"
                       dataField="subindice_nombre" [editorOptions]="{ 
                                   dataSource:  currentProgramDTO?.subindices,  
                                   displayExpr: 'nombre',  
                                   valueExpr: 'nombre',
                                   showClearButton:'true'
                                 }">
+                                <dxi-validation-rule type="required" ></dxi-validation-rule>
                     </dxi-item>
 
-                    <dxi-item dataField="nombre" caption="Nombre Actividad"></dxi-item>
-                    <dxi-item dataField="usuario_nombre" caption="Creador de la Actividad"></dxi-item>
-                    <dxi-item dataField="fecha" caption="Fecha" dataType="date"></dxi-item>
+                    <dxi-item dataField="nombre" [label]="{text:'Nombre de la Actividad'}" isRequired="true">
+                      <dxi-validation-rule type="required" ></dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }">
+                      <dxi-validation-rule type="required" ></dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}" >
+                      <dxi-validation-rule type="required" ></dxi-validation-rule>
+                    </dxi-item>
                     <dxi-item dataField="estado" caption="Estado" editorType="dxSelectBox"
-                      [editorOptions]="{ dataSource: estados }"></dxi-item>
+                      [editorOptions]="{ dataSource: estados }">
+                      <dxi-validation-rule type="required" ></dxi-validation-rule>
+                    </dxi-item>
                     <dxi-item dataField="descripcion" caption="Descripcion Actividad" [colSpan]="2"
                       [editorOptions]="{ height: 100 }">
+                      <dx-text-area [height]="90" [maxLength]="maxLength" [(value)]="value">
+                      </dx-text-area>
+                      <dxi-validation-rule type="required" ></dxi-validation-rule>
                     </dxi-item>
                   </dxi-item>
           

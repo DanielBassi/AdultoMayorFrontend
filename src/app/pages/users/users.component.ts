@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
+import { IUsuarioDTO } from 'src/app/models/IUsuarioDTO';
 import { UsersService } from 'src/app/services/users.service';
 
 
@@ -18,7 +19,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   type= 'success';
 
   dataSource: any;
-  user: any;
+  user: IUsuarioDTO;
   buttonOptionsSave = {
     text: 'Guardar',
         type: 'success',

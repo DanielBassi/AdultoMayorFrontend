@@ -7,12 +7,66 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+              <div class="col-lg-2 mb-2">
+                <dx-button type="success" text="Agregar usuario" icon="fa fa-plus" (onClick)="showPopUp()"></dx-button>
+              </div>
                 <div class="col-12">
 
                     <div class="card">
                         
                         <!-- https://js.devexpress.com/Demos/WidgetsGallery/Demo/DataGrid/PopupEditing/Angular/Light/ -->
-                        <dx-data-grid 
+                      <dx-data-grid
+                        id="gridContainer"
+                        [dataSource]="programasDTO"
+                        [remoteOperations]="false" 
+                        [allowColumnReordering]="true" 
+                        [rowAlternationEnabled]="true" 
+                        [showBorders]="true" 
+                      >
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-paging [enabled]="true"></dxo-paging>
+                      <dxi-column dataField="nombre" caption="Nombre Programa"></dxi-column>
+                      <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center">                          
+                        <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+                          <dx-button class="positionButon" hint="Editar" text="Editar" type="default" >
+                            Editar
+                          </dx-button>
+                        </div>
+                        <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+                          <dx-button class="positionButon" hint="Eliminar" text="Eliminar" type="danger">
+                            Eliminar
+                          </dx-button>
+                        </div>
+                      </dxi-column>
+
+
+                      </dx-data-grid>
+                    </div>
+                    <!-- /.card -->
+                    <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Crear nuevo Programa" [dragEnabled]="false"
+                      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+                        <dx-form id="form" [colCount]="2" [(formData)]="programa" labelLocation="top" [disabled]="false" [readOnly]="false">
+
+                          <dxi-item [colSpan]="2" [label]="{text:'Nombre Programa'}" dataField="nombre">
+                          </dxi-item>
+                          <dxi-item></dxi-item>
+                          <!-- <dx-data-grid 
+                            id="componentesGridContainer"
+                            [dataSource]="programasDTO"
+                            [remoteOperations]="false" 
+                            [allowColumnReordering]="true" 
+                            [rowAlternationEnabled]="true" 
+                            [showBorders]="true"
+                          >
+
+                          </dx-data-grid> -->
+                          <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                            [buttonOptions]="buttonOptionsSave">
+                          </dxi-item>
+
+                        </dx-form>
+                      </dx-popup>
+                      <!-- <dx-data-grid 
                           id="gridContainer" 
                           [dataSource]="programasDTO" 
                           [remoteOperations]="false" 
@@ -21,14 +75,14 @@
                           [showBorders]="true"
                           
                         >
-                            <dxo-filter-row [visible]="true"></dxo-filter-row>
-                            <dxo-paging [enabled]="false"></dxo-paging>
-                            <dxo-editing
-                              mode="popup"
-                              [allowUpdating]="true"
-                              [allowAdding]="true"
-                              [allowDeleting]="true"
-                            >
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-paging [enabled]="true"></dxo-paging>
+                          <dxo-editing
+                            mode="popup"
+                            [allowUpdating]="true"
+                            [allowAdding]="true"
+                            [allowDeleting]="true"
+                          >
                               <dxo-popup
                                 title="Información del programa"
                                 [showTitle]="true"
@@ -57,13 +111,12 @@
                                 
                               </dxo-form>
                             </dxo-editing>
-                            <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
+                            <dxi-column dataField="nombre" caption="Nombre Programa"></dxi-column>
                             
-                        </dx-data-grid>
+                        </dx-data-grid> -->
 
                         <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
+                    
                 </div>
                 <!-- /.col -->
             </div>
