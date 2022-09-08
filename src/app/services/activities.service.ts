@@ -16,9 +16,7 @@ export class ActivitiesService {
   actividades(){
     return this.http.get(`${this.ROOT_SERVE}/api/Actividad`);
   }
-  programas(){
-    return this.http.get(`${this.ROOT_SERVE}/api/Program`);
-  }
+   
   subindices(programa_id:number){
     let params = new HttpParams({
       fromObject: { programa_id:programa_id },

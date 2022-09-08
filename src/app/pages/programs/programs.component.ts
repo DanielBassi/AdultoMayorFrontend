@@ -24,6 +24,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       icon: 'fa fa-save',
       width: '200',
       onClick: () => {
+        debugger;
         this.programa.estado = true;
         this.programa.color= "blue"
         this.popupVisible = false;
@@ -33,7 +34,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
         });
       },
   }
-  buttonOptionsNewComponent = {
+  /* buttonOptionsNewComponent = {
     text: 'Agregar Componente',
     type: 'success',
     icon: 'fa fa-save',
@@ -72,7 +73,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
         this.listarProgramas();
       });
     },
-  }
+  } */
   ngOnInit(): void {
     this.listarProgramas();
     this.popupVisible=false;
