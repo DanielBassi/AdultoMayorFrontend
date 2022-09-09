@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DxDataGridModule, DxFormModule, DxListModule, DxPopupModule, DxSliderModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxDataGridModule, DxDateBoxModule, DxFormModule, DxListModule, DxPopupModule, DxSelectBoxModule, DxSliderModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxValidationSummaryModule, DxValidatorModule } from 'devextreme-angular';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -29,6 +29,12 @@ import { PagesModule } from './pages/pages.module';
     DxSliderModule,
     DxFormModule,
     DxTextAreaModule,
+    DxSelectBoxModule,
+    DxCheckBoxModule,
+    DxDateBoxModule,
+    DxButtonModule,
+    DxValidatorModule,
+    DxValidationSummaryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

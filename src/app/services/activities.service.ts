@@ -26,5 +26,8 @@ export class ActivitiesService {
   insertActividad(actividad: any) {
 		return this.http.post(`${this.ROOT_SERVE}/api/Actividad`, { ...actividad });
 	}
+  EditActividad(actividad: any) {
+		return this.http.put(`${this.ROOT_SERVE}/api/Actividad`, { ...actividad });
+	}
   
 }

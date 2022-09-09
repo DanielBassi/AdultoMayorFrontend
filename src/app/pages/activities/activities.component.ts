@@ -29,35 +29,41 @@ export class ActivitiesComponent implements OnInit {
 	currentProgramDTO: any;
 
 	popupVisible: boolean = false;
-
+	popupEditVisible:boolean=false;
 	isVisible: boolean = false;
-	message = 'El usuario ha sido agregado exitosamente';
+	isEditVisible: boolean = false;
+	isDeleteVisible: boolean = false;
+	message = 'La actividad ha sido agregada exitosamente';
+	messageEdit = 'La actividad ha sido editada exitosamente';
+	messageDelete = 'La actividad ha sido eliminada exitosamente';
 	type = 'success';
 
 	constructor(private activitiesService: ActivitiesService, private programaService: ProgramaService, private estadoActividadService: EstadoActividadService, private usuarioService: UsersService) { }
 	actividades: any;
 	actividad: IActividadDTO;
+	actividadEdit:IActividadDTO;
 	usuario: IUsuarioDTO;
 	estados: any;
 	programasDTO: any;
 	subindicesDTO: any;
 	maxLength: null;
 	value: string;
-
-	buttonOptionsSave2 = {
+	
+	buttonOptionsSave = {
 		text: 'Guardar',
 		type: 'success',
 		icon: 'fa fa-save',
 		width: '200',
-		onClick: () => {
-			this.actividad.nombreComprobante="indefinido";
-			this.actividad.indicador_Id = 1;
-			this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
-				this.isVisible = true;
-				this.listarActividades();
-			});
-			this.popupVisible = false;
-		},
+		useSubmitBehavior: true,
+		
+	}
+	buttonOptionsEdit = {
+		text: 'Guardar',
+		type: 'success',
+		icon: 'fa fa-save',
+		width: '200',
+		useSubmitBehavior: true,
+		
 	}
 
 	ngOnInit(): void {
@@ -95,8 +101,35 @@ export class ActivitiesComponent implements OnInit {
 				this.usuario=response;
 			});
 	}
-
-
+	formSubmit(e?:any) {
+		if (e)
+      		e.preventDefault();
+		this.actividad.nombreComprobante="indefinido";
+		this.actividad.indicador_Id = 1;
+		this.popupVisible = false;
+		this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
+			this.isVisible = true;
+			this.listarActividades();
+			 
+		});	
+	}
+	formEdit(e?:any) {
+		if (e)
+      		e.preventDefault();
+		this.actividad.nombreComprobante="indefinido";
+		this.actividad.indicador_Id = 1;
+		this.popupEditVisible = false;
+		this.activitiesService.EditActividad(this.actividadEdit).subscribe((res: any) => {
+			this.isEditVisible = true;
+			this.listarActividades();
+			 
+		});	
+	}
+	editActividad(actividadEdit:IActividadDTO){
+		this.actividadEdit=actividadEdit
+		this.showEditPopUp()
+	}
+	
 	getProgramBySelection(e: any) {
 		if (!!e.selectedItem) {
 			this.currentProgramDTO = this.programasDTO.find(x => x.id == e.selectedItem.id);
@@ -113,9 +146,9 @@ export class ActivitiesComponent implements OnInit {
 
 	}
 	showPopUp = () => this.popupVisible = true;
-	hidePopUp = () => this.popupVisible = false;
-	showToast = () => this.isVisible = true;
-	hideToast = () => this.isVisible = false;
+	showEditPopUp = () => this.popupEditVisible = true;
+	
+	
 
 }
 @NgModule({
