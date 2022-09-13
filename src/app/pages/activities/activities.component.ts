@@ -51,14 +51,14 @@ export class ActivitiesComponent implements OnInit {
 	subindicesDTO: any;
 	maxLength: null;
 	value: string;
-	
+
 	buttonOptionsSave = {
 		text: 'Guardar',
 		type: 'success',
 		icon: 'fa fa-save',
 		width: '200',
 		useSubmitBehavior: true,
-		
+
 	}
 	buttonOptionsEdit = {
 		text: 'Editar',
@@ -66,7 +66,7 @@ export class ActivitiesComponent implements OnInit {
 		icon: 'fa fa-edit',
 		width: '200',
 		useSubmitBehavior: true,
-		
+
 	}
 	buttonOptionsClose = {
 		text: 'salir',
@@ -74,7 +74,7 @@ export class ActivitiesComponent implements OnInit {
 		icon: 'fa fa-window-close',
 		width: '200',
 		useSubmitBehavior: true,
-		
+
 	}
 
 	ngOnInit(): void {
@@ -118,12 +118,13 @@ export class ActivitiesComponent implements OnInit {
       		e.preventDefault();
 		this.actividad.nombreComprobante="indefinido";
 		this.actividad.indicador_Id = 1;
+    this.actividad.estadoActividad_Id = 4;
 		this.popupVisible = false;
 		this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
 			this.isVisible = true;
 			this.listarActividades();
-			 
-		});	
+
+		});
 	}
 	formEdit(e?:any) {
 		if (e)
@@ -134,8 +135,8 @@ export class ActivitiesComponent implements OnInit {
 		this.activitiesService.editActividad(this.actividadEdit).subscribe((res: any) => {
 			this.isEditVisible = true;
 			this.listarActividades();
-			 
-		});	
+
+		});
 	}
 	formHide() {
 		this.popupDetailsVisible=false;
@@ -150,7 +151,7 @@ export class ActivitiesComponent implements OnInit {
 		this.showDetailsPopUp()
 		console.log(actividadDetails)
 	}
-	
+
 	getProgramBySelection(e: any) {
 		if (!!e.selectedItem) {
 			this.currentProgramDTO = this.programasDTO.find(x => x.id == e.selectedItem.id);
@@ -169,7 +170,7 @@ export class ActivitiesComponent implements OnInit {
 	showPopUp = () => this.popupVisible = true;
 	showEditPopUp = () => this.popupEditVisible = true;
 	showDetailsPopUp = () => this.popupDetailsVisible = true;
-	
+
 
 }
 @NgModule({
