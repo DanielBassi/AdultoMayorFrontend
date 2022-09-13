@@ -11,5 +11,7 @@ export class EstadoActividadService {
   estadosActividad(){
     return this.http.get(`${this.ROOT_SERVE}/api/EstadoActividad`);
   }
-
+  estadosActividadCompleto(){
+    return this.http.get(`${this.ROOT_SERVE}/api/EstadoActividad/Completo`);
+  }
 }

@@ -23,11 +23,20 @@ export class ActivitiesService {
     });
     return this.http.get(`${this.ROOT_SERVE}/api/Subindice/ListarByProgramaId`,{params});
   }
+
   insertActividad(actividad: any) {
 		return this.http.post(`${this.ROOT_SERVE}/api/Actividad`, { ...actividad });
 	}
-  EditActividad(actividad: any) {
+
+  editActividad(actividad: any) {
 		return this.http.put(`${this.ROOT_SERVE}/api/Actividad`, { ...actividad });
 	}
+
+  deleteActividad(actividad_id: number) {
+    let params = new HttpParams({
+      fromObject: { actividad_id:actividad_id },
+    });
+    return this.http.delete(`${this.ROOT_SERVE}/api/Actividad`, {params});
+  }
   
 }

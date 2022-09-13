@@ -8,6 +8,7 @@ import { IActividadDTO } from 'src/app/models/IActividadDTO';
 import { EstadoActividadService } from 'src/app/services/estadoActividad.service';
 import { IUsuarioDTO } from 'src/app/models/IUsuarioDTO';
 import { UsersService } from 'src/app/services/users.service';
+import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
 
 
 if (!/localhost/.test(document.location.host)) {
@@ -26,10 +27,11 @@ export class ActivitiesComponent implements OnInit {
 
 	search: boolean = true;
 	currentProgram: number;
-	currentProgramDTO: any;
-
+	currentProgramDTO: IProgramaDTO;
 	popupVisible: boolean = false;
+	popupDetailsVisible: boolean = false;
 	popupEditVisible:boolean=false;
+	popupDeleteVisible:boolean=false;
 	isVisible: boolean = false;
 	isEditVisible: boolean = false;
 	isDeleteVisible: boolean = false;
@@ -42,6 +44,7 @@ export class ActivitiesComponent implements OnInit {
 	actividades: any;
 	actividad: IActividadDTO;
 	actividadEdit:IActividadDTO;
+	actividadDetails:IActividadDTO;
 	usuario: IUsuarioDTO;
 	estados: any;
 	programasDTO: any;
@@ -58,9 +61,17 @@ export class ActivitiesComponent implements OnInit {
 		
 	}
 	buttonOptionsEdit = {
-		text: 'Guardar',
-		type: 'success',
-		icon: 'fa fa-save',
+		text: 'Editar',
+		type: 'default',
+		icon: 'fa fa-edit',
+		width: '200',
+		useSubmitBehavior: true,
+		
+	}
+	buttonOptionsClose = {
+		text: 'salir',
+		type: 'danger',
+		icon: 'fa fa-window-close',
 		width: '200',
 		useSubmitBehavior: true,
 		
@@ -92,6 +103,7 @@ export class ActivitiesComponent implements OnInit {
 			.estadosActividad()
 			.subscribe((response: any)=>{
 			this.estados = response;
+			console.log(this.estados[0]);
 		});
 	}
 	listarUsuarios(){
@@ -119,15 +131,24 @@ export class ActivitiesComponent implements OnInit {
 		this.actividad.nombreComprobante="indefinido";
 		this.actividad.indicador_Id = 1;
 		this.popupEditVisible = false;
-		this.activitiesService.EditActividad(this.actividadEdit).subscribe((res: any) => {
+		this.activitiesService.editActividad(this.actividadEdit).subscribe((res: any) => {
 			this.isEditVisible = true;
 			this.listarActividades();
 			 
 		});	
 	}
+	formHide() {
+		this.popupDetailsVisible=false;
+	}
 	editActividad(actividadEdit:IActividadDTO){
 		this.actividadEdit=actividadEdit
 		this.showEditPopUp()
+	}
+
+	detailsActividad(actividadDetails:IActividadDTO) {
+		this.actividadDetails=actividadDetails
+		this.showDetailsPopUp()
+		console.log(actividadDetails)
 	}
 	
 	getProgramBySelection(e: any) {
@@ -136,7 +157,7 @@ export class ActivitiesComponent implements OnInit {
 			this.actividad.programa_Id = e.selectedItem.id
 		}
 		else {
-			this.currentProgramDTO = {};
+			this.currentProgramDTO = null;
 			this.currentProgram = null;
 		}
 	}
@@ -147,7 +168,7 @@ export class ActivitiesComponent implements OnInit {
 	}
 	showPopUp = () => this.popupVisible = true;
 	showEditPopUp = () => this.popupEditVisible = true;
-	
+	showDetailsPopUp = () => this.popupDetailsVisible = true;
 	
 
 }

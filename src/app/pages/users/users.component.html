@@ -20,14 +20,18 @@
         <dxi-column dataField="numeroIdentificacion" caption="Documento de identidad"></dxi-column>
         <dxi-column dataField="correo" caption="Correo"></dxi-column>
         <dxi-column dataField="rol" caption="Rol"></dxi-column>
-        <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center">
+        <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center" [width]="290">
           <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
-            <dx-button class="positionButon" hint="Editar" text="Editar" type="default" (onclick)="editarUsuario()">
+            <dx-button class="positionButon" hint="Eliminar" text="Eliminar" type="success" [width]="95">
+              Detalles
+            </dx-button>
+            <dx-button class="positionButon" hint="Editar" text="Editar" type="default" [width]="78" >
               Editar
             </dx-button>
-            <dx-button class="positionButon" hint="Eliminar" text="Eliminar" type="danger">
+            <dx-button class="positionButon" hint="Eliminar" text="Eliminar" type="danger" [width]="95">
               Eliminar
             </dx-button>
+            
           </div>
         </dxi-column>
         
