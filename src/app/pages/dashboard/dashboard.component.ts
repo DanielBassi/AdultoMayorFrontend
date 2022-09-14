@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import { ActivitiesService } from 'src/app/services/activities.service';
+import esLocale from '@fullcalendar/core/locales/es';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +22,10 @@ export class DashboardComponent implements OnInit {
     alert('date click! ' + arg.dateStr);
   }
 
+  eventClicDate(event: any): void{
+    console.log(event);
+  }
+
   actividadesCalendaio(){
     this.activitiesService
       .actividadesCalendario()
@@ -28,8 +33,7 @@ export class DashboardComponent implements OnInit {
 
         this.calendarOptions = {
           initialView: 'dayGridMonth',
-          dateClick: this.handleDateClick.bind(this),// bind is important!
-          locale: 'es',
+          locale: esLocale,
           themeSystem: 'bootstrap',
           events: response
         };

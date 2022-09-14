@@ -15,14 +15,14 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          
+
           <!-- /.col -->
           <div class="col-md-11">
             <div class="card card-primary">
               <div class="card-body p-0">
                 <!-- THE CALENDAR -->
                 <!-- <div id="calendar"></div> -->
-                <full-calendar [options]="calendarOptions"></full-calendar>
+                <full-calendar [options]="calendarOptions" dateClick="eventClicDate($event)" (click)="eventClicDate($event)"></full-calendar>
               </div>
               <!-- /.card-body -->
             </div>
