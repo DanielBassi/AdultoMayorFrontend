@@ -45,6 +45,8 @@ export class ActivitiesComponent implements OnInit {
 	actividad: IActividadDTO;
 	actividadEdit:IActividadDTO;
 	actividadDetails:IActividadDTO;
+  actividadDelete:IActividadDTO;
+  actividad_id:number;
 	usuario: IUsuarioDTO;
 	estados: any;
 	programasDTO: any;
@@ -73,7 +75,23 @@ export class ActivitiesComponent implements OnInit {
 		type: 'danger',
 		icon: 'fa fa-window-close',
 		width: '200',
-		useSubmitBehavior: true,
+		useSubmitBehavior: true
+
+	}
+  buttonOptionsDelete = {
+		text: 'SI',
+		type: 'success',
+		width: '200',
+    useSubmitBehavior: true
+
+
+	}
+  buttonOptionsCancel = {
+		text: 'NO',
+		type: 'danger',
+		width: '200',
+    useSubmitBehavior: true
+
 
 	}
 
@@ -138,19 +156,38 @@ export class ActivitiesComponent implements OnInit {
 
 		});
 	}
+  formDelete(){
+    console.log("entré")
+    this.activitiesService.deleteActividad(this.actividad_id).subscribe((res:any)=>{
+      this.popupDeleteVisible=false;
+      this.isDeleteVisible=true;
+      this.listarActividades();
+    })
+  }
+
+  formCancel(){
+    this.popupDeleteVisible=false;
+  }
+
 	formHide() {
 		this.popupDetailsVisible=false;
 	}
 	editActividad(actividadEdit:IActividadDTO){
-		this.actividadEdit=actividadEdit
-		this.showEditPopUp()
+		this.actividadEdit=actividadEdit;
+		this.showEditPopUp();
 	}
 
 	detailsActividad(actividadDetails:IActividadDTO) {
-		this.actividadDetails=actividadDetails
-		this.showDetailsPopUp()
-		console.log(actividadDetails)
+		this.actividadDetails=actividadDetails;
+		this.showDetailsPopUp();
+		console.log(actividadDetails);
 	}
+  deleteActividad(actividadDelete:IActividadDTO){
+    this.actividad_id=actividadDelete.id;
+    console.log(this.actividad_id);
+    this.showDeletePopUp();
+  }
+
 
 	getProgramBySelection(e: any) {
 		if (!!e.selectedItem) {
@@ -170,6 +207,7 @@ export class ActivitiesComponent implements OnInit {
 	showPopUp = () => this.popupVisible = true;
 	showEditPopUp = () => this.popupEditVisible = true;
 	showDetailsPopUp = () => this.popupDetailsVisible = true;
+  showDeletePopUp= () => this.popupDeleteVisible = true;
 
 
 }

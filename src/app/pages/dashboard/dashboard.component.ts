@@ -8,7 +8,7 @@ import { ActivitiesService } from 'src/app/services/activities.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
+
   calendarOptions: CalendarOptions;
 
   constructor(private activitiesService : ActivitiesService) { }
@@ -25,15 +25,15 @@ export class DashboardComponent implements OnInit {
     this.activitiesService
       .actividadesCalendario()
       .subscribe((response: any[]) => {
-        
+
         this.calendarOptions = {
           initialView: 'dayGridMonth',
           dateClick: this.handleDateClick.bind(this),// bind is important!
           locale: 'es',
-          themeSystem: 'bootstrap', 
+          themeSystem: 'bootstrap',
           events: response
         };
-        
+
       });
   }
 

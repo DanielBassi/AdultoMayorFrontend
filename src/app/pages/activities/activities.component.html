@@ -28,7 +28,7 @@
                   <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
                     <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsActividad(data.data)"></dx-button>
                     <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editActividad(data.data)"></dx-button>
-                    <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" ></dx-button>
+                    <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteActividad(data.data)"></dx-button>
 
                   </div>
                 </dxi-column>
@@ -155,64 +155,22 @@
 
               <dx-popup [width]="700" [height]="550" [showTitle]="true" title="Detalles de la actividad" [dragEnabled]="false"
                 [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible">
-                <!-- <form (submit)="($event)" >
-                  <dx-form id="form" name="form" [colCount]="2" [(formData)]="actividadEdit" labelLocation="top" >
 
-
-                    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-
-                      <dxi-item dataField="nombre" [colSpan]="2" [label]="{text:'Nombre de la Actividad'}" >
-
-                        <dxi-validation-rule type="required" ></dxi-validation-rule>
-                      </dxi-item>
-                      <dxi-item dataField="programa_nombre" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" ></dxi-item>
-                      <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                      <dxi-item  [colSpan]="1" [label]="{text:'Subindice'}" dataField="subindice_nombre" [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item  [colSpan]="1" [label]="{text:'Subindice'}" dataField="subindice_Id" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                      <dxi-item dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                      <dxi-item dataField="responsable_Id" [label]="{ text: 'Responsable de la Actividad' }" editorType="dxSelectBox"
-                        [editorOptions]="{ dataSource: usuario, displayExpr: 'nombre',
-                        valueExpr: 'id',
-                        showClearButton:'true' }">
-                        <dxi-validation-rule type="required" ></dxi-validation-rule>
-                      </dxi-item>
-
-                      <dxi-item editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}" >
-                        <dxi-validation-rule type="required" ></dxi-validation-rule>
-                      </dxi-item>
-                      <dxi-item dataField="estadoActividad_Id" [label]="{ text: 'Estado' }" editorType="dxSelectBox"
-                        [editorOptions]="{ dataSource: estados, displayExpr: 'nombre',
-                        valueExpr: 'id',
-                        showClearButton:'true' }">
-                        <dxi-validation-rule type="required" ></dxi-validation-rule>
-                      </dxi-item>
-                      <dxi-item editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}" [colSpan]="2">
-                        <dxi-validation-rule type="required" ></dxi-validation-rule>
-                      </dxi-item>
-                    </dxi-item>
-
-                    <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                      [buttonOptions]="buttonOptionsEdit">
-                    </dxi-item>
-
-                  </dx-form>
-                </form> -->
                 <form (submit)="formHide()">
                   <dx-form [(formData)]="actividadDetails">
                     <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
 
-                      <dxi-item dataField="nombre" [colSpan]="2" [label]="{text:'Nombre de la Actividad'}"  [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item dataField="programa_nombre" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" ></dxi-item>
-                      <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                      <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_nombre" [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_Id" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                      <dxi-item [colSpan]="2" dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item [colSpan]="2" dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                      <dxi-item [colSpan]="2" dataField="responsable_Nombre" [label]="{ text: 'Responsable de la Actividad' }" [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"  [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item [colSpan]="2" dataField="estadoActividad_Descripcion" [label]="{ text: 'Estado' }"  [editorOptions]="{ disabled: true }"></dxi-item>
-                      <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}" [editorOptions]="{ disabled: true }"></dxi-item>
+                      <dxi-item dataField="nombre" [colSpan]="2" [label]="{text:'Nombre de la Actividad'}"  [editorOptions]="{ readOnly: true }"></dxi-item>
+                      <dxi-item dataField="programa_nombre" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ readOnly: true }" ></dxi-item>
+                      <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ readOnly: true }" [visible]="false"></dxi-item>
+                      <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_nombre" [editorOptions]="{ readOnly: true }"></dxi-item>
+                      <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_Id" [editorOptions]="{ readOnly: true }" [visible]="false"></dxi-item>
+                      <dxi-item [colSpan]="2" dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ readOnly: true }"></dxi-item>
+                      <dxi-item [colSpan]="2" dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ readOnly: true }" [visible]="false"></dxi-item>
+                      <dxi-item [colSpan]="2" dataField="responsable_Nombre" [label]="{ text: 'Responsable de la Actividad' }" [editorOptions]="{ readOnly: true }"></dxi-item>
+                      <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"  [editorOptions]="{ readOnly: true }"></dxi-item>
+                      <dxi-item [colSpan]="2" dataField="estadoActividad_Descripcion" [label]="{ text: 'Estado' }"  [editorOptions]="{ readOnly: true }"></dxi-item>
+                      <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}" [editorOptions]="{ readOnly: true }"></dxi-item>
                     </dxi-item>
                     <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
                         [buttonOptions]="buttonOptionsClose">
@@ -221,30 +179,42 @@
                 </form>
 
               </dx-popup>
-              <dx-popup [width]="700" [height]="550" [showTitle]="true" title="Detalles de la actividad" [dragEnabled]="false"
-                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible">
-                <form (submit)="popupDetailsVisible = false">
+             <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar actividad" [dragEnabled]="false"
+                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
+                <form (submit)="formDelete()">
 
-                </form>
-                <dx-form [(formData)]="actividadDetails">
-                  <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                  <dx-form >
+                    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                      <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                      [buttonOptions]="buttonOptionsDelete">
+                      </dxi-item>
+                      <!-- <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                        [buttonOptions]="buttonOptionsCancel">
+                      </dxi-item> -->
 
-                    <dxi-item dataField="nombre" [colSpan]="2" [label]="{text:'Nombre de la Actividad'}"  [editorOptions]="{ disabled: true }"></dxi-item>
-                    <dxi-item dataField="programa_nombre" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" ></dxi-item>
-                    <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                    <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_nombre" [editorOptions]="{ disabled: true }"></dxi-item>
-                    <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_Id" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                    <dxi-item [colSpan]="2" dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }"></dxi-item>
-                    <dxi-item [colSpan]="2" dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                    <dxi-item [colSpan]="2" dataField="responsable_Nombre" [label]="{ text: 'Responsable de la Actividad' }" [editorOptions]="{ disabled: true }"></dxi-item>
-                    <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"  [editorOptions]="{ disabled: true }"></dxi-item>
-                    <dxi-item [colSpan]="2" dataField="estadoActividad_Descripcion" [label]="{ text: 'Estado' }"  [editorOptions]="{ disabled: true }"></dxi-item>
-                    <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}" [editorOptions]="{ disabled: true }"></dxi-item>
-                  </dxi-item>
-                  <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                      [buttonOptions]="buttonOptionsClose">
+
                     </dxi-item>
-                </dx-form>
+
+                  </dx-form>
+                </form>
+                <form (submit)="formCancel()">
+
+                  <dx-form >
+                    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                      <!-- <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                      [buttonOptions]="buttonOptionsDelete">
+                      </dxi-item> -->
+                      <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                        [buttonOptions]="buttonOptionsCancel">
+                      </dxi-item>
+
+
+                    </dxi-item>
+
+                  </dx-form>
+                </form>
+                <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
+
               </dx-popup>
 
               <dx-toast [(visible)]="isVisible" [type]="type" [message]="message">
