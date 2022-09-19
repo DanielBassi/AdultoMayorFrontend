@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { IUsuarioDTO } from '../models/IUsuarioDTO';
 
+const roles = ["admin","operador","invitado","contratista"]
+const tiposIdentificacion = ["C.c.","T.i."]
 @Injectable({
   providedIn: 'root'
 })
@@ -28,5 +30,11 @@ export class UsersService {
       fromObject: { usuario_id:usuario_id },
     });
     return this.http.delete(`${this.ROOT_SERVE}/api/User`, {params});
+  }
+  listRoles(){
+    return roles;
+  }
+  listTiposIdentificacion(){
+    return tiposIdentificacion;
   }
 }

@@ -6,7 +6,7 @@
     <div class="col-lg-12">
       <dx-data-grid 
         id="gridContainer" 
-        [dataSource]="dataSource" 
+        [dataSource]="usuarios" 
         [showBorders]="true"
         [remoteOperations]="false" 
         [allowColumnReordering]="true" 
@@ -20,18 +20,12 @@
         <dxi-column dataField="numeroIdentificacion" caption="Documento de identidad"></dxi-column>
         <dxi-column dataField="correo" caption="Correo"></dxi-column>
         <dxi-column dataField="rol" caption="Rol"></dxi-column>
-        <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center" [width]="290">
+        <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
           <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
-            <dx-button class="positionButon" hint="Eliminar" text="Eliminar" type="success" [width]="95">
-              Detalles
-            </dx-button>
-            <dx-button class="positionButon" hint="Editar" text="Editar" type="default" [width]="78" >
-              Editar
-            </dx-button>
-            <dx-button class="positionButon" hint="Eliminar" text="Eliminar" type="danger" [width]="95">
-              Eliminar
-            </dx-button>
-            
+            <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsUsuario(data.data)"></dx-button>
+            <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editUsuario(data.data)"></dx-button>
+            <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteUsuario(data.data)"></dx-button>
+
           </div>
         </dxi-column>
         
@@ -40,37 +34,213 @@
     
     <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Crear nuevo usuario" [dragEnabled]="false"
       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
-      <dx-form id="form" [colCount]="2" [(formData)]="user" labelLocation="top" [disabled]="false" [readOnly]="false">
+      <form (submit)="formSubmit($event)" >
+        <dx-form id="form" [colCount]="2" [(formData)]="usuario" labelLocation="top" [disabled]="false" [readOnly]="false">
 
-        <dxi-item [label]="{text:'Nombre'}" dataField="nombre">
-        </dxi-item>
+          <dxi-item [label]="{text:'Nombre'}" dataField="nombre">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="pattern"
+              [pattern]="namePattern"
+              message="Este campo no debe contener numeros"
+            ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="stringLength"
+              [min]="2"
+              message="Este campo debe tener al menos 2 caracteres"
+            ></dxi-validation-rule>
+          </dxi-item>
 
-        <dxi-item [label]="{text:'Apellido'}" dataField="apellido">
-        </dxi-item>
+          <dxi-item [label]="{text:'Apellido'}" dataField="apellido">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="pattern"
+              [pattern]="namePattern"
+              message="Este campo no debe contener numeros"
+            ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="stringLength"
+              [min]="2"
+              message="Este campo debe tener al menos 2 caracteres"
+            ></dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="tipoIdentificacion" [label]="{ text: 'Tipo de documento' }" editorType="dxSelectBox"
+            [editorOptions]="{ dataSource: tiposIdentificacion, showClearButton:'true' }" [visible]="true">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+          </dxi-item>
+          
 
-        <dxi-item  [label]="{text:'Tipo de identidad'}" dataField="tipoIdentificacion">
-        </dxi-item>
+          <dxi-item  [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+          </dxi-item>
 
-        <dxi-item  [label]="{text:'Número de identidad'}" dataField="numeroIdentificacion">
-        </dxi-item>
+          <dxi-item [label]="{text:'Correo electronico'}" [colSpan]="2" dataField="correo">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="email"
+              message="Email invalido (aaa@aaaa.com)"
+            ></dxi-validation-rule>
+          </dxi-item>
 
-        <dxi-item [label]="{text:'Correo electronico'}" dataField="correo">
-        </dxi-item>
+          <dxi-item [label]="{text:'Contraseña'}" dataField="clave" [colSpan]="1" >
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <!-- <input type="password"> -->
+          </dxi-item>
+          
+          
+          <dxi-item dataField="rol" [label]="{ text: 'Rol de usuario' }" editorType="dxSelectBox"
+            [editorOptions]="{ dataSource: roles, showClearButton:'true' }" [visible]="true">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+          </dxi-item>
+          
 
-        <dxi-item [label]="{text:'Contraseña'}" dataField="clave">
-        </dxi-item>
+          <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+            [buttonOptions]="buttonOptionsSave">
+          </dxi-item>
 
-        <dxi-item [label]="{text:'Rol de usuario'}" dataField="rol">
-        </dxi-item>
+        </dx-form>
+      </form>
+        
+    </dx-popup>
 
-        <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-          [buttonOptions]="buttonOptionsSave">
-        </dxi-item>
+    <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Editar usuario" [dragEnabled]="false"
+      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupEditVisible">
+      <form (submit)="formEdit($event)" >
+        <dx-form id="form" [colCount]="2" [(formData)]="usuarioEdit" labelLocation="top" [disabled]="false" [readOnly]="false">
 
-      </dx-form>
+          <dxi-item [label]="{text:'Nombre'}" dataField="nombre">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="pattern"
+              [pattern]="namePattern"
+              message="Este campo no debe contener numeros"
+            ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="stringLength"
+              [min]="2"
+              message="Este campo debe tener al menos 2 caracteres"
+            ></dxi-validation-rule>
+          </dxi-item>
+
+          <dxi-item [label]="{text:'Apellido'}" dataField="apellido">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="pattern"
+              [pattern]="namePattern"
+              message="Este campo no debe contener numeros"
+            ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="stringLength"
+              [min]="2"
+              message="Este campo debe tener al menos 2 caracteres"
+            ></dxi-validation-rule>
+          </dxi-item>
+          <dxi-item dataField="tipoIdentificacion" [label]="{ text: 'Tipo de documento' }" editorType="dxSelectBox"
+            [editorOptions]="{ dataSource: tiposIdentificacion, showClearButton:'true' }" [visible]="true">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+          </dxi-item>
+          
+
+          <dxi-item  [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+          </dxi-item>
+
+          <dxi-item [label]="{text:'Correo electronico'}" [colSpan]="2" dataField="correo">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="email"
+              message="Email invalido (aaa@aaaa.com)"
+            ></dxi-validation-rule>
+          </dxi-item>
+
+          <dxi-item [label]="{text:'Contraseña'}" dataField="clave" [colSpan]="1" >
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+            <!-- <input type="password"> -->
+          </dxi-item>
+          
+          
+          <dxi-item dataField="rol" [label]="{ text: 'Rol de usuario' }" editorType="dxSelectBox"
+            [editorOptions]="{ dataSource: roles, showClearButton:'true' }" [visible]="true">
+            <dxi-validation-rule type="required" ></dxi-validation-rule>
+          </dxi-item>
+          
+
+          <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+            [buttonOptions]="buttonOptionsEdit">
+          </dxi-item>
+
+        </dx-form>
+      </form>
+        
+    </dx-popup>
+  
+    <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Detalles de usuario" [dragEnabled]="false"
+      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible">
+      <dx-scroll-view width="100%" height="100%">
+      <form (submit)="formHide()" >
+        
+          <dx-form id="form" [colCount]="2" [(formData)]="usuarioDetails" labelLocation="top" [disabled]="false" [readOnly]="false">
+            
+              
+            
+            <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" [label]="{text:'Nombre'}" dataField="nombre"></dxi-item>
+            <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" [label]="{text:'Apellido'}" dataField="apellido"></dxi-item>
+            <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" dataField="tipoIdentificacion" [label]="{ text: 'Tipo de documento' }"></dxi-item>
+            <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }"  [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion"></dxi-item>
+            <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" [label]="{text:'Correo electronico'}"  dataField="correo"></dxi-item>
+            <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" [label]="{text:'Contraseña'}" dataField="clave" ></dxi-item>
+            <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" dataField="rol" [label]="{ text: 'Rol de usuario' }"></dxi-item>
+
+            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+              [buttonOptions]="buttonOptionsClose">
+            </dxi-item>
+          
+          </dx-form>
+        
+      </form>
+    </dx-scroll-view> 
+    </dx-popup>
+
+    <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar usuario" [dragEnabled]="false"
+      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
+      <form (submit)="formDelete()">
+
+        <dx-form >
+          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+            [buttonOptions]="buttonOptionsDelete">
+            </dxi-item>
+
+
+
+          </dxi-item>
+
+        </dx-form>
+      </form>
+      <form (submit)="formCancel()">
+
+        <dx-form >
+          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+            
+            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+              [buttonOptions]="buttonOptionsCancel">
+            </dxi-item>
+
+
+          </dxi-item>
+
+        </dx-form>
+      </form>
+                <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
+
     </dx-popup>
 
     <dx-toast [(visible)]="isVisible" [type]="type" [message]="message">
+    </dx-toast>
+    <dx-toast [(visible)]="isEditVisible" [type]="type" [message]="messageEdit">
+    </dx-toast>
+    <dx-toast [(visible)]="isDeleteVisible" [type]="type" [message]="messageDelete">
     </dx-toast>
 
   </div>

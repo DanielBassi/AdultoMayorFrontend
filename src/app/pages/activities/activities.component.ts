@@ -45,8 +45,8 @@ export class ActivitiesComponent implements OnInit {
 	actividad: IActividadDTO;
 	actividadEdit:IActividadDTO;
 	actividadDetails:IActividadDTO;
-  actividadDelete:IActividadDTO;
-  actividad_id:number;
+  	actividadDelete:IActividadDTO;
+  	actividad_id:number;
 	usuario: IUsuarioDTO;
 	estados: any;
 	programasDTO: any;
@@ -78,19 +78,19 @@ export class ActivitiesComponent implements OnInit {
 		useSubmitBehavior: true
 
 	}
-  buttonOptionsDelete = {
+  	buttonOptionsDelete = {
 		text: 'SI',
 		type: 'success',
 		width: '200',
-    useSubmitBehavior: true
+    	useSubmitBehavior: true
 
 
 	}
-  buttonOptionsCancel = {
+  	buttonOptionsCancel = {
 		text: 'NO',
 		type: 'danger',
 		width: '200',
-    useSubmitBehavior: true
+    	useSubmitBehavior: true
 
 
 	}
@@ -136,7 +136,7 @@ export class ActivitiesComponent implements OnInit {
       		e.preventDefault();
 		this.actividad.nombreComprobante="indefinido";
 		this.actividad.indicador_Id = 1;
-    this.actividad.estadoActividad_Id = 4;
+    	this.actividad.estadoActividad_Id = 4;
 		this.popupVisible = false;
 		this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
 			this.isVisible = true;
@@ -157,7 +157,6 @@ export class ActivitiesComponent implements OnInit {
 		});
 	}
   formDelete(){
-    console.log("entré")
     this.activitiesService.deleteActividad(this.actividad_id).subscribe((res:any)=>{
       this.popupDeleteVisible=false;
       this.isDeleteVisible=true;
@@ -180,11 +179,10 @@ export class ActivitiesComponent implements OnInit {
 	detailsActividad(actividadDetails:IActividadDTO) {
 		this.actividadDetails=actividadDetails;
 		this.showDetailsPopUp();
-		console.log(actividadDetails);
+		
 	}
   deleteActividad(actividadDelete:IActividadDTO){
     this.actividad_id=actividadDelete.id;
-    console.log(this.actividad_id);
     this.showDeletePopUp();
   }
 
@@ -196,7 +194,7 @@ export class ActivitiesComponent implements OnInit {
 		}
 		else {
 			this.currentProgramDTO = null;
-			this.currentProgram = null;
+			this.currentProgram = 0;
 		}
 	}
 
@@ -207,7 +205,7 @@ export class ActivitiesComponent implements OnInit {
 	showPopUp = () => this.popupVisible = true;
 	showEditPopUp = () => this.popupEditVisible = true;
 	showDetailsPopUp = () => this.popupDetailsVisible = true;
-  showDeletePopUp= () => this.popupDeleteVisible = true;
+  	showDeletePopUp= () => this.popupDeleteVisible = true;
 
 
 }

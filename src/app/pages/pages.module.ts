@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProgramsComponent } from './programs/programs.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
-import { DxButtonModule, DxValidatorModule, DxValidationGroupModule, DxTextAreaModule, DxDataGridModule, DxFormModule, DxPopupModule, DxSelectBoxModule ,DxToastModule,DxTemplateModule} from 'devextreme-angular';
+import { DxButtonModule, DxValidatorModule, DxScrollViewModule, DxValidationGroupModule, DxTextAreaModule, DxDataGridModule, DxFormModule, DxPopupModule, DxSelectBoxModule ,DxToastModule,DxTemplateModule} from 'devextreme-angular';
 import { DashboardModule } from './dashboard/dashboard.module';
 import dxTextArea from 'devextreme/ui/text_area';
 
@@ -35,6 +35,7 @@ import dxTextArea from 'devextreme/ui/text_area';
     DxToastModule,
     DxTemplateModule,
     DxTextAreaModule,
+    DxScrollViewModule,
     DxValidationGroupModule,
     DxValidatorModule
   ],

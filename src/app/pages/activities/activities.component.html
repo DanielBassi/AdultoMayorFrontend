@@ -145,7 +145,7 @@
                     </dxi-item>
 
                     <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                      [buttonOptions]="buttonOptionsSave">
+                      [buttonOptions]="buttonOptionsEdit">
                     </dxi-item>
 
                   </dx-form>
@@ -179,6 +179,7 @@
                 </form>
 
               </dx-popup>
+              
              <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar actividad" [dragEnabled]="false"
                 [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
                 <form (submit)="formDelete()">
@@ -188,9 +189,7 @@
                       <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
                       [buttonOptions]="buttonOptionsDelete">
                       </dxi-item>
-                      <!-- <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                        [buttonOptions]="buttonOptionsCancel">
-                      </dxi-item> -->
+
 
 
                     </dxi-item>
@@ -201,9 +200,7 @@
 
                   <dx-form >
                     <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                      <!-- <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                      [buttonOptions]="buttonOptionsDelete">
-                      </dxi-item> -->
+                      
                       <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
                         [buttonOptions]="buttonOptionsCancel">
                       </dxi-item>
