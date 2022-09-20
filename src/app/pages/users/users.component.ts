@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   messageEdit = 'El usuario ha sido editado exitosamente';
 	messageDelete = 'El usuario ha sido eliminado exitosamente';
   type= 'success';
+  
   roles:any;
   tiposIdentificacion:any;
   password:any ='';

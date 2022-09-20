@@ -10,3 +10,6 @@
 - click actividades calendario
 - display calentadio por dia y por semana
 - div colores por programa
+- boton aprobar actividad
+- subir manual de programa
+
