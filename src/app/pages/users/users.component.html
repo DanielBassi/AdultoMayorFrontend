@@ -4,13 +4,13 @@
       <dx-button type="success" text="Agregar usuario" icon="fa fa-plus" (onClick)="showPopUp()"></dx-button>
     </div>
     <div class="col-lg-12">
-      <dx-data-grid 
-        id="gridContainer" 
-        [dataSource]="usuarios" 
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="usuarios"
         [showBorders]="true"
-        [remoteOperations]="false" 
-        [allowColumnReordering]="true" 
-        [rowAlternationEnabled]="true" 
+        [remoteOperations]="false"
+        [allowColumnReordering]="true"
+        [rowAlternationEnabled]="true"
       >
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-paging [enabled]="true"></dxo-paging>
@@ -28,10 +28,10 @@
 
           </div>
         </dxi-column>
-        
+
       </dx-data-grid>
     </div>
-    
+
     <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Crear nuevo usuario" [dragEnabled]="false"
       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
       <form (submit)="formSubmit($event)" >
@@ -68,9 +68,9 @@
             [editorOptions]="{ dataSource: tiposIdentificacion, showClearButton:'true' }" [visible]="true">
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
-          
 
-          <dxi-item  [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
+
+          <dxi-item [editorOptions]="{ type: 'number', mode: 'number' }" [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
 
@@ -82,17 +82,17 @@
             ></dxi-validation-rule>
           </dxi-item>
 
-          <dxi-item [label]="{text:'Contraseña'}" dataField="clave" [colSpan]="1" >
+          <dxi-item [editorOptions]="{ type: 'password', mode: 'password' }" [label]="{text:'Contraseña'}" dataField="clave" [colSpan]="1" >
             <dxi-validation-rule type="required" ></dxi-validation-rule>
-            <!-- <input type="password"> -->
+
           </dxi-item>
-          
-          
+
+
           <dxi-item dataField="rol" [label]="{ text: 'Rol de usuario' }" editorType="dxSelectBox"
             [editorOptions]="{ dataSource: roles, showClearButton:'true' }" [visible]="true">
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
-          
+
 
           <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
             [buttonOptions]="buttonOptionsSave">
@@ -100,7 +100,7 @@
 
         </dx-form>
       </form>
-        
+
     </dx-popup>
 
     <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Editar usuario" [dragEnabled]="false"
@@ -139,7 +139,7 @@
             [editorOptions]="{ dataSource: tiposIdentificacion, showClearButton:'true' }" [visible]="true">
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
-          
+
 
           <dxi-item  [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
             <dxi-validation-rule type="required" ></dxi-validation-rule>
@@ -158,13 +158,13 @@
             <dxi-validation-rule type="required" ></dxi-validation-rule>
             <!-- <input type="password"> -->
           </dxi-item>
-          
-          
+
+
           <dxi-item dataField="rol" [label]="{ text: 'Rol de usuario' }" editorType="dxSelectBox"
             [editorOptions]="{ dataSource: roles, showClearButton:'true' }" [visible]="true">
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
-          
+
 
           <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
             [buttonOptions]="buttonOptionsEdit">
@@ -172,18 +172,18 @@
 
         </dx-form>
       </form>
-        
+
     </dx-popup>
-  
+
     <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Detalles de usuario" [dragEnabled]="false"
       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible">
       <dx-scroll-view width="100%" height="100%">
       <form (submit)="formHide()" >
-        
+
           <dx-form id="form" [colCount]="2" [(formData)]="usuarioDetails" labelLocation="top" [disabled]="false" [readOnly]="false">
-            
-              
-            
+
+
+
             <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" [label]="{text:'Nombre'}" dataField="nombre"></dxi-item>
             <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" [label]="{text:'Apellido'}" dataField="apellido"></dxi-item>
             <dxi-item [colSpan]="2" [editorOptions]="{ readOnly: true }" dataField="tipoIdentificacion" [label]="{ text: 'Tipo de documento' }"></dxi-item>
@@ -195,11 +195,11 @@
             <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
               [buttonOptions]="buttonOptionsClose">
             </dxi-item>
-          
+
           </dx-form>
-        
+
       </form>
-    </dx-scroll-view> 
+    </dx-scroll-view>
     </dx-popup>
 
     <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar usuario" [dragEnabled]="false"
@@ -222,7 +222,7 @@
 
         <dx-form >
           <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-            
+
             <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
               [buttonOptions]="buttonOptionsCancel">
             </dxi-item>

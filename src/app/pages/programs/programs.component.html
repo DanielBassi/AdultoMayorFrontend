@@ -32,7 +32,7 @@
                           <!-- <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button> -->
                           <!-- <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button> -->
                           <!-- <dx-button icon="fas fa-folder" class="positionButon" hint="Eliminar"  type="success"  stylingMode="outlined"></dx-button> -->
-                          
+
                         </div>
                       </dxi-column>
 
@@ -43,7 +43,7 @@
                     <dx-popup [width]="800" [height]="550" [showTitle]="true" title="Crear nuevo Programa" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
 
-                        <form (submit)="formSubmit($event)" >
+                        <form (submit)="formSubmit($event)" enctype="multipart/form-data">
 
                           <dx-form id="form" [colCount]="2" [(formData)]="programa" labelLocation="top" [disabled]="false" [readOnly]="false">
                             <!-- creacion del programa -->
@@ -53,29 +53,29 @@
                               </dxi-item>
                               <dxi-item [colSpan]="1" [label]="{text:'Color'}" >
                                 <div *dxTemplate >
-                                  <dx-color-box id="color_id" dataField="color" value="#f05b41" ></dx-color-box>
+                                  <dx-color-box id="color_id" dataField="programa.color" [(value)]="programa.color" ></dx-color-box>
                                 </div>
-                                
+
                                 <dxi-validation-rule type="required" ></dxi-validation-rule>
                               </dxi-item>
                               <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
                                 [buttonOptions]="buttonOptionsNewPrograma">
                               </dxi-item>
                             </dxi-item>
-                            
+
 
                             <!-- pestañas -->
                             <dxi-item [colSpan]="2">
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
-                                <!-- <dxi-item title="Manual de usuario">
-                                  
-                                </dxi-item> -->
+                                <dxi-item title="Manual de usuario">
+
+                                </dxi-item>
                                 <dxi-item title="Subindices">
                                   <div class="mb-2">
                                     <dx-button type="success" text="Agregar subindice" icon="fa fa-plus" (onClick)="showSubindicePopUp()"></dx-button>
                                   </div>
-                                  
-                                  
+
+
                                   <div class="card">
                                     <dx-data-grid id="gridContainer" [dataSource]="subindices" [remoteOperations]="false" [allowColumnReordering]="true"
                                       [rowAlternationEnabled]="true" [showBorders]="true">
@@ -99,16 +99,16 @@
                                     <dx-form [colCount]="2" [(formData)]="subindice" labelLocation="top" [disabled]="false" [readOnly]="false">
                                       <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
                                         <dxi-item datafield="programa"></dxi-item>
-                                        <dxi-item [colSpan]="1" itemType="button" horizontalAlignment="left" verticalAlignment="bottom" 
+                                        <dxi-item [colSpan]="1" itemType="button" horizontalAlignment="left" verticalAlignment="bottom"
                                         [buttonOptions]="buttonOptionsNewSubindice"></dxi-item>
-                                        
+
                                         <dxi-item [colSpan]="2"></dxi-item>
                                       </dxi-item>
-                                      
+
                                     </dx-form>
                                   </form>
-                                  
-                                  
+
+
                                 </dxi-item>
                                 <dxi-item title="Componentes">
                                   <dx-button type="success" text="Agregar componente" icon="fa fa-plus" (onClick)="formSubmit($event)"></dx-button>
@@ -116,20 +116,20 @@
                                     <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
                                       <dxi-item [colSpan]="1" itemType="button" horizontalAlignment="left" verticalAlignment="bottom"
                                       [buttonOptions]="buttonOptionsNewComponente"></dxi-item>
-                                      
+
                                       <dxi-item [colSpan]="2"></dxi-item>
                                     </dxi-item>
-                                    
+
                                   </dx-form>
                                 </dxi-item>
-                                
+
                               </dx-tab-panel>
                             </dxi-item>
                             <!-- boton de salida -->
                             <div class="mb-2">
                               <dx-button type="success" text="salir" icon="fa fa-plus" (onClick)="formSubmit($event)"></dx-button>
                             </div>
-  
+
                           </dx-form>
                         </form>
                       </dx-popup>
@@ -139,7 +139,7 @@
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceVisible">
                       <form (submit)="formSubindiceSubmit($event)" >
                         <dx-form id="form" [colCount]="2" [(formData)]="subindice" labelLocation="top" [disabled]="false" [readOnly]="false">
-                
+
                           <dxi-item [label]="{text:'Nombre subindice'}" dataField="nombre">
                             <dxi-validation-rule type="required" ></dxi-validation-rule>
                             <dxi-validation-rule
@@ -152,10 +152,10 @@
                           <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
                             [buttonOptions]="buttonOptionsSave">
                           </dxi-item>
-                
+
                         </dx-form>
                       </form>
-                        
+
                     </dx-popup>
                       <!-- popup componente -->
 

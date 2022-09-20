@@ -82,7 +82,7 @@
                         <dxi-validation-rule type="required" ></dxi-validation-rule>
                       </dxi-item>
 
-                      <dxi-item editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}" >
+                      <dxi-item editorType="dxDateBox" dataField="fecha" [editorOptions]="{ type:'datetime' }" [label]="{text:'Fecha'}" >
                         <dxi-validation-rule type="required" ></dxi-validation-rule>
                       </dxi-item>
                       <dxi-item dataField="estadoActividad_Id" [label]="{ text: 'Estado' }" editorType="dxSelectBox"
@@ -179,7 +179,7 @@
                 </form>
 
               </dx-popup>
-              
+
              <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar actividad" [dragEnabled]="false"
                 [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
                 <form (submit)="formDelete()">
@@ -200,7 +200,7 @@
 
                   <dx-form >
                     <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                      
+
                       <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
                         [buttonOptions]="buttonOptionsCancel">
                       </dxi-item>

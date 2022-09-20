@@ -13,11 +13,11 @@ import { ComponenteService } from 'src/app/services/componente.service';
   styleUrls: ['./programs.component.css']
 })
 export class ProgramsComponent implements OnInit, OnDestroy {
-  
-  
+
+
 
   constructor(private programaService: ProgramaService, private subindiceService: SubindiceService, private componenteService: ComponenteService) {}
-  
+
   popupVisible: boolean = false;
   popupDetailsVisible: boolean = false;
 	popupEditVisible:boolean=false;
@@ -188,7 +188,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   } */
   ngOnInit(): void {
     this.listarProgramas();
-    
+
   }
 
   listarProgramas(){
@@ -216,9 +216,10 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
   formSubmit(e?:any) {
 		if (e)
-      		e.preventDefault();   
+      e.preventDefault();
+
+      console.log(this.programa);
     this.programa.estado = true;
-    this.programa.color = "#000000"
     /* this.popupVisible = false; */
     this.currentPrograma = this.programa
     this.programaService.insertPrograma(this.programa).subscribe((res:any) => {
@@ -230,7 +231,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
   formSubindiceSubmit(e?:any) {
 		if (e)
-      		e.preventDefault();   
+      		e.preventDefault();
     this.subindice.programa_Id = 1;
     this.subindice.estado = true;
     this.popupSubindiceVisible = false;

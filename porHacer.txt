@@ -1,12 +1,12 @@
 - confirmacion de contraseñas()
-- tipo contraseña()
-- COLOR picker programa
+- tipo contraseña(hecho)
+- COLOR picker programa (hecho)
 - añadir subindice
 - añadir componentes
 - actividades por color
 - programas crud front
-- validacion numero identificacion usuario()
-- fecha por hora en actividad
+- validacion numero identificacion usuario(hecho)
+- fecha por hora en actividad (hecho)
 - click actividades calendario
 - display calentadio por dia y por semana
 - div colores por programa
