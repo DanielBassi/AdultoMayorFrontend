@@ -15,6 +15,13 @@ export class SubindiceService {
     return this.http.get(`${this.ROOT_SERVE}/api/Subindice`);
   }
 
+  listSubindicesByProgramaId(programa_id: number){
+    let params = new HttpParams({
+      fromObject: { programa_id:programa_id },
+    });
+    return this.http.get(`${this.ROOT_SERVE}/api/Subindice/ListarByProgramaId`,{params});
+  }
+
   insertSubindice(subindice: ISubindiceDTO){
     return this.http.post(`${this.ROOT_SERVE}/api/Subindice`, { ...subindice });
   }

@@ -33,7 +33,7 @@
     </div>
 
     <dx-popup [width]="700" [height]="450" [showTitle]="true" title="Crear nuevo usuario" [dragEnabled]="false"
-      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible" (onHidden)="inicializarUsuario()">
       <form (submit)="formSubmit($event)" >
         <dx-form id="form" [colCount]="2" [(formData)]="usuario" labelLocation="top" [disabled]="false" [readOnly]="false">
 
@@ -70,7 +70,7 @@
           </dxi-item>
 
 
-          <dxi-item [editorOptions]="{ type: 'number', mode: 'number' }" [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
+          <dxi-item  [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
 

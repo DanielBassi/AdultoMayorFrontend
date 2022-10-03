@@ -35,7 +35,7 @@
               </dx-data-grid>
 
               <dx-popup [width]="700" [height]="550" [showTitle]="true" title="Crear nueva actividad" [dragEnabled]="false"
-                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible" (onHidden)="inicializarActividad()">
                 <form (submit)="formSubmit($event)" >
                   <dx-form id="form" name="form" [colCount]="2" [(formData)]="actividad" labelLocation="top" >
 

@@ -102,6 +102,21 @@ export class ActivitiesComponent implements OnInit {
 		this.listarUsuarios();
 	}
 
+	inicializarActividad(){
+		delete this.actividad.created_at;
+		delete this.actividad.descripcion;
+		delete this.actividad.estadoActividad_Descripcion;
+		delete this.actividad.estadoActividad_Id;
+		delete this.actividad.fecha;
+		delete this.actividad.id;
+		delete this.actividad.indicador_Id;
+		delete this.actividad.nombre;
+		delete this.actividad.nombreComprobante;
+		delete this.actividad.programa_Id;
+		delete this.actividad.programa_nombre;
+		delete this.actividad.subindice_Id;
+	}
+
 	listarProgramas() {
 		this.programaService
 			.programas()

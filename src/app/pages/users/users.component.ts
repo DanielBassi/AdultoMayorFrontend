@@ -85,6 +85,19 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.listarTiposIdentificacion();
   }
 
+  inicializarUsuario(){
+    delete this.usuario.apellido;
+    delete this.usuario.clave;
+    delete this.usuario.correo;
+    delete this.usuario.estado;
+    delete this.usuario.id;
+    delete this.usuario.jwtToken;
+    delete this.usuario.nombre;
+    delete this.usuario.numeroIdentificacion;
+    delete this.usuario.rol;
+    delete this.usuario.tipoIdentificacion;
+  }
+
   listarUsuarios(){
     this.userService
       .listUsuarios()
