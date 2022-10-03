@@ -28,6 +28,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 	popupSubindiceEditVisible:boolean=false;
 	popupSubindiceDeleteVisible:boolean=false;
 
+  popupSubindiceEditSecondaryVisible:boolean=false;
+
   popupComponenteVisible: boolean = false;
   popupComponenteDetailsVisible: boolean = false;
 	popupComponenteEditVisible:boolean=false;
@@ -78,7 +80,14 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   currentPrograma_id:number;
 
   buttonOptionsNewPrograma = {
-    text: 'crear',
+    text: 'Crear',
+		type: 'success',
+		width: '200',
+		useSubmitBehavior: true,
+
+	}
+  buttonOptionsEditPrograma = {
+    text: 'Actualizar',
 		type: 'success',
 		width: '200',
 		useSubmitBehavior: true,
@@ -117,7 +126,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
 	}
 	buttonOptionsClose = {
-		text: 'salir',
+		text: 'Salir',
 		type: 'danger',
 		icon: 'fa fa-window-close',
 		width: '200',
@@ -141,10 +150,11 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
 	}
 
-  
-  
+
+
   ngOnInit(): void {
     this.listarProgramas();
+    this.currentPrograma = new IProgramaDTO()
 
   }
 
@@ -191,7 +201,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
 
   listarSubindices(currentPrograma_id: number){
-    
+
     this.subindiceService.
     listSubindicesByProgramaId(currentPrograma_id)
     .subscribe((response: any) => {
@@ -210,8 +220,6 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   formSubmitNewPrograma(e?:any) {
 		if (e)
       e.preventDefault();
-
-      console.log(this.programa);
     this.programa.estado = true;
     /* this.popupVisible = false; */
     this.currentPrograma = this.programa
@@ -224,19 +232,46 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       this.showSubmenu();
     });
 	}
+  /* edit programa */
+  editPrograma(programaEdit: IProgramaDTO){
+		this.programaEdit=programaEdit;
+    this.currentProgramaEdit=programaEdit;
+		this.showEditPopUp();
+    this.listarComponentes(this.programaEdit.id);
+    this.listarSubindices(this.programaEdit.id);
+	}
 
-  
+  formEditPrograma(e?:any) {
+		if (e)
+      e.preventDefault();
+
+    this.programaService.editPrograma(this.programaEdit).subscribe((res:IProgramaDTO) => {
+      this.currentProgramaEdit = res;
+      this.isEditVisible = true;
+      this.listarProgramas();
+      this.listarComponentes(this.currentProgramaEdit.id);
+      this.listarSubindices(this.currentProgramaEdit.id);
+    });
+	}
+  /* delete programa */
+
+
   /* subindices */
-  
+
   formSubindiceSubmit(e?:any) {
 		if (e)
       		e.preventDefault();
-    this.subindice.programa_Id = this.currentPrograma.id;
+    if (this.currentPrograma.id!=0){
+      this.subindice.programa_Id = this.currentPrograma.id;
+    }
+    else{
+      this.subindice.programa_Id = this.currentProgramaEdit.id;
+    }
     this.subindice.estado = true;
-    
+
     this.subindiceService.insertSubindice(this.subindice).subscribe((res:any) => {
-      this.listarSubindices(this.currentPrograma.id);
-      this.listarComponentes(this.currentPrograma.id);
+      this.listarSubindices(this.subindice.programa_Id);
+      this.listarComponentes(this.subindice.programa_Id);
       this.popupSubindiceVisible = false;
     });
 	}
@@ -249,7 +284,6 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   formSubindiceEdit(e?:any) {
 		if (e)
       		e.preventDefault();
-    this.subindiceEdit.programa_Id = this.currentPrograma.id;
 
     this.subindiceService.editSubindice(this.subindiceEdit).subscribe((res:any) => {
       this.listarSubindices(this.subindiceEdit.programa_Id);
@@ -260,14 +294,10 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   /* delete subindice */
   deleteSubindice(subindiceDelete:ISubindiceDTO){
 		this.subindiceDelete=subindiceDelete;
-    console.log(subindiceDelete);
-    debugger;
 		this.showSubindiceDeletePopUp();
 	}
   formSubindiceDelete() {
     this.subindiceService.deleteSubindice(this.subindiceDelete.id).subscribe((res:any) => {
-      console.log(this.subindiceDelete);
-      debugger;
       this.listarSubindices(this.subindiceDelete.programa_Id);
       this.listarComponentes(this.subindiceDelete.programa_Id);
       /* this.popupSubindiceDeleteVisible = false; */
@@ -280,12 +310,19 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   formComponenteSubmit(e?:any) {
 		if (e)
       		e.preventDefault();
-    this.componente.programa_Id = this.currentPrograma.id;
+    if (this.currentPrograma.id!=0){
+      this.componente.programa_Id = this.currentPrograma.id;
+      debugger;
+    }
+    else{
+      this.componente.programa_Id = this.currentProgramaEdit.id;
+    }
+
     this.componente.estado = true;
-    
+
     this.componenteService.insertComponente(this.componente).subscribe((res:any) => {
-      this.listarComponentes(this.currentPrograma.id);
-      this.listarSubindices(this.currentPrograma.id);
+      this.listarComponentes(this.componente.programa_Id);
+      this.listarSubindices(this.componente.programa_Id);
       this.popupComponenteVisible = false;
     });
 	}
@@ -298,7 +335,6 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   formComponenteEdit(e?:any) {
 		if (e)
       		e.preventDefault();
-    this.componenteEdit.programa_Id = this.currentPrograma.id;
 
     this.componenteService.editComponente(this.componenteEdit).subscribe((res:any) => {
       this.listarSubindices(this.componenteEdit.programa_Id);
@@ -323,7 +359,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.popupComponenteDeleteVisible=false;
   }
 
-  
+
 
   rowValidating(event: any){}
 
@@ -340,6 +376,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   showSubindiceEditPopUp = () => this.popupSubindiceEditVisible = true;
 	showSubindiceDetailsPopUp = () => this.popupSubindiceDetailsVisible = true;
   showSubindiceDeletePopUp= () => this.popupSubindiceDeleteVisible = true;
+
+  showSubindiceSecondaryPopUp = () => this.popupSubindiceEditSecondaryVisible = true;
 
   showComponentePopUp = () => this.popupComponenteVisible = true;
   showComponenteEditPopUp = () => this.popupComponenteEditVisible = true;

@@ -1,9 +1,6 @@
 import { NgModule, Component, enableProdMode, OnInit, ViewChild } from '@angular/core';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { ProgramaService } from 'src/app/services/programa.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import {DxSelectBoxModule, DxDataGridModule, DxTextBoxModule,DxTemplateModule} from 'devextreme-angular';
 import { IActividadDTO } from 'src/app/models/IActividadDTO';
 import { EstadoActividadService } from 'src/app/services/estadoActividad.service';
 import { IUsuarioDTO } from 'src/app/models/IUsuarioDTO';
@@ -136,7 +133,6 @@ export class ActivitiesComponent implements OnInit {
 			.estadosActividad()
 			.subscribe((response: any)=>{
 			this.estados = response;
-			console.log(this.estados[0]);
 		});
 	}
 	listarUsuarios(){
@@ -194,7 +190,7 @@ export class ActivitiesComponent implements OnInit {
 	detailsActividad(actividadDetails:IActividadDTO) {
 		this.actividadDetails=actividadDetails;
 		this.showDetailsPopUp();
-		
+
 	}
   deleteActividad(actividadDelete:IActividadDTO){
     this.actividad_id=actividadDelete.id;
@@ -213,10 +209,6 @@ export class ActivitiesComponent implements OnInit {
 		}
 	}
 
-	logEvent(eventName) {
-		console.log(eventName.data);
-
-	}
 	showPopUp = () => this.popupVisible = true;
 	showEditPopUp = () => this.popupEditVisible = true;
 	showDetailsPopUp = () => this.popupDetailsVisible = true;
@@ -224,20 +216,6 @@ export class ActivitiesComponent implements OnInit {
 
 
 }
-@NgModule({
-	imports: [
-		DxTextBoxModule,
-		DxTemplateModule,
-		BrowserModule,
-		DxSelectBoxModule,
-		DxDataGridModule
-	],
-	declarations: [],
-	bootstrap: [ActivitiesComponent]
-})
 
-export class ActivitiesModule { }
-
-platformBrowserDynamic().bootstrapModule(ActivitiesModule);
 
 
