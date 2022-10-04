@@ -1,14 +1,14 @@
 - confirmacion de contraseñas()
 
-- añadir subindice(hecho)
+
 - añadir componentes(hecho, falta detalles)
-- actividades por color
+
 - programas crud front
 
 - fecha por hora en actividad (hecho pero se adelanta 5 horas)
 - click actividades calendario
-- display calentadio por dia y por semana
-- div colores por programa
+
+- div colores por programa (FALTA ESPECIFICAR EL MES)
 - boton aprobar actividad
 - subir manual de programa
 

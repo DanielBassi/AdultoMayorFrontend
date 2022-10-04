@@ -109,7 +109,6 @@ export class ActivitiesComponent implements OnInit {
 		delete this.actividad.indicador_Id;
 		delete this.actividad.nombre;
 		delete this.actividad.nombreComprobante;
-		delete this.actividad.programa_Id;
 		delete this.actividad.programa_nombre;
 		delete this.actividad.subindice_Id;
 	}
@@ -152,6 +151,7 @@ export class ActivitiesComponent implements OnInit {
 		this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
 			this.isVisible = true;
 			this.listarActividades();
+      console.log(this.actividad)
 
 		});
 	}
