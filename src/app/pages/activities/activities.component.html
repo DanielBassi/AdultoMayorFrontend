@@ -21,12 +21,13 @@
                 <dxi-column dataField="subindice_nombre" caption="Subindice" [visible]="false"></dxi-column>
                 <dxi-column dataField="nombre" caption="Nombre Actividad"></dxi-column>
                 <dxi-column dataField="usuario_nombre" caption="Creador de la Actividad" [visible]="false"></dxi-column>
-                <dxi-column dataField="fecha" caption="Fecha" dataType="date" [width]="100"> </dxi-column>
+                <dxi-column dataField="fecha" caption="Fecha" dataType="datetime" [width]="150"> </dxi-column>
                 <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
                 <dxi-column dataField="estadoActividad_Descripcion" caption="Estado" [width]="200"> </dxi-column>
-                <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
+                <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
                   <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
                     <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsActividad(data.data)"></dx-button>
+                    <dx-button icon="fa fa-check" class="positionButon" hint="Aprobación"  type="normal"  (onClick)="checkActividad(data.data)"></dx-button>
                     <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editActividad(data.data)"></dx-button>
                     <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteActividad(data.data)"></dx-button>
 
@@ -130,7 +131,7 @@
                         <dxi-validation-rule type="required" ></dxi-validation-rule>
                       </dxi-item>
 
-                      <dxi-item editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}" >
+                      <dxi-item editorType="dxDateBox" dataField="fecha" [editorOptions]="{ type:'datetime' }" [label]="{text:'Fecha'}" >
                         <dxi-validation-rule type="required" ></dxi-validation-rule>
                       </dxi-item>
                       <dxi-item dataField="estadoActividad_Id" [label]="{ text: 'Estado' }" editorType="dxSelectBox"
@@ -168,7 +169,7 @@
                       <dxi-item [colSpan]="2" dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ readOnly: true }"></dxi-item>
                       <dxi-item [colSpan]="2" dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ readOnly: true }" [visible]="false"></dxi-item>
                       <dxi-item [colSpan]="2" dataField="responsable_Nombre" [label]="{ text: 'Responsable de la Actividad' }" [editorOptions]="{ readOnly: true }"></dxi-item>
-                      <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"  [editorOptions]="{ readOnly: true }"></dxi-item>
+                      <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"  [editorOptions]="{ readOnly: true , type:'datetime' }"></dxi-item>
                       <dxi-item [colSpan]="2" dataField="estadoActividad_Descripcion" [label]="{ text: 'Estado' }"  [editorOptions]="{ readOnly: true }"></dxi-item>
                       <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}" [editorOptions]="{ readOnly: true }"></dxi-item>
                     </dxi-item>
@@ -219,6 +220,10 @@
               <dx-toast [(visible)]="isEditVisible" [type]="type" [message]="messageEdit">
               </dx-toast>
               <dx-toast [(visible)]="isDeleteVisible" [type]="type" [message]="messageDelete">
+              </dx-toast>
+              <dx-toast [(visible)]="isCheckTrueVisible" [type]="type" [message]="messageCheckTrue">
+              </dx-toast>
+              <dx-toast [(visible)]="isCheckFalseVisible" [type]="typeDanger" [message]="messageCheckfalse">
               </dx-toast>
 
             </div>

@@ -29,21 +29,30 @@ export class ActivitiesComponent implements OnInit {
 	popupDetailsVisible: boolean = false;
 	popupEditVisible:boolean=false;
 	popupDeleteVisible:boolean=false;
+  popupCheckVisible:boolean = true;
 	isVisible: boolean = false;
 	isEditVisible: boolean = false;
 	isDeleteVisible: boolean = false;
+  isCheckTrueVisible: boolean = false;
+  isCheckFalseVisible: boolean = false;
 	message = 'La actividad ha sido agregada exitosamente';
 	messageEdit = 'La actividad ha sido editada exitosamente';
 	messageDelete = 'La actividad ha sido eliminada exitosamente';
+  messageCheckTrue = 'La actividad ha sido aprobada';
+  messageCheckfalse = 'La actividad ha sido rechazada';
 	type = 'success';
+  typeDanger = 'danger';
 
 	constructor(private activitiesService: ActivitiesService, private programaService: ProgramaService, private estadoActividadService: EstadoActividadService, private usuarioService: UsersService) { }
-	actividades: any;
+
+  actividades: any;
 	actividad: IActividadDTO;
 	actividadEdit:IActividadDTO;
 	actividadDetails:IActividadDTO;
-  	actividadDelete:IActividadDTO;
-  	actividad_id:number;
+  actividadDelete:IActividadDTO;
+  actividadCheck:IActividadDTO;
+  actividad_id:number;
+
 	usuario: IUsuarioDTO;
 	estados: any;
 	programasDTO: any;
@@ -141,6 +150,8 @@ export class ActivitiesComponent implements OnInit {
 				this.usuario=response;
 			});
 	}
+  /* insert actividad */
+
 	formSubmit(e?:any) {
 		if (e)
       		e.preventDefault();
@@ -155,6 +166,14 @@ export class ActivitiesComponent implements OnInit {
 
 		});
 	}
+
+  /* edit actividad */
+
+  editActividad(actividadEdit:IActividadDTO){
+		this.actividadEdit=actividadEdit;
+		this.showEditPopUp();
+	}
+
 	formEdit(e?:any) {
 		if (e)
       		e.preventDefault();
@@ -167,6 +186,14 @@ export class ActivitiesComponent implements OnInit {
 
 		});
 	}
+
+  /* delete actividad */
+
+  deleteActividad(actividadDelete:IActividadDTO){
+    this.actividad_id=actividadDelete.id;
+    this.showDeletePopUp();
+  }
+
   formDelete(){
     this.activitiesService.deleteActividad(this.actividad_id).subscribe((res:any)=>{
       this.popupDeleteVisible=false;
@@ -179,23 +206,40 @@ export class ActivitiesComponent implements OnInit {
     this.popupDeleteVisible=false;
   }
 
-	formHide() {
-		this.popupDetailsVisible=false;
-	}
-	editActividad(actividadEdit:IActividadDTO){
-		this.actividadEdit=actividadEdit;
-		this.showEditPopUp();
-	}
+  /* details actividad */
 
-	detailsActividad(actividadDetails:IActividadDTO) {
+  detailsActividad(actividadDetails:IActividadDTO) {
 		this.actividadDetails=actividadDetails;
 		this.showDetailsPopUp();
 
 	}
-  deleteActividad(actividadDelete:IActividadDTO){
-    this.actividad_id=actividadDelete.id;
-    this.showDeletePopUp();
+
+	formHide() {
+		this.popupDetailsVisible=false;
+	}
+
+  /* check actividad */
+
+  checkActividad(actividadCheck:IActividadDTO) {
+    this.actividadCheck=actividadCheck;
+    this.showCheckPopUp();
   }
+
+  formCheckTrue() {
+
+  }
+
+  formCheckFalse() {
+
+  }
+
+  formCheckCancel() {
+
+  }
+
+
+
+
 
 
 	getProgramBySelection(e: any) {
@@ -212,8 +256,8 @@ export class ActivitiesComponent implements OnInit {
 	showPopUp = () => this.popupVisible = true;
 	showEditPopUp = () => this.popupEditVisible = true;
 	showDetailsPopUp = () => this.popupDetailsVisible = true;
-  	showDeletePopUp= () => this.popupDeleteVisible = true;
-
+  showDeletePopUp= () => this.popupDeleteVisible = true;
+  showCheckPopUp= () => this.popupCheckVisible = true;
 
 }
 

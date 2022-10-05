@@ -11,4 +11,7 @@
 - div colores por programa (FALTA ESPECIFICAR EL MES)
 - boton aprobar actividad
 - subir manual de programa
+- borrado en cascada
+
+- eliminacion de entidades
 
