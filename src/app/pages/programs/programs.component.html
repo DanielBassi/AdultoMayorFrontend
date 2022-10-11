@@ -30,7 +30,7 @@
                         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
                           <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsPrograma(data.data)"></dx-button> -->
                           <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button>
-                          <!-- <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button> -->
+                          <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button>
                           <!-- <dx-button icon="fas fa-folder" class="positionButon" hint="Eliminar"  type="success"  stylingMode="outlined"></dx-button> -->
 
                         </div>
@@ -110,10 +110,11 @@
                                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                                       <dxo-paging [enabled]="true"></dxo-paging>
                                       <dxi-column dataField="nombre" caption="Nombre Componente"></dxi-column>
-                                      <dxi-column dataField="indicador" caption="Indicador"></dxi-column>
+                                      <!-- <dxi-column dataField="indicador" caption="Indicador"></dxi-column> -->
                                       <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
                                         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
 
+                                          <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsComponente(data.data)"></dx-button>
                                           <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editComponente(data.data)"></dx-button>
                                           <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteComponente(data.data)"></dx-button>
 
@@ -202,10 +203,11 @@
                                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                                       <dxo-paging [enabled]="true"></dxo-paging>
                                       <dxi-column dataField="nombre" caption="Nombre Componente"></dxi-column>
-                                      <dxi-column dataField="indicador" caption="Indicador"></dxi-column>
+                                      <!-- <dxi-column dataField="indicador" caption="Indicador"></dxi-column> -->
                                       <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
                                         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
 
+                                          <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsComponente(data.data)"></dx-button>
                                           <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editComponente(data.data)"></dx-button>
                                           <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteComponente(data.data)"></dx-button>
 
@@ -222,6 +224,32 @@
                             </dxi-item>
                           </dx-form>
                         </form>
+                    </dx-popup>
+
+                    <!-- popup programa delete -->
+                    <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar programa" [dragEnabled]="false"
+                      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <form (submit)="formDeletePrograma()">
+
+                          <dx-form >
+                            <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                              <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                              [buttonOptions]="buttonOptionsDelete">
+                              </dxi-item>
+
+
+
+                            </dxi-item>
+
+                          </dx-form>
+                        </form>
+                      </div>
+
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formCancel()"></dx-button>
+                      </div>
+
                     </dx-popup>
 
                       <!-- popup subincice -->
@@ -271,9 +299,32 @@
 
                     </dx-popup>
                       <!-- popup subincice delete -->
-                      <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar subindice" [dragEnabled]="false"
+                      <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar subindice" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceDeleteVisible">
-                      <form (submit)="formSubindiceDelete()">
+                      <!-- <div class="col-lg-10 mb-2 offset-1">
+                        <form (submit)="formSubindiceDelete()">
+
+                          <dx-form >
+                            <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                              <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                              [buttonOptions]="buttonOptionsDelete">
+                              </dxi-item>
+
+
+
+                            </dxi-item>
+
+                          </dx-form>
+                        </form>
+                      </div> -->
+
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <dx-button width="200" type="danger" text="prueba" icon="fa fa-window-close" (onClick)="formSubindiceDelete()"></dx-button>
+                      </div>
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formSubindiceCancel()"></dx-button>
+                      </div>
+                      <!-- <form (submit)="formSubindiceDelete()">
 
                         <dx-form >
                           <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
@@ -300,7 +351,7 @@
                           </dxi-item>
 
                         </dx-form>
-                      </form>
+                      </form> -->
                       <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
 
                     </dx-popup>
@@ -366,10 +417,46 @@
                       </form>
 
                     </dx-popup>
+                    <!-- popup componente details-->
+                    <dx-popup [width]="600" [height]="300" [showTitle]="true" title="Detalles componente" [dragEnabled]="false"
+                      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteDetailsVisible">
+
+                        <dx-form id="form" [colCount]="2" [(formData)]="componenteDetails" labelLocation="top" [disabled]="false" [readOnly]="false">
+
+                          <dxi-item [colSpan]="2" [label]="{text:'Nombre componente'}" dataField="nombre" [editorOptions]="{ readOnly: true }"></dxi-item>
+                          <dxi-item [colSpan]="2" editorType="dxTextArea" [label]="{text:'Indicador'}" dataField="indicador" [editorOptions]="{ readOnly: true }"></dxi-item>
+
+                          <dxi-item></dxi-item>
+                        </dx-form>
+
+                        <div class="col-lg-3 mb-2 offset-9">
+                          <dx-button width="300" type="danger" text="salir" icon="fa fa-window-close" (onClick)="formHideComponente()"></dx-button>
+                        </div>
+
+                    </dx-popup>
                     <!-- popup componente delete -->
-                    <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar componente" [dragEnabled]="false"
+                    <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar componente" [dragEnabled]="false"
                     [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteDeleteVisible">
-                    <form (submit)="formComponenteDelete()">
+                    <div class="col-lg-10 mb-2 offset-1">
+                      <form (submit)="formComponenteDelete()">
+
+                        <dx-form >
+                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                            [buttonOptions]="buttonOptionsDelete">
+                            </dxi-item>
+
+
+
+                          </dxi-item>
+
+                        </dx-form>
+                      </form>
+                    </div>
+                    <div class="col-lg-10 mb-2 offset-1">
+                      <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formComponenteCancel()"></dx-button>
+                    </div>
+                    <!-- <form (submit)="formComponenteDelete()">
 
                       <dx-form >
                         <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
@@ -396,7 +483,7 @@
                         </dxi-item>
 
                       </dx-form>
-                    </form>
+                    </form> -->
                     <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
 
                   </dx-popup>

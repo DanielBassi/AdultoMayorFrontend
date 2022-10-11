@@ -130,14 +130,15 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 		type: 'danger',
 		icon: 'fa fa-window-close',
 		width: '200',
-		useSubmitBehavior: true
+		/* useSubmitBehavior: true */
 
 	}
   	buttonOptionsDelete = {
 		text: 'SI',
 		type: 'success',
 		width: '200',
-    	useSubmitBehavior: true
+    icon:'fa fa-check',
+    useSubmitBehavior: true
 
 
 	}
@@ -145,7 +146,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 		text: 'NO',
 		type: 'danger',
 		width: '200',
-    	useSubmitBehavior: true
+    icon: 'fa fa-window-close',
+    useSubmitBehavior: true
 
 
 	}
@@ -254,7 +256,22 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     });
 	}
   /* delete programa */
+  deletePrograma(programaDelete: IProgramaDTO){
+    this.programaDelete=programaDelete;
+    this.showDeletePopUp();
+  }
 
+  formDeletePrograma(){
+    this.programaService.deletePrograma(this.programaDelete.id).subscribe((res:any)=>{
+      this.popupDeleteVisible=false;
+      this.isDeleteVisible=true;
+      this.listarProgramas();
+    })
+  }
+
+  formCancel(){
+    this.popupDeleteVisible=false;
+  }
 
   /* subindices */
 
@@ -296,8 +313,18 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 		this.subindiceDelete=subindiceDelete;
 		this.showSubindiceDeletePopUp();
 	}
-  formSubindiceDelete() {
+  /* formSubindiceDelete = () => {
     this.subindiceService.deleteSubindice(this.subindiceDelete.id).subscribe((res:any) => {
+      debugger;
+      this.listarSubindices(this.subindiceDelete.programa_Id);
+      this.listarComponentes(this.subindiceDelete.programa_Id);
+      this.popupSubindiceDeleteVisible = false;
+    });
+  } */
+  formSubindiceDelete() {
+    debugger;
+    this.subindiceService.deleteSubindice(this.subindiceDelete.id).subscribe((res:any) => {
+      debugger;
       this.listarSubindices(this.subindiceDelete.programa_Id);
       this.listarComponentes(this.subindiceDelete.programa_Id);
       /* this.popupSubindiceDeleteVisible = false; */
@@ -343,7 +370,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     });
 	}
 
-  /* delete subindice */
+  /* delete componente */
   deleteComponente(componenteDelete:IComponenteDTO){
 		this.componenteDelete=componenteDelete;
 		this.showComponenteDeletePopUp();
@@ -358,6 +385,17 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   formComponenteCancel(){
     this.popupComponenteDeleteVisible=false;
   }
+
+  /* details componente */
+  detailsComponente(componenteDetails:IComponenteDTO) {
+		this.componenteDetails=componenteDetails;
+		this.showComponenteDetailsPopUp();
+
+	}
+
+  formHideComponente() {
+		this.popupComponenteDetailsVisible=false;
+	}
 
 
 
