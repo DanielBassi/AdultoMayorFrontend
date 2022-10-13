@@ -20,8 +20,8 @@ export class IProgramaDTO {
     this.id = 0
     this.nombre = ''
     this.estado = true
-    this.color
-    this.nombreManual
+    this.color = ''
+    this.nombreManual = ''
     this.esClub = true
     this.created_at = new Date
     this.subindices = []

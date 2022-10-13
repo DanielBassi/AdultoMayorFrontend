@@ -156,7 +156,54 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.listarProgramas();
-    this.currentPrograma = new IProgramaDTO()
+    this.currentPrograma = new IProgramaDTO();
+
+    this.subindice = new ISubindiceDTO();
+    this.subindiceEdit = new ISubindiceDTO();
+    this.subindiceDetails = new ISubindiceDTO();
+    this.subindiceDelete = new ISubindiceDTO();
+
+    this.programa = new IProgramaDTO();
+    this.programaEdit = new IProgramaDTO();
+    this.programaDetails = new IProgramaDTO();
+    this.programaDelete = new IProgramaDTO();
+
+    this.componente = new IComponenteDTO();
+    this.componenteEdit = new IComponenteDTO();
+    this.componenteDetails = new IComponenteDTO();
+    this.componenteDelete = new IComponenteDTO();
+
+    this.popupVisible = false;
+  this.popupDetailsVisible = false;
+	this.popupEditVisible=false;
+	this.popupDeleteVisible=false;
+
+  this.popupSubindiceVisible = false;
+  this.popupSubindiceDetailsVisible = false;
+	this.popupSubindiceEditVisible=false;
+	this.popupSubindiceDeleteVisible=false;
+
+  this.popupSubindiceEditSecondaryVisible=false;
+
+  this.popupComponenteVisible = false;
+  this.popupComponenteDetailsVisible = false;
+	this.popupComponenteEditVisible=false;
+	this.popupComponenteDeleteVisible=false;
+
+  this.submenuVisible = false;
+  this.submenuDetailsVisible = false;
+	this.submenuEditVisible=false;
+	this.submenuDeleteVisible=false;
+  this.submenuheight = 200;
+
+  this.botonCrearVisible = true;
+  this.nuevoProgramaRead = false;
+
+
+  this.isVisible = false;
+  this.isEditVisible = false;
+	this.isDeleteVisible = false;
+
 
   }
 

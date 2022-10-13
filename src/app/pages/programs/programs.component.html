@@ -31,7 +31,7 @@
                           <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsPrograma(data.data)"></dx-button> -->
                           <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button>
                           <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button>
-                          <!-- <dx-button icon="fas fa-folder" class="positionButon" hint="Eliminar"  type="success"  stylingMode="outlined"></dx-button> -->
+                          <dx-button icon="fas fa-folder" class="positionButon" hint="Eliminar"  type="success"  stylingMode="outlined"></dx-button>
 
                         </div>
                       </dxi-column>
@@ -45,10 +45,10 @@
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible" (onHidden)="inicializarPrograma()">
 
 
-                        <form (submit)="formSubmitNewPrograma($event)" enctype="multipart/form-data">
+                        <!-- <form (submit)="formSubmitNewPrograma($event)" enctype="multipart/form-data">
 
                           <dx-form id="form" [colCount]="2" [(formData)]="programa" labelLocation="top" [disabled]="false" [readOnly]="false">
-                            <!-- creacion del programa -->
+                             - - - creacion del programa
                             <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
                               <dxi-item [colSpan]="1" [label]="{text:'Nombre Programa'}" dataField="nombre" [editorOptions]="{ readOnly: nuevoProgramaRead}">
                                 <dxi-validation-rule type="required" ></dxi-validation-rule>
@@ -66,7 +66,7 @@
                             </dxi-item>
 
 
-                            <!-- pestañas -->
+                             - - - -pestañas
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true" [(visible)]="submenuVisible">
                                 <dxi-item title="Manual de usuario">
@@ -110,7 +110,7 @@
                                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                                       <dxo-paging [enabled]="true"></dxo-paging>
                                       <dxi-column dataField="nombre" caption="Nombre Componente"></dxi-column>
-                                      <!-- <dxi-column dataField="indicador" caption="Indicador"></dxi-column> -->
+                                       - - - <dxi-column dataField="indicador" caption="Indicador"></dxi-column>
                                       <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
                                         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
 
@@ -130,18 +130,18 @@
                               </dx-tab-panel>
                             </dxi-item>
                           </dx-form>
-                        </form>
+                        </form> -->
                     </dx-popup>
 
                     <!-- editar programa -->
-                    <dx-popup [width]="800" [height]="600" [showTitle]="true" title="Editar Programa" [dragEnabled]="false"
+                    <!-- <dx-popup [width]="800" [height]="600" [showTitle]="true" title="Editar Programa" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupEditVisible">
 
 
                         <form (submit)="formEditPrograma($event)" enctype="multipart/form-data">
 
                           <dx-form id="form" [colCount]="2" [(formData)]="programaEdit" labelLocation="top" [disabled]="false" [readOnly]="false">
-                            <!-- creacion del programa -->
+                             - - - - creacion del programa
                             <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
                               <dxi-item [colSpan]="1" [label]="{text:'Nombre Programa'}" dataField="nombre">
                                 <dxi-validation-rule type="required" ></dxi-validation-rule>
@@ -159,7 +159,7 @@
                             </dxi-item>
 
 
-                            <!-- pestañas -->
+                            - - - - - pestañas
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
                                 <dxi-item title="Manual de usuario">
@@ -203,7 +203,7 @@
                                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                                       <dxo-paging [enabled]="true"></dxo-paging>
                                       <dxi-column dataField="nombre" caption="Nombre Componente"></dxi-column>
-                                      <!-- <dxi-column dataField="indicador" caption="Indicador"></dxi-column> -->
+                                       - - - <dxi-column dataField="indicador" caption="Indicador"></dxi-column>
                                       <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
                                         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
 
@@ -224,10 +224,10 @@
                             </dxi-item>
                           </dx-form>
                         </form>
-                    </dx-popup>
+                    </dx-popup> -->
 
                     <!-- popup programa delete -->
-                    <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar programa" [dragEnabled]="false"
+                    <!-- <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar programa" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
                       <div class="col-lg-10 mb-2 offset-1">
                         <form (submit)="formDeletePrograma()">
@@ -251,9 +251,9 @@
                       </div>
 
                     </dx-popup>
-
+ -->
                       <!-- popup subincice -->
-                    <dx-popup [width]="600" [height]="200" [showTitle]="true" title="Crear nuevo subindice" [dragEnabled]="false"
+                    <!-- <dx-popup [width]="600" [height]="200" [showTitle]="true" title="Crear nuevo subindice" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceVisible" (onHidden)="inicializarSubindice()">
                       <form (submit)="formSubindiceSubmit($event)" >
                         <dx-form id="form" [colCount]="2" [(formData)]="subindice" labelLocation="top" [disabled]="false" [readOnly]="false">
@@ -274,9 +274,9 @@
                         </dx-form>
                       </form>
 
-                    </dx-popup>
+                    </dx-popup> -->
                      <!-- popup subincice edit -->
-                     <dx-popup [width]="600" [height]="200" [showTitle]="true" title="Editar subindice" [dragEnabled]="false"
+                     <!-- <dx-popup [width]="600" [height]="200" [showTitle]="true" title="Editar subindice" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceEditVisible">
                       <form (submit)="formSubindiceEdit($event)" >
                         <dx-form id="form" [colCount]="2" [(formData)]="subindiceEdit" labelLocation="top" [disabled]="false" [readOnly]="false">
@@ -297,26 +297,10 @@
                         </dx-form>
                       </form>
 
-                    </dx-popup>
+                    </dx-popup> -->
                       <!-- popup subincice delete -->
-                      <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar subindice" [dragEnabled]="false"
+                      <!-- <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar subindice" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceDeleteVisible">
-                      <!-- <div class="col-lg-10 mb-2 offset-1">
-                        <form (submit)="formSubindiceDelete()">
-
-                          <dx-form >
-                            <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                              <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                              [buttonOptions]="buttonOptionsDelete">
-                              </dxi-item>
-
-
-
-                            </dxi-item>
-
-                          </dx-form>
-                        </form>
-                      </div> -->
 
                       <div class="col-lg-10 mb-2 offset-1">
                         <dx-button width="200" type="danger" text="prueba" icon="fa fa-window-close" (onClick)="formSubindiceDelete()"></dx-button>
@@ -324,39 +308,10 @@
                       <div class="col-lg-10 mb-2 offset-1">
                         <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formSubindiceCancel()"></dx-button>
                       </div>
-                      <!-- <form (submit)="formSubindiceDelete()">
 
-                        <dx-form >
-                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                            [buttonOptions]="buttonOptionsDelete">
-                            </dxi-item>
-
-
-
-                          </dxi-item>
-
-                        </dx-form>
-                      </form>
-                      <form (submit)="formSubindiceCancel()">
-
-                        <dx-form >
-                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-
-                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                              [buttonOptions]="buttonOptionsCancel">
-                            </dxi-item>
-
-
-                          </dxi-item>
-
-                        </dx-form>
-                      </form> -->
-                      <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
-
-                    </dx-popup>
+                    </dx-popup> -->
                       <!-- popup componente -->
-                    <dx-popup [width]="600" [height]="300" [showTitle]="true" title="Crear nuevo componente" [dragEnabled]="false"
+                    <!-- <dx-popup [width]="600" [height]="300" [showTitle]="true" title="Crear nuevo componente" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteVisible" (onHidden)="inicializarComponente()">
                       <form (submit)="formComponenteSubmit($event)" >
                         <dx-form id="form" [colCount]="2" [(formData)]="componente" labelLocation="top" [disabled]="false" [readOnly]="false">
@@ -385,9 +340,9 @@
                         </dx-form>
                       </form>
 
-                    </dx-popup>
+                    </dx-popup> -->
                     <!-- popup componente edit-->
-                    <dx-popup [width]="600" [height]="300" [showTitle]="true" title="Editar componente" [dragEnabled]="false"
+                    <!-- <dx-popup [width]="600" [height]="300" [showTitle]="true" title="Editar componente" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteEditVisible">
                       <form (submit)="formComponenteEdit($event)" >
                         <dx-form id="form" [colCount]="2" [(formData)]="componenteEdit" labelLocation="top" [disabled]="false" [readOnly]="false">
@@ -416,9 +371,9 @@
                         </dx-form>
                       </form>
 
-                    </dx-popup>
+                    </dx-popup> -->
                     <!-- popup componente details-->
-                    <dx-popup [width]="600" [height]="300" [showTitle]="true" title="Detalles componente" [dragEnabled]="false"
+                    <!-- <dx-popup [width]="600" [height]="300" [showTitle]="true" title="Detalles componente" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteDetailsVisible">
 
                         <dx-form id="form" [colCount]="2" [(formData)]="componenteDetails" labelLocation="top" [disabled]="false" [readOnly]="false">
@@ -433,9 +388,9 @@
                           <dx-button width="300" type="danger" text="salir" icon="fa fa-window-close" (onClick)="formHideComponente()"></dx-button>
                         </div>
 
-                    </dx-popup>
+                    </dx-popup> -->
                     <!-- popup componente delete -->
-                    <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar componente" [dragEnabled]="false"
+                    <!-- <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar componente" [dragEnabled]="false"
                     [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteDeleteVisible">
                     <div class="col-lg-10 mb-2 offset-1">
                       <form (submit)="formComponenteDelete()">
@@ -456,37 +411,38 @@
                     <div class="col-lg-10 mb-2 offset-1">
                       <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formComponenteCancel()"></dx-button>
                     </div>
-                    <!-- <form (submit)="formComponenteDelete()">
 
-                      <dx-form >
-                        <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                          <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                          [buttonOptions]="buttonOptionsDelete">
+                  </dx-popup> -->
+
+                  <!-- <form (submit)="formSubindiceDelete()">
+
+                        <dx-form >
+                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                            [buttonOptions]="buttonOptionsDelete">
+                            </dxi-item>
+
+
+
                           </dxi-item>
 
+                        </dx-form>
+                      </form>
+                      <form (submit)="formSubindiceCancel()">
+
+                        <dx-form >
+                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+
+                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+                              [buttonOptions]="buttonOptionsCancel">
+                            </dxi-item>
 
 
-                        </dxi-item>
-
-                      </dx-form>
-                    </form>
-                    <form (submit)="formComponenteCancel()">
-
-                      <dx-form >
-                        <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-
-                          <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                            [buttonOptions]="buttonOptionsCancel">
                           </dxi-item>
 
-
-                        </dxi-item>
-
-                      </dx-form>
-                    </form> -->
-                    <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
-
-                  </dx-popup>
+                        </dx-form>
+                      </form> -->
+                      <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
 
                         <!-- /.card-body -->
 

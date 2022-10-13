@@ -4,7 +4,7 @@ import { ActivitiesService } from 'src/app/services/activities.service';
 import { ProgramaService } from 'src/app/services/programa.service';
 import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
 
-import esLocale from '@fullcalendar/core/locales/es';
+import esLocale from '@fullcalendar/core/locales/es.js';
 
 @Component({
   selector: 'app-dashboard',
