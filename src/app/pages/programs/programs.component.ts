@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-import { IComponenteDTO } from 'src/app/models/IComponenteDTO';
-import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
-import { ISubindiceDTO } from 'src/app/models/ISubindiceDTO';
-import { ProgramaService } from 'src/app/services/programa.service';
-import { SubindiceService } from 'src/app/services/subindice.service';
-import { ComponenteService } from 'src/app/services/componente.service';
+import { IComponenteDTO } from '../../models/IComponenteDTO';
+import { IProgramaDTO } from '../../models/IProgramaDTO';
+import { ISubindiceDTO } from '../../models/ISubindiceDTO';
+import { ProgramaService } from '../../services/programa.service';
+import { SubindiceService } from '../../services/subindice.service';
+import { ComponenteService } from '../../services/componente.service';
 
 @Component({
   selector: 'app-programs',
@@ -174,50 +174,51 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.componenteDelete = new IComponenteDTO();
 
     this.popupVisible = false;
-  this.popupDetailsVisible = false;
-	this.popupEditVisible=false;
-	this.popupDeleteVisible=false;
+    this.popupDetailsVisible = false;
+    this.popupEditVisible=false;
+    this.popupDeleteVisible=false;
 
-  this.popupSubindiceVisible = false;
-  this.popupSubindiceDetailsVisible = false;
-	this.popupSubindiceEditVisible=false;
-	this.popupSubindiceDeleteVisible=false;
+    this.popupSubindiceVisible = false;
+    this.popupSubindiceDetailsVisible = false;
+    this.popupSubindiceEditVisible=false;
+    this.popupSubindiceDeleteVisible=false;
 
-  this.popupSubindiceEditSecondaryVisible=false;
+    this.popupSubindiceEditSecondaryVisible=false;
 
-  this.popupComponenteVisible = false;
-  this.popupComponenteDetailsVisible = false;
-	this.popupComponenteEditVisible=false;
-	this.popupComponenteDeleteVisible=false;
+    this.popupComponenteVisible = false;
+    this.popupComponenteDetailsVisible = false;
+    this.popupComponenteEditVisible=false;
+    this.popupComponenteDeleteVisible=false;
 
-  this.submenuVisible = false;
-  this.submenuDetailsVisible = false;
-	this.submenuEditVisible=false;
-	this.submenuDeleteVisible=false;
-  this.submenuheight = 200;
+    this.submenuVisible = false;
+    this.submenuDetailsVisible = false;
+    this.submenuEditVisible=false;
+    this.submenuDeleteVisible=false;
+    this.submenuheight = 200;
 
-  this.botonCrearVisible = true;
-  this.nuevoProgramaRead = false;
+    this.botonCrearVisible = true;
+    this.nuevoProgramaRead = false;
 
 
-  this.isVisible = false;
-  this.isEditVisible = false;
-	this.isDeleteVisible = false;
+    this.isVisible = false;
+    this.isEditVisible = false;
+    this.isDeleteVisible = false;
 
 
   }
 
   inicializarPrograma(){
-    delete this.programa.actividades;
-    delete this.programa.color;
-    delete this.programa.componentes;
-    delete this.programa.created_at;
-    delete this.programa.esClub;
-    delete this.programa.estado;
-    delete this.programa.id;
-    delete this.programa.nombre;
-    delete this.programa.nombreManual;
-    delete this.programa.subindices;
+    this.programa= new IProgramaDTO();
+    // delete this.programa.actividades;
+    // delete this.programa.color;
+    // delete this.programa.componentes;
+    // delete this.programa.created_at;
+    // delete this.programa.esClub;
+    // delete this.programa.estado;
+    // delete this.programa.id;
+    // delete this.programa.nombre;
+    // delete this.programa.nombreManual;
+    // delete this.programa.subindices;
     this.submenuVisible = false;
     this.botonCrearVisible = true;
     this.nuevoProgramaRead = false;
@@ -225,20 +226,22 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
 
   inicializarSubindice(){
-    delete this.subindice.created_at;
-    delete this.subindice.estado;
-    delete this.subindice.id;
-    delete this.subindice.nombre;
-    delete this.subindice.programa_Id;
+    this.subindice=new ISubindiceDTO();
+    // delete this.subindice.created_at;
+    // delete this.subindice.estado;
+    // delete this.subindice.id;
+    // delete this.subindice.nombre;
+    // delete this.subindice.programa_Id;
   }
 
   inicializarComponente(){
-    delete this.componente.created_at;
-    delete this.componente.indicador;
-    delete this.componente.estado;
-    delete this.componente.id;
-    delete this.componente.nombre;
-    delete this.componente.programa_Id;
+    this.componente = new IComponenteDTO();
+    // delete this.componente.created_at;
+    // delete this.componente.indicador;
+    // delete this.componente.estado;
+    // delete this.componente.id;
+    // delete this.componente.nombre;
+    // delete this.componente.programa_Id;
   }
 
   listarProgramas(){
@@ -272,7 +275,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.programa.estado = true;
     /* this.popupVisible = false; */
     this.currentPrograma = this.programa
-    this.programaService.insertPrograma(this.programa).subscribe((res:IProgramaDTO) => {
+    this.programaService.insertPrograma(this.programa).subscribe((res:any) => {
       this.currentPrograma = res;
       this.isVisible = true;
       this.listarProgramas();
@@ -294,7 +297,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 		if (e)
       e.preventDefault();
 
-    this.programaService.editPrograma(this.programaEdit).subscribe((res:IProgramaDTO) => {
+    this.programaService.editPrograma(this.programaEdit).subscribe((res:any) => {
       this.currentProgramaEdit = res;
       this.isEditVisible = true;
       this.listarProgramas();
@@ -360,22 +363,21 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 		this.subindiceDelete=subindiceDelete;
 		this.showSubindiceDeletePopUp();
 	}
-  /* formSubindiceDelete = () => {
+
+  formSubindiceDelete() {
+    console.log(this.subindiceDelete.id);
+
     this.subindiceService.deleteSubindice(this.subindiceDelete.id).subscribe((res:any) => {
-      debugger;
+      let x = res;
+
       this.listarSubindices(this.subindiceDelete.programa_Id);
       this.listarComponentes(this.subindiceDelete.programa_Id);
       this.popupSubindiceDeleteVisible = false;
+
     });
-  } */
-  formSubindiceDelete() {
-    debugger;
-    this.subindiceService.deleteSubindice(this.subindiceDelete.id).subscribe((res:any) => {
-      debugger;
-      this.listarSubindices(this.subindiceDelete.programa_Id);
-      this.listarComponentes(this.subindiceDelete.programa_Id);
-      /* this.popupSubindiceDeleteVisible = false; */
-    });
+
+
+
   }
   formSubindiceCancel(){
     this.popupSubindiceDeleteVisible=false;
