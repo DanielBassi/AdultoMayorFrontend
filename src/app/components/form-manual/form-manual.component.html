@@ -1,0 +1,35 @@
+<dx-form id="formManual" name="formManual" [colCount]="3" [(formData)]="manuales" labelLocation="top">
+  <dxi-item itemType="group" [colCount]="3" [colSpan]="3">
+    <dxi-item dataField="nombre" [colSpan]="3" [label]="{text:'manual'}">
+      <div *dxTemplate>
+        <dx-file-uploader
+          #fileUploaderDocuments
+          class
+          selectButtonText="Seleccionar archivo"
+          labelText=""
+          invalidFileExtensionMessage="Tipo de archivo no permitido"
+          invalidMaxFileSizeMessage="Fichero es demasiado grande"
+          [accept]=".pdf"
+          [uploadMode]="'useButtons'"
+          [maxFileSize]="1000000"
+          [showFileList]="true"
+          [multiple]="false"
+          [uploadFile]="onUploadedFormatASQ">
+        </dx-file-uploader>
+      </div>
+      <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-item>
+  </dxi-item>
+
+  <dxi-item itemType="group" [colCount]="3" [colSpan]="3">
+    <dx-data-grid id="gridContainerCaracteristicas" [dataSource]="manuales" [showBorders]="true">
+      <dxi-column dataField="nombre" caption="Nombre del manual"></dxi-column>
+      <dxi-column caption="acción" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
+      </dxi-column>
+      <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+        <dx-button icon="fas fa-window-close" class="positionButon" hint="Eliminar" type="danger" (onClick)="quitarRecurso(data.data)"></dx-button>
+      </div>
+    </dx-data-grid>
+  </dxi-item>
+  
+</dx-form>

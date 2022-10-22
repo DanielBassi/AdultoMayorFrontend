@@ -83,6 +83,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.listarUsuarios();
     this.listarRoles();
     this.listarTiposIdentificacion();
+    this.usuario = new IUsuarioDTO();
+    this.usuarioEdit = new IUsuarioDTO();
+    this.usuarioDetails = new IUsuarioDTO();
+    this.usuarioDelete = new IUsuarioDTO();
   }
 
   inicializarUsuario(){

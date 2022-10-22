@@ -45,13 +45,13 @@ export class ActivitiesComponent implements OnInit {
 
 	constructor(private activitiesService: ActivitiesService, private programaService: ProgramaService, private estadoActividadService: EstadoActividadService, private usuarioService: UsersService) { }
 
-  actividades: any;
+    actividades: any;
 	actividad: IActividadDTO;
 	actividadEdit:IActividadDTO;
 	actividadDetails:IActividadDTO;
-  actividadDelete:IActividadDTO;
-  actividadCheck:IActividadDTO;
-  actividad_id:number;
+    actividadDelete:IActividadDTO;
+    actividadCheck:IActividadDTO;
+    actividad_id:number;
 
 	usuario: IUsuarioDTO;
 	estados: any;
@@ -106,6 +106,12 @@ export class ActivitiesComponent implements OnInit {
 		this.listarProgramas();
 		this.listarEstadosActividad();
 		this.listarUsuarios();
+
+		this.actividad = new IActividadDTO(); 
+		this.actividadEdit = new IActividadDTO();
+		this.actividadDetails = new IActividadDTO();
+  		this.actividadDelete = new IActividadDTO();
+  		this.actividadCheck = new IActividadDTO();
 	}
 
 	inicializarActividad(){

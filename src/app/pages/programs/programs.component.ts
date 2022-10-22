@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IComponenteDTO } from '../../models/IComponenteDTO';
+
 import { IProgramaDTO } from '../../models/IProgramaDTO';
 import { ISubindiceDTO } from '../../models/ISubindiceDTO';
 import { ProgramaService } from '../../services/programa.service';
@@ -65,7 +66,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   componenteDetails: IComponenteDTO;
   componenteDelete: IComponenteDTO;
 
-
+  
   programas: IProgramaDTO[];
   programa:IProgramaDTO;
   programaEdit:IProgramaDTO;
@@ -78,6 +79,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   currentProgramaDetails:IProgramaDTO;
   currentProgramaDelete:IProgramaDTO;
   currentPrograma_id:number;
+
+  value: any[]
 
   buttonOptionsNewPrograma = {
     text: 'Crear',
@@ -209,16 +212,6 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
   inicializarPrograma(){
     this.programa= new IProgramaDTO();
-    // delete this.programa.actividades;
-    // delete this.programa.color;
-    // delete this.programa.componentes;
-    // delete this.programa.created_at;
-    // delete this.programa.esClub;
-    // delete this.programa.estado;
-    // delete this.programa.id;
-    // delete this.programa.nombre;
-    // delete this.programa.nombreManual;
-    // delete this.programa.subindices;
     this.submenuVisible = false;
     this.botonCrearVisible = true;
     this.nuevoProgramaRead = false;
@@ -227,21 +220,10 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
   inicializarSubindice(){
     this.subindice=new ISubindiceDTO();
-    // delete this.subindice.created_at;
-    // delete this.subindice.estado;
-    // delete this.subindice.id;
-    // delete this.subindice.nombre;
-    // delete this.subindice.programa_Id;
   }
 
   inicializarComponente(){
     this.componente = new IComponenteDTO();
-    // delete this.componente.created_at;
-    // delete this.componente.indicador;
-    // delete this.componente.estado;
-    // delete this.componente.id;
-    // delete this.componente.nombre;
-    // delete this.componente.programa_Id;
   }
 
   listarProgramas(){

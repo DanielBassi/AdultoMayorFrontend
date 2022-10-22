@@ -1,9 +1,9 @@
 - confirmacion de contraseñas()
 
 
-- añadir componentes(hecho, falta detalles)
 
-- programas crud front
+
+- programas crud front (falta detalles)
 
 - fecha por hora en actividad (hecho pero se adelanta 5 horas)
 - click actividades calendario

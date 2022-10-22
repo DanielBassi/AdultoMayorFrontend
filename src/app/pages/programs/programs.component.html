@@ -29,9 +29,10 @@
                       <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
                         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
                           <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsPrograma(data.data)"></dx-button> -->
+                          <dx-button icon="fas fa-folder" class="positionButon" hint="Ver manual"  type="success"  stylingMode="outlined"></dx-button>
                           <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button>
                           <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button>
-                          <dx-button icon="fas fa-folder" class="positionButon" hint="Eliminar"  type="success"  stylingMode="outlined"></dx-button>
+                          
 
                         </div>
                       </dxi-column>
@@ -70,7 +71,7 @@
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true" [(visible)]="submenuVisible">
                                 <dxi-item title="Manual de usuario">
-
+                                  <app-form-manual [manuales]="manuales" (manualEvent)="addManual($event)"></app-form-manual>
                                 </dxi-item>
                                 <dxi-item title="Subindices">
                                   <div class="mb-2">
@@ -163,7 +164,7 @@
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
                                 <dxi-item title="Manual de usuario">
-
+                                  <!-- <app-form-resources [manual]="manual" [modoView]="modoView" (manualEvent)="addManual($event)"></app-form-resources> -->
                                 </dxi-item>
                                 <dxi-item title="Subindices">
                                   <div class="mb-2">
@@ -229,23 +230,10 @@
                     <!-- popup programa delete -->
                     <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar programa" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
+                      
                       <div class="col-lg-10 mb-2 offset-1">
-                        <form (submit)="formDeletePrograma()">
-
-                          <dx-form >
-                            <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                              <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                              [buttonOptions]="buttonOptionsDelete">
-                              </dxi-item>
-
-
-
-                            </dxi-item>
-
-                          </dx-form>
-                        </form>
+                        <dx-button width="200" type="success" text="SI" icon="fa fa-check" (onClick)="formDeletePrograma()"></dx-button>
                       </div>
-
                       <div class="col-lg-10 mb-2 offset-1">
                         <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formCancel()"></dx-button>
                       </div>
@@ -302,7 +290,7 @@
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceDeleteVisible">
 
                       <div class="col-lg-10 mb-2 offset-1">
-                        <dx-button width="200" type="danger" text="prueba" icon="fa fa-window-close" (onClick)="formSubindiceDelete()"></dx-button>
+                        <dx-button width="200" type="success" text="SI" icon="fa fa-check" (onClick)="formSubindiceDelete()"></dx-button>
                       </div>
                       <div class="col-lg-10 mb-2 offset-1">
                         <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formSubindiceCancel()"></dx-button>
@@ -390,58 +378,18 @@
                     </dx-popup>
                     <!-- popup componente delete -->
                     <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar componente" [dragEnabled]="false"
-                    [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteDeleteVisible">
-                    <div class="col-lg-10 mb-2 offset-1">
-                      <form (submit)="formComponenteDelete()">
+                      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteDeleteVisible">
+                    
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <dx-button width="200" type="success" text="SI" icon="fa fa-check" (onClick)="formComponenteDelete()"></dx-button>
+                      </div>
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formComponenteCancel()"></dx-button>
+                      </div>
 
-                        <dx-form >
-                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                            [buttonOptions]="buttonOptionsDelete">
-                            </dxi-item>
+                    </dx-popup>
 
-
-
-                          </dxi-item>
-
-                        </dx-form>
-                      </form>
-                    </div>
-                    <div class="col-lg-10 mb-2 offset-1">
-                      <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formComponenteCancel()"></dx-button>
-                    </div>
-
-                  </dx-popup>
-
-                  <!-- <form (submit)="formSubindiceDelete()">
-
-                        <dx-form >
-                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                            [buttonOptions]="buttonOptionsDelete">
-                            </dxi-item>
-
-
-
-                          </dxi-item>
-
-                        </dx-form>
-                      </form>
-                      <form (submit)="formSubindiceCancel()">
-
-                        <dx-form >
-                          <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-
-                            <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-                              [buttonOptions]="buttonOptionsCancel">
-                            </dxi-item>
-
-
-                          </dxi-item>
-
-                        </dx-form>
-                      </form> -->
-                      <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
+                  
 
                         <!-- /.card-body -->
 
