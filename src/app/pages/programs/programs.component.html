@@ -32,7 +32,7 @@
                           <dx-button icon="fas fa-folder" class="positionButon" hint="Ver manual"  type="success"  stylingMode="outlined"></dx-button>
                           <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button>
                           <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button>
-                          
+
 
                         </div>
                       </dxi-column>
@@ -163,9 +163,9 @@
                             <!-- - - - - - pestañas -->
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
-                                <dxi-item title="Manual de usuario">
-                                  <!-- <app-form-resources [manual]="manual" [modoView]="modoView" (manualEvent)="addManual($event)"></app-form-resources> -->
-                                </dxi-item>
+                                <!-- <dxi-item title="Manual de usuario">
+                                  <app-form-resources [manual]="manual" (manualEvent)="addManual($event)"></app-form-resources>
+                                </dxi-item> -->
                                 <dxi-item title="Subindices">
                                   <div class="mb-2">
                                     <dx-button type="success" text="Agregar subindice" icon="fa fa-plus" (onClick)="showSubindicePopUp()"></dx-button>
@@ -230,7 +230,7 @@
                     <!-- popup programa delete -->
                     <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar programa" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
-                      
+
                       <div class="col-lg-10 mb-2 offset-1">
                         <dx-button width="200" type="success" text="SI" icon="fa fa-check" (onClick)="formDeletePrograma()"></dx-button>
                       </div>
@@ -379,7 +379,7 @@
                     <!-- popup componente delete -->
                     <dx-popup [width]="300" [height]="180" [showTitle]="true" title="Borrar componente" [dragEnabled]="false"
                       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupComponenteDeleteVisible">
-                    
+
                       <div class="col-lg-10 mb-2 offset-1">
                         <dx-button width="200" type="success" text="SI" icon="fa fa-check" (onClick)="formComponenteDelete()"></dx-button>
                       </div>
@@ -389,7 +389,7 @@
 
                     </dx-popup>
 
-                  
+
 
                         <!-- /.card-body -->
 

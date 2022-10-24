@@ -1,21 +1,19 @@
 export class IManualDTO {
-    id?: string
+  id?: string
   nombre: string
   tipo: string
-  servicios_id?: string
-  create_time?: Date
-  update_time?: any
+  programa_id?: string
+  created_at?: Date
+  updated_at?: any
   base64?: any
 
   constructor() {
     this.id = ''
     this.nombre = ''
     this.tipo = ''
-    this.servicios_id = ''
-    this.create_time = new Date
-    this.update_time = null
+    this.programa_id = ''
+    this.created_at = new Date
+    this.updated_at = null
   }
-
-  
 
 }

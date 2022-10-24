@@ -1,5 +1,6 @@
 import { IActividadDTO } from "./IActividadDTO";
 import { IComponenteDTO } from "./IComponenteDTO";
+import { IManualDTO } from "./IManualDTO";
 import { ISubindiceDTO } from "./ISubindiceDTO";
 
 export class IProgramaDTO {
@@ -13,6 +14,7 @@ export class IProgramaDTO {
   subindices: Array<ISubindiceDTO>
   actividades: Array<IActividadDTO>
   componentes: Array<IComponenteDTO>
+  manuales: Array<IManualDTO>
   /**
    *
    */
@@ -27,6 +29,6 @@ export class IProgramaDTO {
     this.subindices = []
     this.actividades = []
     this.componentes = []
-
+    this.manuales = []
   }
 }

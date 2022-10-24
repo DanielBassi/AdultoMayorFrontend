@@ -7,6 +7,8 @@ import { ISubindiceDTO } from '../../models/ISubindiceDTO';
 import { ProgramaService } from '../../services/programa.service';
 import { SubindiceService } from '../../services/subindice.service';
 import { ComponenteService } from '../../services/componente.service';
+import { IManualDTO } from '../../models/IManualDTO';
+import { createLogicalAnd } from 'typescript';
 
 @Component({
   selector: 'app-programs',
@@ -66,13 +68,15 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   componenteDetails: IComponenteDTO;
   componenteDelete: IComponenteDTO;
 
-  
+
   programas: IProgramaDTO[];
   programa:IProgramaDTO;
   programaEdit:IProgramaDTO;
   programaDetails:IProgramaDTO;
   programaDelete:IProgramaDTO;
   programa_id:number;
+
+  manuales:IManualDTO[];
 
   currentPrograma:IProgramaDTO;
   currentProgramaEdit:IProgramaDTO;
@@ -175,6 +179,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.componenteEdit = new IComponenteDTO();
     this.componenteDetails = new IComponenteDTO();
     this.componenteDelete = new IComponenteDTO();
+
+    this.manuales= [];
 
     this.popupVisible = false;
     this.popupDetailsVisible = false;
@@ -303,6 +309,14 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
   formCancel(){
     this.popupDeleteVisible=false;
+  }
+
+/* manual de usuario */
+
+  addManual(event){
+
+    console.log(event);
+
   }
 
   /* subindices */
