@@ -77,6 +77,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   programa_id:number;
 
   manuales:IManualDTO[];
+  manualesEdit:IManualDTO[];
 
   currentPrograma:IProgramaDTO;
   currentProgramaEdit:IProgramaDTO;
@@ -181,6 +182,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.componenteDelete = new IComponenteDTO();
 
     this.manuales= [];
+    this.manualesEdit= [];
 
     this.popupVisible = false;
     this.popupDetailsVisible = false;
@@ -265,6 +267,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.currentPrograma = this.programa
     this.programaService.insertPrograma(this.programa).subscribe((res:any) => {
       this.currentPrograma = res;
+      this.programa = res;
       this.isVisible = true;
       this.listarProgramas();
       this.listarComponentes(this.currentPrograma.id);
@@ -275,6 +278,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   /* edit programa */
   editPrograma(programaEdit: IProgramaDTO){
 		this.programaEdit=programaEdit;
+    this.manualesEdit=programaEdit.manuales;
     this.currentProgramaEdit=programaEdit;
 		this.showEditPopUp();
     this.listarComponentes(this.programaEdit.id);
@@ -316,6 +320,21 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   addManual(event){
 
     console.log(event);
+    this.manuales=event
+    this.manuales[0].programa_id=this.programa.id
+    this.programa.manuales=this.manuales
+
+    this.programaService.editPrograma(this.programa).subscribe((res:any) => {
+      this.programa = res;
+      console.log(this.programa);
+      this.listarProgramas();
+      this.listarComponentes(this.currentProgramaEdit.id);
+      this.listarSubindices(this.currentProgramaEdit.id);
+    });
+
+  }
+
+  editManual(event){
 
   }
 

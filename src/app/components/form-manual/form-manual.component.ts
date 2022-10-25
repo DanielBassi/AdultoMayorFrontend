@@ -16,12 +16,12 @@ import notify from 'devextreme/ui/notify';
   styleUrls: ['./form-manual.component.css']
 })
 export class FormManualComponent implements OnInit {
-  
+
   @Input() manuales: IManualDTO[] = [];
   @Output() manualEvent: EventEmitter<IManualDTO[]> = new EventEmitter<
     IManualDTO[]
   >();
- 
+
 
 
   constructor() { }
