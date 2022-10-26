@@ -38,6 +38,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 	popupComponenteEditVisible:boolean=false;
 	popupComponenteDeleteVisible:boolean=false;
 
+  popupMensajeVisible: boolean = false;
+
   submenuVisible: boolean = false;
   submenuDetailsVisible: boolean = false;
 	submenuEditVisible:boolean=false;
@@ -54,6 +56,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   message= 'El programa ha sido agregado exitosamente';
   messageEdit = 'El programa ha sido editado exitosamente';
 	messageDelete = 'El programa ha sido eliminado exitosamente';
+
+  mensaje = "";
   type= 'success';
 
   subindices: ISubindiceDTO[];
@@ -78,6 +82,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
   manuales:IManualDTO[];
   manualesEdit:IManualDTO[];
+  currentManualEdit: IManualDTO;
 
   currentPrograma:IProgramaDTO;
   currentProgramaEdit:IProgramaDTO;
@@ -278,11 +283,22 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   /* edit programa */
   editPrograma(programaEdit: IProgramaDTO){
 		this.programaEdit=programaEdit;
-    this.manualesEdit=programaEdit.manuales;
-    this.currentProgramaEdit=programaEdit;
-		this.showEditPopUp();
+    this.showEditPopUp();
     this.listarComponentes(this.programaEdit.id);
     this.listarSubindices(this.programaEdit.id);
+    if (programaEdit.nombreManual == ""){
+      this.manualesEdit=programaEdit.manuales
+      this.currentProgramaEdit=programaEdit;
+
+    }
+    else {
+      this.manualesEdit=[]
+      this.currentManualEdit = new IManualDTO()
+      this.currentManualEdit.nombre = programaEdit.nombreManual
+      this.manualesEdit.push(this.currentManualEdit)
+      this.currentProgramaEdit=programaEdit;
+
+    }
 	}
 
   formEditPrograma(e?:any) {
@@ -318,24 +334,48 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 /* manual de usuario */
 
   addManual(event){
+    if (this.manuales.length == 0) {
+      console.log(event);
+      this.manuales=event
+      this.manuales[0].programa_id=this.programa.id
+      this.programa.manuales=this.manuales
 
-    console.log(event);
-    this.manuales=event
-    this.manuales[0].programa_id=this.programa.id
-    this.programa.manuales=this.manuales
+      this.programaService.editPrograma(this.programa).subscribe((res:any) => {
+        this.programa = res;
+        console.log(this.programa);
+        this.listarProgramas();
+        this.listarComponentes(this.programa.id);
+        this.listarSubindices(this.programa.id);
+      });
+    }
 
-    this.programaService.editPrograma(this.programa).subscribe((res:any) => {
-      this.programa = res;
-      console.log(this.programa);
-      this.listarProgramas();
-      this.listarComponentes(this.currentProgramaEdit.id);
-      this.listarSubindices(this.currentProgramaEdit.id);
-    });
+    else {
+      this.mensaje="Debe eliminar el manual antes de ingresar uno nuevo";
+      this.popupMensajeVisible=true;
+    }
+
 
   }
 
   editManual(event){
+    if (this.manualesEdit.length == 0) {
+      console.log(event);
+      this.manualesEdit=event
+      /* this.manualesEdit[0].programa_id=this.programaEdit.id */
+      this.programaEdit.manuales=this.manualesEdit
 
+      this.programaService.editPrograma(this.programaEdit).subscribe((res:any) => {
+        this.programaEdit = res;
+        console.log(this.programaEdit);
+        this.listarProgramas();
+        this.listarComponentes(this.currentProgramaEdit.id);
+        this.listarSubindices(this.currentProgramaEdit.id);
+      });
+    }
+    else{
+      this.mensaje="Debe eliminar el manual antes de ingresar uno nuevo";
+      this.popupMensajeVisible=true;
+    }
   }
 
   /* subindices */
@@ -460,6 +500,10 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   formHideComponente() {
 		this.popupComponenteDetailsVisible=false;
 	}
+
+  formMensajeCancel() {
+    this.popupMensajeVisible=false;
+  }
 
 
 

@@ -163,9 +163,9 @@
                             <!-- - - - - - pestañas -->
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
-                                <!-- <dxi-item title="Manual de usuario">
-                                  <app-form-resources [manual]="manual" (manualEvent)="addManual($event)"></app-form-resources>
-                                </dxi-item> -->
+                                <dxi-item title="Manual de usuario">
+                                  <app-form-manual [manuales]="manualesEdit" (manualEvent)="editManual($event)"></app-form-manual>
+                                </dxi-item>
                                 <dxi-item title="Subindices">
                                   <div class="mb-2">
                                     <dx-button type="success" text="Agregar subindice" icon="fa fa-plus" (onClick)="showSubindicePopUp()"></dx-button>
@@ -385,6 +385,18 @@
                       </div>
                       <div class="col-lg-10 mb-2 offset-1">
                         <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formComponenteCancel()"></dx-button>
+                      </div>
+
+                    </dx-popup>
+
+                    <dx-popup [width]="300" [height]="180" [showTitle]="true" title="mensaje" [dragEnabled]="false"
+                      [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupMensajeVisible">
+
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <p>{{mensaje}}</p>
+                      </div>
+                      <div class="col-lg-10 mb-2 offset-1">
+                        <dx-button width="200" type="danger" text="Atras" icon="fa fa-window-close" (onClick)="formMensajeCancel()"></dx-button>
                       </div>
 
                     </dx-popup>
