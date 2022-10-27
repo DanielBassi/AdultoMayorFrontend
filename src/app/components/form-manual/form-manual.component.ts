@@ -17,9 +17,9 @@ import notify from 'devextreme/ui/notify';
 })
 export class FormManualComponent implements OnInit {
 
-  @Input() manuales: IManualDTO[] = [];
-  @Output() manualEvent: EventEmitter<IManualDTO[]> = new EventEmitter<
-    IManualDTO[]
+  @Input() manuales: IManualDTO = new IManualDTO();
+  @Output() manualEvent: EventEmitter<IManualDTO> = new EventEmitter<
+    IManualDTO
   >();
 
 
@@ -38,21 +38,20 @@ export class FormManualComponent implements OnInit {
     reader.onloadend = () => {
       base64Data = reader.result
 
-      this.manualEvent.emit([
-        ...this.manuales,
-        {
+      this.manualEvent.emit({
           nombre: e.name,
           tipo: e.type,
           base64: reader.result,
         },
-      ]);
+      );
     };
     reader.readAsDataURL(e);
   };
 
   quitarRecurso(manualQuitar: any) {
-    this.manuales.splice(this.manuales.indexOf(manualQuitar), 1);
-    this.manualEvent.emit([...this.manuales]);
+    this.manuales = new IManualDTO();
+    /* this.manualEvent.emit([...this.manuales]); */
+    this.manualEvent.emit(null);
   }
 
 }

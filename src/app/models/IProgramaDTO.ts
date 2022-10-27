@@ -9,12 +9,13 @@ export class IProgramaDTO {
   estado: boolean
   color: string
   nombreManual: string
+  guidManual : string
   esClub: boolean
   created_at: Date
   subindices: Array<ISubindiceDTO>
   actividades: Array<IActividadDTO>
   componentes: Array<IComponenteDTO>
-  manuales: Array<IManualDTO>
+  manuales: IManualDTO
   /**
    *
    */
@@ -24,11 +25,12 @@ export class IProgramaDTO {
     this.estado = true
     this.color = ''
     this.nombreManual = ''
+    this.guidManual = ''
     this.esClub = true
     this.created_at = new Date
     this.subindices = []
     this.actividades = []
     this.componentes = []
-    this.manuales = []
+    this.manuales = new IManualDTO()
   }
 }

@@ -80,8 +80,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   programaDelete:IProgramaDTO;
   programa_id:number;
 
-  manuales:IManualDTO[];
-  manualesEdit:IManualDTO[];
+  manuales:IManualDTO;
+  manualesEdit:IManualDTO;
   currentManualEdit: IManualDTO;
 
   currentPrograma:IProgramaDTO;
@@ -186,8 +186,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.componenteDetails = new IComponenteDTO();
     this.componenteDelete = new IComponenteDTO();
 
-    this.manuales= [];
-    this.manualesEdit= [];
+    this.manuales= new IManualDTO();
+    this.manualesEdit= new IManualDTO();
 
     this.popupVisible = false;
     this.popupDetailsVisible = false;
@@ -265,6 +265,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
   /* programas */
   formSubmitNewPrograma(e?:any) {
+    debugger;
 		if (e)
       e.preventDefault();
     this.programa.estado = true;
@@ -286,17 +287,15 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.showEditPopUp();
     this.listarComponentes(this.programaEdit.id);
     this.listarSubindices(this.programaEdit.id);
+    this.currentProgramaEdit=programaEdit;
     if (programaEdit.nombreManual == ""){
       this.manualesEdit=programaEdit.manuales
-      this.currentProgramaEdit=programaEdit;
+
 
     }
     else {
-      this.manualesEdit=[]
-      this.currentManualEdit = new IManualDTO()
-      this.currentManualEdit.nombre = programaEdit.nombreManual
-      this.manualesEdit.push(this.currentManualEdit)
-      this.currentProgramaEdit=programaEdit;
+      this.manualesEdit=new IManualDTO()
+
 
     }
 	}
@@ -334,7 +333,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 /* manual de usuario */
 
   addManual(event){
-    if (this.manuales.length == 0) {
+    console.log(event);
+    /* if (this.manuales.length == 0) {
       console.log(event);
       this.manuales=event
       this.manuales[0].programa_id=this.programa.id
@@ -352,16 +352,17 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     else {
       this.mensaje="Debe eliminar el manual antes de ingresar uno nuevo";
       this.popupMensajeVisible=true;
-    }
+    } */
 
 
   }
 
   editManual(event){
-    if (this.manualesEdit.length == 0) {
+    console.log(event);
+   /*  if (this.manualesEdit.length == 0) {
       console.log(event);
       this.manualesEdit=event
-      /* this.manualesEdit[0].programa_id=this.programaEdit.id */
+      . . . this.manualesEdit[0].programa_id=this.programaEdit.id
       this.programaEdit.manuales=this.manualesEdit
 
       this.programaService.editPrograma(this.programaEdit).subscribe((res:any) => {
@@ -375,7 +376,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     else{
       this.mensaje="Debe eliminar el manual antes de ingresar uno nuevo";
       this.popupMensajeVisible=true;
-    }
+    } */
   }
 
   /* subindices */
