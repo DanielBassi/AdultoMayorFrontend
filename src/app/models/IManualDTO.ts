@@ -13,7 +13,7 @@ export class IManualDTO {
     this.tipo = ''
     this.programa_id = 0
     this.created_at = new Date
-    this.updated_at = null
+    this.updated_at = new Date
   }
 
 }

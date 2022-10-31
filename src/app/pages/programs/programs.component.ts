@@ -80,9 +80,11 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   programaDelete:IProgramaDTO;
   programa_id:number;
 
-  manuales:IManualDTO;
+  manuales:any;
   manualesEdit:IManualDTO;
   currentManualEdit: IManualDTO;
+  listaDeManuales: IManualDTO[];
+  listaDeManualesEdit: IManualDTO[];
 
   currentPrograma:IProgramaDTO;
   currentProgramaEdit:IProgramaDTO;
@@ -220,7 +222,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.isEditVisible = false;
     this.isDeleteVisible = false;
 
-
+    this.listaDeManuales = [];
+    this.listaDeManualesEdit = [];
   }
 
   inicializarPrograma(){
@@ -229,6 +232,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.botonCrearVisible = true;
     this.nuevoProgramaRead = false;
     this.submenuheight = 200;
+    this.listaDeManuales = [];
   }
 
   inicializarSubindice(){
@@ -265,7 +269,6 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
   /* programas */
   formSubmitNewPrograma(e?:any) {
-    debugger;
 		if (e)
       e.preventDefault();
     this.programa.estado = true;
@@ -274,6 +277,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.programaService.insertPrograma(this.programa).subscribe((res:any) => {
       this.currentPrograma = res;
       this.programa = res;
+      console.log(this.programa);
       this.isVisible = true;
       this.listarProgramas();
       this.listarComponentes(this.currentPrograma.id);
@@ -289,15 +293,19 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.listarSubindices(this.programaEdit.id);
     this.currentProgramaEdit=programaEdit;
     if (programaEdit.nombreManual == ""){
-      this.manualesEdit=programaEdit.manuales
+      this.listaDeManualesEdit=[]
 
 
     }
     else {
+      this.listaDeManualesEdit=[]
       this.manualesEdit=new IManualDTO()
-
+      this.manualesEdit.nombre=programaEdit.nombreManual
+      this.listaDeManualesEdit.push(this.manualesEdit)
 
     }
+    console.log(programaEdit);
+    
 	}
 
   formEditPrograma(e?:any) {
@@ -333,11 +341,13 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 /* manual de usuario */
 
   addManual(event){
-    console.log(event);
-    /* if (this.manuales.length == 0) {
+    
+    
+    if (this.listaDeManuales.length == 0) {
+
       console.log(event);
       this.manuales=event
-      this.manuales[0].programa_id=this.programa.id
+      this.manuales.programa_id=this.programa.id
       this.programa.manuales=this.manuales
 
       this.programaService.editPrograma(this.programa).subscribe((res:any) => {
@@ -347,22 +357,24 @@ export class ProgramsComponent implements OnInit, OnDestroy {
         this.listarComponentes(this.programa.id);
         this.listarSubindices(this.programa.id);
       });
+
+      this.listaDeManuales.push(this.manuales);
     }
 
     else {
       this.mensaje="Debe eliminar el manual antes de ingresar uno nuevo";
       this.popupMensajeVisible=true;
-    } */
+    }
 
 
   }
 
   editManual(event){
     console.log(event);
-   /*  if (this.manualesEdit.length == 0) {
-      console.log(event);
+    if (this.listaDeManualesEdit.length == 0) {
+      
       this.manualesEdit=event
-      . . . this.manualesEdit[0].programa_id=this.programaEdit.id
+      /* this.manualesEdit[0].programa_id=this.programaEdit.id */
       this.programaEdit.manuales=this.manualesEdit
 
       this.programaService.editPrograma(this.programaEdit).subscribe((res:any) => {
@@ -372,11 +384,45 @@ export class ProgramsComponent implements OnInit, OnDestroy {
         this.listarComponentes(this.currentProgramaEdit.id);
         this.listarSubindices(this.currentProgramaEdit.id);
       });
+
+      this.listaDeManualesEdit.push(this.manualesEdit);
     }
     else{
       this.mensaje="Debe eliminar el manual antes de ingresar uno nuevo";
       this.popupMensajeVisible=true;
-    } */
+    }
+  }
+
+  deleteManual(event){
+    console.log(event);
+    this.programa.manuales=event;
+    this.programa.guidManual="";
+    this.programa.nombreManual="";
+    console.log(this.programa);
+    this.listaDeManuales.pop();
+    this.programaService.editPrograma(this.programa).subscribe((res:any) => {
+      this.programa = res;
+      console.log(this.programa);
+      this.listarProgramas();
+      this.listarComponentes(this.programa.id);
+      this.listarSubindices(this.programa.id);
+    });
+  }
+
+  deleteManualEdit(event){
+    console.log(event);
+    this.programaEdit.manuales=event;
+    this.programaEdit.guidManual="";
+    this.programaEdit.nombreManual="";
+    console.log(this.programaEdit);
+    this.listaDeManualesEdit.pop();
+    this.programaService.editPrograma(this.programaEdit).subscribe((res:any) => {
+      this.programaEdit = res;
+      console.log(this.programaEdit);
+      this.listarProgramas();
+      this.listarComponentes(this.programaEdit.id);
+      this.listarSubindices(this.programaEdit.id);
+    });
   }
 
   /* subindices */

@@ -71,7 +71,7 @@
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true" [(visible)]="submenuVisible">
                                 <dxi-item title="Manual de usuario">
-                                  <app-form-manual [manuales]="manuales" (manualEvent)="addManual($event)"></app-form-manual>
+                                  <app-form-manual [manuales]="manuales" [listaDeManuales]="listaDeManuales" (manualEvent)="addManual($event)" (quitarManualEvent)="deleteManual($event)"></app-form-manual>
                                 </dxi-item>
                                 <dxi-item title="Subindices">
                                   <div class="mb-2">
@@ -164,7 +164,7 @@
                             <dxi-item [colSpan]="2" >
                               <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
                                 <dxi-item title="Manual de usuario">
-                                  <app-form-manual [manuales]="manualesEdit" (manualEvent)="editManual($event)"></app-form-manual>
+                                  <app-form-manual [manuales]="manualesEdit" [listaDeManuales]="listaDeManualesEdit" (manualEvent)="editManual($event)" (quitarManualEvent)="deleteManualEdit($event)"></app-form-manual>
                                 </dxi-item>
                                 <dxi-item title="Subindices">
                                   <div class="mb-2">

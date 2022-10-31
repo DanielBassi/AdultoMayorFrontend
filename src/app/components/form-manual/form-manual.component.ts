@@ -18,10 +18,13 @@ import notify from 'devextreme/ui/notify';
 export class FormManualComponent implements OnInit {
 
   @Input() manuales: IManualDTO = new IManualDTO();
+  @Input() listaDeManuales: IManualDTO[] = [];
   @Output() manualEvent: EventEmitter<IManualDTO> = new EventEmitter<
     IManualDTO
   >();
+  @Output() quitarManualEvent: EventEmitter<any> = new EventEmitter<any>();
 
+  
 
 
   constructor() { }
@@ -29,10 +32,11 @@ export class FormManualComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnChanges(manuales: SimpleChanges) {}
+  ngOnChanges(manuales: SimpleChanges, listaDeManuales : SimpleChanges) {}
 
 
   onUploadedFormatASQ = async (e: File) => {
+    
     const reader = new FileReader();
     let base64Data;
     reader.onloadend = () => {
@@ -45,13 +49,12 @@ export class FormManualComponent implements OnInit {
         },
       );
     };
+    
     reader.readAsDataURL(e);
   };
 
   quitarRecurso(manualQuitar: any) {
-    this.manuales = new IManualDTO();
-    /* this.manualEvent.emit([...this.manuales]); */
-    this.manualEvent.emit(null);
+    this.quitarManualEvent.emit(null);
   }
 
 }
