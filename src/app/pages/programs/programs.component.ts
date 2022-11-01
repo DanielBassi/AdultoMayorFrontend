@@ -289,8 +289,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   editPrograma(programaEdit: IProgramaDTO){
 		this.programaEdit=programaEdit;
     this.showEditPopUp();
-    this.listarComponentes(this.programaEdit.id);
-    this.listarSubindices(this.programaEdit.id);
+    this.listarComponentes(programaEdit.id);
+    this.listarSubindices(programaEdit.id);
     this.currentProgramaEdit=programaEdit;
     if (programaEdit.nombreManual == ""){
       this.listaDeManualesEdit=[]
@@ -305,7 +305,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
     }
     console.log(programaEdit);
-    
+
 	}
 
   formEditPrograma(e?:any) {
@@ -341,8 +341,8 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 /* manual de usuario */
 
   addManual(event){
-    
-    
+
+
     if (this.listaDeManuales.length == 0) {
 
       console.log(event);
@@ -372,7 +372,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   editManual(event){
     console.log(event);
     if (this.listaDeManualesEdit.length == 0) {
-      
+
       this.manualesEdit=event
       /* this.manualesEdit[0].programa_id=this.programaEdit.id */
       this.programaEdit.manuales=this.manualesEdit
