@@ -1,0 +1,21 @@
+<form (submit)="formHide()">
+  <dx-form [(formData)]="actividad">
+    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+
+      <dxi-item dataField="nombre" [colSpan]="2" [label]="{text:'Nombre de la Actividad'}"  [editorOptions]="{ readOnly: true }"></dxi-item>
+      <dxi-item dataField="programa_nombre" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ readOnly: true }" ></dxi-item>
+      <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ readOnly: true }" [visible]="false"></dxi-item>
+      <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_nombre" [editorOptions]="{ readOnly: true }"></dxi-item>
+      <dxi-item  [colSpan]="2" [label]="{text:'Subindice'}" dataField="subindice_Id" [editorOptions]="{ readOnly: true }" [visible]="false"></dxi-item>
+      <dxi-item [colSpan]="2" dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ readOnly: true }"></dxi-item>
+      <dxi-item [colSpan]="2" dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ readOnly: true }" [visible]="false"></dxi-item>
+      <dxi-item [colSpan]="2" dataField="responsable_Nombre" [label]="{ text: 'Responsable de la Actividad' }" [editorOptions]="{ readOnly: true }"></dxi-item>
+      <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"  [editorOptions]="{ readOnly: true , type:'datetime' }"></dxi-item>
+      <dxi-item [colSpan]="2" dataField="estadoActividad_Descripcion" [label]="{ text: 'Estado' }"  [editorOptions]="{ readOnly: true }"></dxi-item>
+      <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}" [editorOptions]="{ readOnly: true }"></dxi-item>
+    </dxi-item>
+    <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+        [buttonOptions]="buttonOptionsClose">
+    </dxi-item>
+  </dx-form>
+</form>

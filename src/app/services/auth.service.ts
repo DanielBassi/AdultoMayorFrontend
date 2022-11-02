@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment'
 export class AuthService {
   AUTH_SERVE: string = environment.API_URL;
   authSubject = new BehaviorSubject(false);
+  any:any
   private token: string;
   private Id: number;
 
@@ -39,6 +40,7 @@ export class AuthService {
           if (res) {
             //guardar token
             this.savetoken(res.value.jwtToken);
+            this.saveObjeto(res.value)
           }
         })
       );
@@ -57,6 +59,12 @@ export class AuthService {
     localStorage.setItem("ACCESS_TOKEN", token);
     //localStorage.setItem("EXPIRES_IN", expiresIn);
     this.token = token;
+  }
+
+  private saveObjeto(any:any){
+    localStorage.setItem("USUARIO", this.any);
+    //localStorage.setItem("EXPIRES_IN", expiresIn);
+    this.token = any;
   }
 
   private getToken(): string {

@@ -44,6 +44,10 @@
             </div>
             <!-- /.card -->
           </div>
+          <dx-popup [width]="700" [height]="550" [showTitle]="true" title="Detalles de la actividad" [dragEnabled]="false"
+                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible">
+                <app-form-actividadDetails [actividad]="actividadDetails" (visibleEvent)="visibleEvent($event)"></app-form-actividadDetails>
+          </dx-popup>
           <!-- /.col -->
         </div>
         <!-- /.row -->
