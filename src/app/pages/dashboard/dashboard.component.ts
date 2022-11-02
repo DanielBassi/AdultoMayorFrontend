@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { Calendar, CalendarOptions, renderMicroColGroup } from '@fullcalendar/angular'; // useful for typechecking
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { ProgramaService } from 'src/app/services/programa.service';
 import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
@@ -8,6 +8,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import esLocale from '@fullcalendar/core/locales/es.js';
 import { IActividadDTO } from 'src/app/models/IActividadDTO';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,7 +16,7 @@ import { IActividadDTO } from 'src/app/models/IActividadDTO';
 })
 export class DashboardComponent implements OnInit {
 
-  calendarOptions: CalendarOptions;
+  /* calendarOptions:CalendarOptions; */
   popupDetailsVisible:boolean = false;
   actividadId:number;
   actividadDetails:IActividadDTO;
@@ -23,6 +24,38 @@ export class DashboardComponent implements OnInit {
   list:IProgramaDTO[]
   actividades: IActividadDTO[] = [];
 
+  calendarOptions:CalendarOptions={
+    headerToolbar: {
+      left  : 'prev,next today',
+      center: 'title',
+      right : 'dayGridMonth,dayGridWeek'
+    },
+    initialView: 'dayGridMonth',
+    locale: esLocale,
+    themeSystem: 'bootstrap',
+    events:this.actividadesCalendario,
+    eventClick: this.eventClicDate.bind(this)
+    /* eventClick: function(event) {
+      console.log(event);
+
+      this.popupDetailsVisible = true;
+      this.actividadDetails = this.actividades.find(f=>f.id=event.event.id)
+      console.log(this.actividadDetails)
+    } */
+  }
+
+  /* calendarEl = document.getElementById('calendar');
+  calendar= new Calendar(this.calendarEl,{
+    headerToolbar: {
+      left  : 'prev,next today',
+      center: 'title',
+      right : 'dayGridMonth,dayGridWeek'
+    },
+    initialView: 'dayGridMonth',
+    locale: esLocale,
+    themeSystem: 'bootstrap',
+    events:this.actividadesCalendario
+  }) */
   constructor(private activitiesService : ActivitiesService,private programaService:ProgramaService) { }
 
   ngOnInit(): void {
@@ -30,11 +63,12 @@ export class DashboardComponent implements OnInit {
     this.listarActividadesCalendario();
     this.listarProgramas();
   }
+
   listarActividadesCalendario() {
     this.activitiesService
       .actividadesCalendario()
       .subscribe((response: any[]) => {
-        this.calendarOptions = {
+       /*  this.calendarOptions = {
           headerToolbar: {
             left  : 'prev,next today',
             center: 'title',
@@ -45,15 +79,20 @@ export class DashboardComponent implements OnInit {
           themeSystem: 'bootstrap',
           events: response,
           plugins: [ interactionPlugin ],
-          /* eventClick: function(event) {
+          eventClick: function(event) {
             console.log(this.actividades);
 
             this.popupDetailsVisible = true;
             this.actividadDetails = this.actividades.find(f=>f.id=event.event.id)
-          } */
-        };
+          }
+        }; */
+        this.calendarOptions.events=response
+        this.actividadesCalendario=response
+
       });
   }
+
+
 
   handleDateClick(arg) {
     alert('date click! ' + arg.dateStr);
@@ -61,6 +100,7 @@ export class DashboardComponent implements OnInit {
 
   eventClicDate(event: any): void{
     /* this.popupDetailsVisible=true; */
+    console.log(this.actividadesCalendario);
 
   }
 
