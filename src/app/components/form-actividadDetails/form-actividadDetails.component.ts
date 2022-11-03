@@ -26,7 +26,6 @@ export class FormActividadDetailsComponent implements OnInit , OnChanges {
   }
 
   ngOnChanges(actividad:SimpleChanges) {
-
   }
 
   formHide() {

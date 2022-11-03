@@ -294,15 +294,12 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.currentProgramaEdit=programaEdit;
     if (programaEdit.nombreManual == ""){
       this.listaDeManualesEdit=[]
-
-
     }
     else {
       this.listaDeManualesEdit=[]
       this.manualesEdit=new IManualDTO()
       this.manualesEdit.nombre=programaEdit.nombreManual
       this.listaDeManualesEdit.push(this.manualesEdit)
-
     }
     console.log(programaEdit);
 

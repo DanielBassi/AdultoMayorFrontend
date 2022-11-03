@@ -38,17 +38,41 @@
               <div class="card-body p-0">
                 <!-- THE CALENDAR -->
                 <!-- <div id="calendar"></div> -->
-                <full-calendar  [options]="calendarOptions" dateClick="eventClicDate($event)" (click)="eventClicDate($event)"></full-calendar>
+                <full-calendar  [options]="calendarOptions" ></full-calendar>
               </div>
               <!-- /.card-body -->
               <!--  -->
             </div>
             <!-- /.card -->
           </div>
-          <dx-popup [width]="700" [height]="550" [showTitle]="true" title="Detalles de la actividad" [dragEnabled]="false"
-                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible">
+          <dx-popup id="popupCalendario" [width]="700" [height]="550" [showTitle]="true" title="Detalles de la actividad" [dragEnabled]="false"
+                [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible" (onHidden)="inicializarActividad()">
                 <app-form-actividadDetails [actividad]="actividadDetails" (visibleEvent)="visibleEvent($event)"></app-form-actividadDetails>
           </dx-popup>
+           <!-- The Modal -->
+  <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          
+          <button type="button" class="close" data-dismiss="modal" ></button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
           <!-- /.col -->
         </div>
         <!-- /.row -->
