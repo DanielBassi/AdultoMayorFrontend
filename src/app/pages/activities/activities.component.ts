@@ -29,7 +29,7 @@ export class ActivitiesComponent implements OnInit {
 	popupDetailsVisible: boolean = false;
 	popupEditVisible:boolean=false;
 	popupDeleteVisible:boolean=false;
-  popupCheckVisible:boolean = true;
+  popupCheckVisible:boolean = false;
 	isVisible: boolean = false;
 	isEditVisible: boolean = false;
 	isDeleteVisible: boolean = false;
@@ -39,7 +39,7 @@ export class ActivitiesComponent implements OnInit {
 	messageEdit = 'La actividad ha sido editada exitosamente';
 	messageDelete = 'La actividad ha sido eliminada exitosamente';
   messageCheckTrue = 'La actividad ha sido aprobada';
-  messageCheckfalse = 'La actividad ha sido rechazada';
+  messageCheckfalse = 'La actividad NO ha sido aprobada';
 	type = 'success';
   typeDanger = 'danger';
 
@@ -107,7 +107,7 @@ export class ActivitiesComponent implements OnInit {
 		this.listarEstadosActividad();
 		this.listarUsuarios();
 
-		this.actividad = new IActividadDTO(); 
+		this.actividad = new IActividadDTO();
 		this.actividadEdit = new IActividadDTO();
 		this.actividadDetails = new IActividadDTO();
   		this.actividadDelete = new IActividadDTO();
@@ -232,15 +232,27 @@ export class ActivitiesComponent implements OnInit {
   }
 
   formCheckTrue() {
+    this.actividadCheck.estadoActividad_Id=6
+    this.popupCheckVisible = false;
+    this.activitiesService.editActividad(this.actividadCheck).subscribe((res: any) => {
+			this.isCheckTrueVisible = true;
+			this.listarActividades();
 
+		});
   }
 
   formCheckFalse() {
+    this.actividadCheck.estadoActividad_Id=5
+    this.popupCheckVisible = false;
+    this.activitiesService.editActividad(this.actividadCheck).subscribe((res: any) => {
+			this.isCheckFalseVisible = true;
+			this.listarActividades();
 
+		});
   }
 
   formCheckCancel() {
-
+    this.popupCheckVisible = false;
   }
 
 

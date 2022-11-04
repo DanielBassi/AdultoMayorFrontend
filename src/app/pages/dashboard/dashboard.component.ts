@@ -37,15 +37,17 @@ export class DashboardComponent implements OnInit {
     themeSystem: 'bootstrap',
     eventClick: this.clickEvent.bind(this)
   }
-  
+
   clickEvent(arg: any) {
     this.actividadId=arg.event.id;
     console.log(this.actividadId);
-    this.actividadDetails = this.actividades.find(f=>f.id=this.actividadId);
+    console.log(this.actividades);
+    this.actividadDetails=null;
+    this.actividadDetails = this.actividades.find(f=>f.id==this.actividadId);
     console.log(this.actividadDetails);
     this.popupDetailsVisible = true;
   }
- 
+
   constructor(private activitiesService : ActivitiesService,private programaService:ProgramaService) { }
 
   ngOnInit(): void {
@@ -53,6 +55,8 @@ export class DashboardComponent implements OnInit {
     this.listarActividades();
     this.listarActividadesCalendario();
     this.listarProgramas();
+    console.log(this.actividades);
+    console.log(this.actividadDetails);
   }
 
   listarActividadesCalendario() {
@@ -78,8 +82,8 @@ export class DashboardComponent implements OnInit {
   this.actividadDetails=new IActividadDTO()
  }
 
-  async listarActividades(){
-    await this.activitiesService.actividades().subscribe((response:IActividadDTO[])=>{
+  listarActividades(){
+    this.activitiesService.actividades().subscribe((response:IActividadDTO[])=>{
       this.actividades = response
     })
   }
