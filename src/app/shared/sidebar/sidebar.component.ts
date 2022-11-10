@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SidebarService } from 'src/app/services/sidebar.service';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
 
   menuItems:any[];
 
-  constructor(private sideBarServices:SidebarService, private router:Router) { 
+  constructor(private sideBarServices:SidebarService, private router:Router) {
     this.menuItems=this.sideBarServices.menu
   }
 

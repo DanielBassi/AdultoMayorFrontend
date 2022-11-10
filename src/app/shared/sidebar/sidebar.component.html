@@ -51,22 +51,20 @@
           </li> -->
           <li class="nav-item">
             <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active"  class="nav-link" style="cursor: pointer;">
-              <i class="fa fa-calendar"></i>
-              <p class="ml-2">Calendario</p>
+              <i class="nav-icon fa fa-calendar"></i>
+              <p >Calendario</p>
             </a>
           </li>
           <li class="nav-item" *ngFor="let subMenu of item.submenu">
             <a [routerLink]="subMenu.url" class="nav-link" style="cursor: pointer;">
               <i class="{{subMenu.icono}}"></i>
-              <p class="ml-2">{{subMenu.titulo}}</p>
+              <p>{{subMenu.titulo}}</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item link-cerrar">
             <a class="nav-link" style="cursor: pointer;" (click)="logout()">
               <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p class="ml-2">
-                Cerrar sesión
-              </p>
+              <p>Cerrar sesión</p>
             </a>
           </li>
         </ul>

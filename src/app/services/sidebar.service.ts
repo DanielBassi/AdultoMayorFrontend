@@ -9,9 +9,10 @@ export class SidebarService {
     titulo:'Dashboard',
     icono:'nav-icon fas fa-tachometer-alt',
     submenu:[
-      {titulo:'Usuarios', url:'users',icono:'fa fa-users'},
-      {titulo:'Programas', url:'programs',icono:'fa fa-cogs'},
-      {titulo:'Actividades', url:'activities',icono:'fa fa-book'},
+      {titulo:'Usuarios', url:'users',icono:'nav-icon fa fa-users'},
+      {titulo:'Programas', url:'programs',icono:'nav-icon fa fa-cogs'},
+      {titulo:'Actividades', url:'activities',icono:'nav-icon fa fa-book'},
+      /* {titulo:'Cerrar sesión', url:'',icono:'nav-icon fas fa-sign-out-alt',metodo:'logout()'} */
       /* {titulo:'Indicadores', url:'indicators',icono:'fa fa-bullseye'} */
     ]
   }]

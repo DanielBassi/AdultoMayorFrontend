@@ -7,9 +7,13 @@ import { UsersComponent } from './users/users.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes:Routes=[
-  {path:'dashboard',component:PagesComponent,
+  {
+    path:'dashboard',
+    component:PagesComponent,
+    canActivate: [AuthGuard],
     children:[
       {path:'',component:DashboardComponent, data:{titulo:'Tablero'}},
       {path:'users',component:UsersComponent, data:{titulo:'Usuarios'}},

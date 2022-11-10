@@ -1,4 +1,4 @@
-- confirmacion de contraseñas()
+
 
 
 
@@ -6,11 +6,11 @@
 - programas crud front (falta detalles)
 
 - fecha por hora en actividad (hecho pero se adelanta 5 horas)
-- click actividades calendario
+
 
 - div colores por programa (FALTA ESPECIFICAR EL MES)
-- boton aprobar actividad
-- subir manual de programa
+
+
 - borrado en cascada
 
 - eliminacion de entidades

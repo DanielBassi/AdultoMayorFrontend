@@ -7,6 +7,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment'
 
 
+
 @Injectable()
 export class AuthService {
   AUTH_SERVE: string = environment.API_URL;
@@ -57,6 +58,7 @@ export class AuthService {
 
   private savetoken(token: string): void {
     localStorage.setItem("ACCESS_TOKEN", token);
+
     //localStorage.setItem("EXPIRES_IN", expiresIn);
     this.token = token;
   }
@@ -74,4 +76,7 @@ export class AuthService {
     return this.token;
   }
 
+  public isAuthenticated(): boolean {
+    return !!this.getToken()
+  }
 }
