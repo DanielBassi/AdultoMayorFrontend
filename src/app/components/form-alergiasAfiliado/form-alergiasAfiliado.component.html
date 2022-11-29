@@ -1,0 +1,15 @@
+<form (submit)="formHide()">
+  <dx-form [(formData)]="alergiasAfiliado">
+    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+
+      <dxi-item dataField="descripcionAlergia" editorType="dxTextArea" [colSpan]="1" [label]="{text:'Descripción de la alergia'}"  [editorOptions]="{ readOnly: true }"></dxi-item>
+      <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"  [editorOptions]="{ readOnly: true , type:'datetime' }"></dxi-item>
+      <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="Tratamiento" [label]="{text:'Descripcion Actividad'}" [editorOptions]="{ readOnly: true }"></dxi-item>
+      
+      
+    </dxi-item>
+    <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+        [buttonOptions]="buttonOptionsClose">
+    </dxi-item>
+  </dx-form>
+</form>
