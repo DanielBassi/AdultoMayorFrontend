@@ -19,12 +19,10 @@ export class FormManualComponent implements OnInit {
 
   @Input() manuales: IManualDTO = new IManualDTO();
   @Input() listaDeManuales: IManualDTO[] = [];
-  @Output() manualEvent: EventEmitter<IManualDTO> = new EventEmitter<
-    IManualDTO
-  >();
+  @Output() manualEvent: EventEmitter<IManualDTO> = new EventEmitter<IManualDTO>();
   @Output() quitarManualEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  
+
 
 
   constructor() { }
@@ -36,7 +34,7 @@ export class FormManualComponent implements OnInit {
 
 
   onUploadedFormatASQ = async (e: File) => {
-    
+
     const reader = new FileReader();
     let base64Data;
     reader.onloadend = () => {
@@ -49,7 +47,7 @@ export class FormManualComponent implements OnInit {
         },
       );
     };
-    
+
     reader.readAsDataURL(e);
   };
 

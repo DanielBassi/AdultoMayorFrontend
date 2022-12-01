@@ -11,10 +11,10 @@ export class IAlergiasAfiliadoDTO {
      */
     constructor() {
         this.id = ''
-        this.estado = false
+        this.estado = true
         this.afiliado_id = ''
         this.fecha = new Date
         this.descripcionAlergia = ''
-        this.tratamientoAlergia = ''   
+        this.tratamientoAlergia = ''
     }
 }

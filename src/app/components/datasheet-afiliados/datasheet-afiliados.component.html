@@ -1,0 +1,21 @@
+<dx-data-grid id="gridContainer" [showBorders]="true">
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-paging [enabled]="true"></dxo-paging>
+
+  <dxi-column dataField="programa_nombre" caption="Nombre Programa" ></dxi-column>
+  <dxi-column dataField="subindice_nombre" caption="Subindice" [visible]="false"></dxi-column>
+  <dxi-column dataField="nombre" caption="Nombre Actividad"></dxi-column>
+  <dxi-column dataField="usuario_nombre" caption="Creador de la Actividad" [visible]="false"></dxi-column>
+  <dxi-column dataField="fecha" caption="Fecha" dataType="datetime" [width]="150"> </dxi-column>
+  <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
+  <dxi-column dataField="estadoActividad_Descripcion" caption="Estado" [width]="200"> </dxi-column>
+  <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
+    <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+      <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsActividad(data.data)"></dx-button> -->
+      <!-- <dx-button icon="fa fa-check" class="positionButon" hint="Aprobación"  type="normal"  (onClick)="checkActividad(data.data)"></dx-button> -->
+      <!-- <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editActividad(data.data)"></dx-button> -->
+      <!-- <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteActividad(data.data)"></dx-button> -->
+
+    </div>
+  </dxi-column>
+</dx-data-grid>
