@@ -1,0 +1,54 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="col-lg-2 mb-2">
+            <!-- <dx-button type="success" text="Agregar actividad" icon="fa fa-plus" (onClick)="showPopUp()"></dx-button> -->
+            <dx-button type="success" text="Agregar afiliado" icon="fa fa-plus"></dx-button>
+          </div>
+          <div class="card">
+            <div id="data-grid-demo">
+              <!-- <dx-data-grid id="gridContainer" [dataSource]="actividades" [showBorders]="true"> -->
+              <dx-data-grid id="gridContainer" [showBorders]="true">
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-paging [enabled]="true"></dxo-paging>
+
+                <dxi-column dataField="programa_nombre" caption="Nombre Programa" ></dxi-column>
+                <dxi-column dataField="subindice_nombre" caption="Subindice" [visible]="false"></dxi-column>
+                <dxi-column dataField="nombre" caption="Nombre Actividad"></dxi-column>
+                <dxi-column dataField="usuario_nombre" caption="Creador de la Actividad" [visible]="false"></dxi-column>
+                <dxi-column dataField="fecha" caption="Fecha" dataType="datetime" [width]="150"> </dxi-column>
+                <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
+                <dxi-column dataField="estadoActividad_Descripcion" caption="Estado" [width]="200"> </dxi-column>
+                <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
+                  <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+                    <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsActividad(data.data)"></dx-button> -->
+                    <!-- <dx-button icon="fa fa-check" class="positionButon" hint="Aprobación"  type="normal"  (onClick)="checkActividad(data.data)"></dx-button> -->
+                    <!-- <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editActividad(data.data)"></dx-button> -->
+                    <!-- <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteActividad(data.data)"></dx-button> -->
+
+                  </div>
+                </dxi-column>
+              </dx-data-grid>
+
+            </div>
+
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -7,6 +7,7 @@ import { UsersComponent } from './users/users.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
+import { AffiliatesComponent } from './affiliates/affiliates.component';
 import { AuthGuard } from '../guard/auth.guard';
 
 const routes:Routes=[
@@ -20,6 +21,7 @@ const routes:Routes=[
       {path:'activities',component:ActivitiesComponent, data:{titulo:'Actividades'}},
       {path:'programs',component:ProgramsComponent, data:{titulo:'Programas'}},
       {path:'indicators',component:IndicatorsComponent, data:{titulo:'Indicadores'}},
+      {path:'affiliates',component:AffiliatesComponent, data:{titulo:'Afiliados'}},
     ]
   }
 ]
