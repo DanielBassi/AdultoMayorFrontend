@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivitiesService {
-	
+
   ROOT_SERVE: string = environment.API_URL
   constructor(private http: HttpClient) { };
 
@@ -16,7 +16,7 @@ export class ActivitiesService {
   actividades(){
     return this.http.get(`${this.ROOT_SERVE}/api/Actividad`);
   }
-   
+
   subindices(programa_id:number){
     let params = new HttpParams({
       fromObject: { programa_id:programa_id },
@@ -38,5 +38,6 @@ export class ActivitiesService {
     });
     return this.http.delete(`${this.ROOT_SERVE}/api/Actividad`, {params});
   }
-  
+
+
 }

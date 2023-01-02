@@ -19,13 +19,11 @@
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-paging [enabled]="true"></dxo-paging>
 
-                <dxi-column dataField="programa_nombre" caption="Nombre Programa" ></dxi-column>
-                <dxi-column dataField="subindice_nombre" caption="Subindice" [visible]="false"></dxi-column>
-                <dxi-column dataField="nombre" caption="Nombre Actividad"></dxi-column>
-                <dxi-column dataField="usuario_nombre" caption="Creador de la Actividad" [visible]="false"></dxi-column>
-                <dxi-column dataField="fecha" caption="Fecha" dataType="datetime" [width]="150"> </dxi-column>
-                <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
-                <dxi-column dataField="estadoActividad_Descripcion" caption="Estado" [width]="200"> </dxi-column>
+                <dxi-column dataField="nombre" caption="Nombre " ></dxi-column>
+                <dxi-column dataField="identificacion" caption="Numero de identificación" [visible]="false"></dxi-column>
+                <dxi-column dataField="sexo" caption="Genero" [width]="150"> </dxi-column>
+                <dxi-column dataField="direccion" caption="Dirección"></dxi-column>
+                <dxi-column dataField="celular" caption="Celular" [width]="200"> </dxi-column>
                 <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
                   <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
                     <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsActividad(data.data)"></dx-button> -->
@@ -36,9 +34,14 @@
                   </div>
                 </dxi-column>
               </dx-data-grid>
-
             </div>
-
+            <!-- Form create servicio -->
+            <dx-popup  [width]="'400'" [height]="'90%'" [showTitle]="true" title="Solicitar cotización" [dragEnabled]="true" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+              <dx-scroll-view width="100%" height="100%">
+                <app-form-solicitud (crudEvent)="crudEvento($event)" [crud]="crud"></app-form-solicitud>
+              </dx-scroll-view>
+            </dx-popup>
+            <!-- Fin Form create servicio -->
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
