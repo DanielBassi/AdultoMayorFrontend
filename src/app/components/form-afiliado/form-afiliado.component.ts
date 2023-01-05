@@ -17,7 +17,14 @@ export class FormAfiliadoComponent implements OnInit {
 
   afiliados: IAfiliadoDTO[] =[]
   modoView: boolean = false
-
+  generos: any[]=[]
+  tipos:any[]=[]
+  presenciaAlergias: boolean = false
+  grupoSanguineo: any[]=[]
+  rh: any[]=[]
+  colombiaMayor: boolean = false
+  sabeLeer: boolean = false
+  viveSolo: boolean = false
   /* Notificaciones */
   notificaciones: any[] = []
 
@@ -60,6 +67,11 @@ export class FormAfiliadoComponent implements OnInit {
     })
 
     return this.notificaciones.length === 0
+  }
+
+  submit(e){
+    console.log(e);
+
   }
 
 

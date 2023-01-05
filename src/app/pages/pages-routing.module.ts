@@ -8,6 +8,7 @@ import { ActivitiesComponent } from './activities/activities.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
 import { AffiliatesComponent } from './affiliates/affiliates.component';
+import { DetalleAfiliadoComponent } from './detalleAfiliado/detalleAfiliado.component';
 import { AuthGuard } from '../guard/auth.guard';
 
 const routes:Routes=[
@@ -22,6 +23,7 @@ const routes:Routes=[
       {path:'programs',component:ProgramsComponent, data:{titulo:'Programas'}},
       {path:'indicators',component:IndicatorsComponent, data:{titulo:'Indicadores'}},
       {path:'affiliates',component:AffiliatesComponent, data:{titulo:'Afiliados'}},
+      {path:'form-affiliate',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}}
     ]
   }
 ]
