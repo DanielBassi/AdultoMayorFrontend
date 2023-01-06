@@ -25,6 +25,9 @@ export class FormAfiliadoComponent implements OnInit {
   colombiaMayor: boolean = false
   sabeLeer: boolean = false
   viveSolo: boolean = false
+  popupVisibleUbicacion: boolean = false
+  popupVisibleCaracteristicas: boolean = false
+  popupVisibleRecursos: boolean = false;
   /* Notificaciones */
   notificaciones: any[] = []
 
@@ -72,6 +75,41 @@ export class FormAfiliadoComponent implements OnInit {
   submit(e){
     console.log(e);
 
+  }
+
+  buttonOptionsUbicacion = {
+    text: 'Ubicación',
+    type: 'default',
+    icon: 'fas fa-map-marker-alt',
+    width: '200',
+    useSubmitBehavior: false,
+
+  }
+
+  buttonOptionsCaracteristicas = {
+    text: 'Características',
+    type: 'default',
+    icon: 'fas fa-info-circle',
+    width: '200',
+    useSubmitBehavior: false,
+    onClick: (data) => this.popupVisibleCaracteristicas = true
+  }
+
+  buttonOptionsRecursos = {
+    text: 'Imágenes',
+    type: 'default',
+    icon: 'fas fa-images',
+    width: '200',
+    useSubmitBehavior: false,
+    onClick: (data) => this.popupVisibleRecursos = true
+  }
+
+  buttonOptionsSave = {
+    text: 'Guardar',
+    type: 'success',
+    icon: 'fa fa-save',
+    width: '200',
+    useSubmitBehavior: true,
   }
 
 
