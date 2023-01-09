@@ -25,7 +25,7 @@
             <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-item>
 
-          <dxi-item editorType="dxDateBox" dataField="fechaExpedicionIdentificacion" [colSpan]="1" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de expedicion de la identificación'}" >
+          <dxi-item editorType="dxDateBox" dataField="fechaExpedicionIdentificacion" [colSpan]="1" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de expedicion'}" >
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
           <dxi-item dataField="lugarNacimiento" [colSpan]="1" [label]="{text:'Lugar de nacimiento'}">
@@ -77,7 +77,7 @@
         <dxi-item itemType="group" [colCount]="2" >
           <dxi-item  [colSpan]="1" [label]="{text:'Sabe leer'}" >
             <div>
-              <dx-switch dataField="sabeLeer" [(value)]="crud.entidad.sabeLeer" style="margin: auto" switchedOffText="No" switchedOnText="Sí" ></dx-switch>
+              <dx-check-box class="m-1" dataField="sabeLeer"  style="margin: auto" switchedOffText="No" switchedOnText="Sí" [iconSize]="28" [value]=true></dx-check-box>
             </div>
           </dxi-item>
 
@@ -87,7 +87,7 @@
             </div>
           </dxi-item>
 
-          <dxi-item  dataField="cantidadPersonas" [label]="{ text: 'Cantidad de Personas' }" editorType="dxNumberBox"
+          <dxi-item  dataField="cantidadPersonas" [label]="{ text: 'Personas a cargo' }" editorType="dxNumberBox"
             [editorOptions]="{ showSpinButtons: true, showClearButton:'true', min: '0'}">
             <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-item>
@@ -108,10 +108,20 @@
 
         <dxi-item  dataField="firmaAcudiente" [label]="{ text: 'Firma acudiente' }"></dxi-item>
 
-        <dxi-item  dataField="tipoIdentificacionAcudiente" [label]="{ text: 'Tipo identificacion acudiente' }"></dxi-item>
+        <dxi-item itemType="group" [colCount]="2" >
 
-        <dxi-item  dataField="identificacionAcudiente" [label]="{ text: 'Identificacion acudiente' }"></dxi-item>
+          <dxi-item  dataField="tipoIdentificacionAcudiente" alignment="bottom" [colSpan]="1" [label]="{ text: 'Tipo identificacion acudiente' }" isRequired="true">
+            <div *dxTemplate>
+              <dx-select-box [disabled]="modoView" [dataSource]="tipos" [value]="" id="id" [showClearButton]="true"></dx-select-box>
+            </div>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-item>
 
+          <dxi-item  dataField="identificacionAcudiente" [label]="{ text: 'Identificacion acudiente' }"></dxi-item>
+  
+        </dxi-item>
+
+        
         <dxi-item  dataField="huellaAcudiente" [label]="{ text: 'Huella acudiente' }"></dxi-item>
       </dxi-item>
 
