@@ -18,7 +18,9 @@ export class FormAfiliadoComponent implements OnInit {
   afiliados: IAfiliadoDTO[] =[]
   modoView: boolean = false
   generos: any[]=[]
+  titulo:string=""
   tipos:any[]=[]
+  razas:any[]=[]
   presenciaAlergias: boolean = false
   grupoSanguineo: any[]=[]
   rh: any[]=[]
@@ -37,7 +39,39 @@ export class FormAfiliadoComponent implements OnInit {
   constructor(private sharedService : SharedService, private affiliateService : AffiliateService) { }
 
   ngOnInit() {
+    this.listarGeneros()
+    this.listarGrupoSanguineo()
+    this.listarTipos()
+    this.listarRazas()
+    this.iniciarTitulo()
   }
+  ngOnChanges(crud: SimpleChanges) {
+    this.modoView = this.crud.accion === 'VIEW'
+  }
+  private iniciarTitulo(){
+    switch(this.crud.accion){
+      case 'INSERT':
+        this.titulo="Ingresar nuevo afiliado"
+      break;
+      case 'UPDATE':
+        this.titulo="Editar afiliado"
+      break;
+    }
+  }
+  private listarGeneros(){
+    this.generos=["Masculino","Femenino", "Otro"]
+  }
+  private listarTipos(){
+    this.tipos=["c.c.","t.i.","r.c."]
+  }
+  private listarGrupoSanguineo(){
+    this.grupoSanguineo=["A","B","AB","O"]
+    this.rh=["+","-"]
+  }
+  private listarRazas(){
+    this.razas=["Afro (negros, mulatos, palenqueros y raizales)","Indigena","Gitano", "Otro","Ninguno"]
+  }
+
 
   private validateDataEmit(): boolean {
 
@@ -72,9 +106,13 @@ export class FormAfiliadoComponent implements OnInit {
     return this.notificaciones.length === 0
   }
 
-  submit(e){
-    console.log(e);
+  submit(event: Event) {
+    event.preventDefault()
+    this.crudEvent.emit({...this.crud})
+      this.crud.entidad = new IAfiliadoDTO()
+    /* if( this.validateDataEmit() ) {
 
+    } */
   }
 
   buttonOptionsUbicacion = {

@@ -10,12 +10,12 @@
         <div class="col-12">
           <div class="col-lg-2 mb-2">
             <!-- <dx-button type="success" text="Agregar actividad" icon="fa fa-plus" (onClick)="showPopUp()"></dx-button> -->
-            <dx-button type="success" text="Agregar afiliado" icon="fa fa-plus"></dx-button>
+            <dx-button type="success" text="Agregar afiliado" icon="fa fa-plus" [routerLink]="['/dashboard/form-affiliate']" ></dx-button>
           </div>
           <div class="card">
             <div id="data-grid-demo">
-              <!-- <dx-data-grid id="gridContainer" [dataSource]="actividades" [showBorders]="true"> -->
-              <dx-data-grid id="gridContainer" [showBorders]="true">
+              <dx-data-grid id="gridContainer" [dataSource]="afiliados" [showBorders]="true">
+              <!-- <dx-data-grid id="gridContainer" [showBorders]="true"> -->
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-paging [enabled]="true"></dxo-paging>
 
