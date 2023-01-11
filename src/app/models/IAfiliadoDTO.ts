@@ -4,7 +4,7 @@ id: string
 estado: boolean
 nombre: string
 fechaIncorporacion: Date
-fechaRetiro: Date
+fechaRetiro?: Date
 tipoIdentificacion: string
 identificacion: string
 fechaExpedicionIdentificacion: Date
@@ -55,7 +55,7 @@ constructor() {
   this.estado = true
   this.nombre = ''
   this.fechaIncorporacion = new Date
-  this.fechaRetiro = new Date
+  this.fechaRetiro = null
   this.tipoIdentificacion = ''
   this.identificacion = ''
   this.fechaExpedicionIdentificacion = new Date

@@ -6,8 +6,8 @@
     <form (submit)="submit($event)">
       <dx-form id="form" name="form" [colCount]="4" [(formData)]="crud.entidad" labelLocation="top" [readOnly]="modoView" >
         <dxi-item itemType="group" caption="Datos personales" [colCount]="4" [colSpan]="4">
-          <dxi-item dataField="nombre" [colSpan]="2" [label]="{text:'Nombre'}" labelLocation="top">
-            <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
+          <dxi-item dataField="nombre" [colSpan]="2" [label]="{text:'Nombre'}" [editorOptions]="{style: 'text-transform: uppercase'}" labelLocation="top">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-item>
 
 
@@ -18,15 +18,15 @@
 
             <dxi-item editorType="dxDateBox" dataField="fechaRetiro" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de retiro'}" value=""></dxi-item>
 
-            <dxi-item  dataField="tipoIdentificacion" alignment="bottom" [colSpan]="1" [label]="{ text: 'Tipo de identificación' }" isRequired="true">
-              <div *dxTemplate>
-                <dx-select-box [disabled]="modoView" [dataSource]="tipos" [value]="" id="id" [showClearButton]="true"></dx-select-box>
-              </div>
-              <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
+            <dxi-item dataField="tipoIdentificacion" [label]="{ text: 'Tipo de identificación' }" editorType="dxSelectBox"
+              [editorOptions]="{ dataSource: tipos, showClearButton:'true' }">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+
             </dxi-item>
 
+
             <dxi-item  dataField="identificacion" [colSpan]="1" [label]="{ text: 'Identificación' }">
-              <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
+              <dxi-validation-rule type="required"></dxi-validation-rule>
             </dxi-item>
 
             <dxi-item editorType="dxDateBox" dataField="fechaExpedicionIdentificacion" [colSpan]="1" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de expedicion'}" >
@@ -82,7 +82,7 @@
         </dxi-item> -->
         <dxi-item itemType="group" caption="Datos de salud" [colCount]="4" [colSpan]="4">
 
-            <dxi-item [dataField]="grupoSanguineo" [label]="{ text: 'Grupo sanguineo' }" editorType="dxSelectBox"
+            <dxi-item dataField="grupoSanguineo" [label]="{ text: 'Grupo sanguineo' }" editorType="dxSelectBox"
             [editorOptions]="{ dataSource: grupoSanguineo, showClearButton:'true' }"></dxi-item>
 
             <dxi-item dataField="rh" [label]="{ text: 'Rh' }" editorType="dxSelectBox"
@@ -116,18 +116,22 @@
 
             <dxi-item  dataField="identificacionConyuge" [label]="{ text: 'Identificación' }"></dxi-item>
 
-            <dxi-item  ></dxi-item>
+            <dxi-item itemType="empty"></dxi-item>
 
           <dxi-item  dataField="nombreAcudiente" [colSpan]="2" [label]="{ text: 'Nombre del acudiente' }">
             <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
           </dxi-item>
+          <dxi-item dataField="tipoIdentificacionAcudiente" [label]="{ text: 'Tipo de identificación' }" editorType="dxSelectBox"
+          [editorOptions]="{ dataSource: tipos, showClearButton:'true' }">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
 
-          <dxi-item  dataField="tipoIdentificacionAcudiente" alignment="bottom" [colSpan]="1" [label]="{ text: 'Tipo de identificación' }" isRequired="true">
+          </dxi-item>
+          <!-- <dxi-item  dataField="tipoIdentificacionAcudiente" alignment="bottom" [colSpan]="1" [label]="{ text: 'Tipo de identificación' }" isRequired="true">
             <div *dxTemplate>
               <dx-select-box [disabled]="modoView" [dataSource]="tipos" [value]="" id="id" [showClearButton]="true"></dx-select-box>
             </div>
-            <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
-          </dxi-item>
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+          </dxi-item> -->
 
           <dxi-item  dataField="identificacionAcudiente" [label]="{ text: 'Identificacion' }">
             <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
@@ -186,9 +190,11 @@
           <dxi-item itemType="group" caption="Agregar detalles del afiliado" name="Agregar" [visible]="true" [colSpan]="3">
           </dxi-item>
 
-         <!--  <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
-            [buttonOptions]="buttonOptionsUbicacion">
-          </dxi-item>
+          <!-- <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
+            [buttonOptions]="buttonOptionsAlergias">
+          </dxi-item> -->
+
+         <!--
 
           <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
             [buttonOptions]="buttonOptionsCaracteristicas">
@@ -206,7 +212,6 @@
 
 
       </dx-form>
-      <dx-button width="200" type="success" text="SI" icon="fa fa-check" (onClick)="submit($event)"></dx-button>
     </form>
 
   </div>

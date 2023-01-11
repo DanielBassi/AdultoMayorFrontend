@@ -13,19 +13,24 @@ import { AuthGuard } from '../guard/auth.guard';
 
 const routes:Routes=[
   {
-    path:'dashboard',
+    path:'',
     component:PagesComponent,
     canActivate: [AuthGuard],
     children:[
       {path:'',component:DashboardComponent, data:{titulo:'Tablero'}},
+      {path:'dashboard',component:DashboardComponent, data:{titulo:'Tablero'}},
       {path:'users',component:UsersComponent, data:{titulo:'Usuarios'}},
       {path:'activities',component:ActivitiesComponent, data:{titulo:'Actividades'}},
       {path:'programs',component:ProgramsComponent, data:{titulo:'Programas'}},
       {path:'indicators',component:IndicatorsComponent, data:{titulo:'Indicadores'}},
       {path:'affiliates',component:AffiliatesComponent, data:{titulo:'Afiliados'}},
-      {path:'form-affiliate',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}}
+      {path:'affiliates/insert',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}},
+      {path:'affiliates/detail/:id/:metodo',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}},
+      {path:'affiliates/edit/:id/:metodo',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}}
+
     ]
   }
+
 ]
 
 @NgModule({

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IAfiliadoDTO } from '../../models/IAfiliadoDTO';
 import { SharedService } from '../../services/shared.service';
-import { AffiliateService } from '../../services/affiliate.service'
+import { AffiliateService } from '../../services/affiliate.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -18,13 +19,14 @@ export class AffiliatesComponent implements OnInit {
     accion: 'INSERT'
   }
 
-  constructor(private affiliateService: AffiliateService, private sharedService: SharedService) { }
+  constructor(private affiliateService: AffiliateService, private sharedService: SharedService,private router:Router) {
+      router.events.subscribe(val => {this.listarAfiliados()})
+    }
 
   ngOnInit() {
     this.listarAfiliados();
   }
-
-  private listarAfiliados() {
+  listarAfiliados() {
     this.affiliateService.getListAfiliados().subscribe((response: any) => {
       this.afiliados = response;
     })
@@ -43,15 +45,18 @@ export class AffiliatesComponent implements OnInit {
       entidad: afiliado,
       accion: 'UPDATE'
     }
-    this.popupVisible = true
+    this.router.navigate(['/affiliates/edit',afiliado.id,this.crud.accion])
   }
 
-  detailsAfiliado( afiliado: IAfiliadoDTO ) {
+  detailsAfiliado( afiliado: any ) {
+    console.log(afiliado);
+
     this.crud = {
       entidad: afiliado,
       accion: 'VIEW'
     }
-    this.popupVisible = true
+    this.router.navigate(['/affiliates/detail',afiliado.id,this.crud.accion])
+
   }
 
   crudEvento(crud: any) {
@@ -73,7 +78,7 @@ export class AffiliatesComponent implements OnInit {
     }
   }
 
-  deleteServicio( afiliado: IAfiliadoDTO ) {
+  deleteAfiliado( afiliado: IAfiliadoDTO ) {
     Swal.fire({
       title: `¿Estás seguro que deseas eliminar el afiliado (${afiliado.nombre})?`,
       showCancelButton: true,

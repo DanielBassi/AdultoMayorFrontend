@@ -22,10 +22,9 @@
         <dxi-column dataField="rol" caption="Rol"></dxi-column>
         <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
           <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
-            <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsUsuario(data.data)"></dx-button>
-            <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editUsuario(data.data)"></dx-button>
-            <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deleteUsuario(data.data)"></dx-button>
-
+            <dx-button icon="fas fa-info" class="positionButon ml-1" hint="Detalles"  type="success"  (onClick)="detailsUsuario(data.data)"></dx-button>
+            <dx-button icon="fas fa-edit" class="positionButon ml-1" hint="Editar"  type="default"  (onClick)="editUsuario(data.data)"></dx-button>
+            <dx-button icon="fas fa-window-close"class="positionButon ml-1" hint="Eliminar"  type="danger" (onClick)="deleteUsuario(data.data)"></dx-button>
           </div>
         </dxi-column>
 
@@ -204,8 +203,8 @@
 
     <dx-popup [width]="240" [height]="180" [showTitle]="true" title="Borrar usuario" [dragEnabled]="false"
       [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDeleteVisible">
-      
-      
+
+
       <div class="col-lg-10 mb-2 offset-1">
         <dx-button width="200" type="success" text="SI" icon="fa fa-check" (onClick)="formDelete()"></dx-button>
       </div>
@@ -213,7 +212,7 @@
         <dx-button width="200" type="danger" text="NO" icon="fa fa-window-close" (onClick)="formCancel()"></dx-button>
       </div>
                 <!-- <dx-button class="positionButon" hint="no"  type="danger" text="NO" (onClick)="formCancel()" [width]="200"></dx-button> -->
-      
+
     </dx-popup>
 
     <dx-toast [(visible)]="isVisible" [type]="type" [message]="message">

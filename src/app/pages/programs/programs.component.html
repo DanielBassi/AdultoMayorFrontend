@@ -28,10 +28,10 @@
                       <dxi-column dataField="nombre" caption="Nombre Programa"></dxi-column>
                       <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
                         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
-                          <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsPrograma(data.data)"></dx-button> -->
-                          <dx-button icon="fas fa-folder" class="positionButon" hint="Ver manual"  type="success"  stylingMode="outlined"></dx-button>
-                          <dx-button icon="fas fa-edit" class="positionButon" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button>
-                          <dx-button icon="fas fa-window-close"class="positionButon" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button>
+                          <!-- <dx-button icon="fas fa-info" class="positionButon ml-1" hint="Detalles"  type="success"  (onClick)="detailsPrograma(data.data)"></dx-button> -->
+                          <dx-button icon="fas fa-folder" class="positionButon ml-1" hint="Ver manual"  type="success"  stylingMode="outlined"></dx-button>
+                          <dx-button icon="fas fa-edit" class="positionButon ml-1" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button>
+                          <dx-button icon="fas fa-window-close"class="positionButon ml-1" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button>
 
 
                         </div>

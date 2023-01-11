@@ -56,6 +56,8 @@ export class FormAfiliadoComponent implements OnInit {
       case 'UPDATE':
         this.titulo="Editar afiliado"
       break;
+      case 'VIEW':
+        this.titulo="Detalles del afiliado"
     }
   }
   private listarGeneros(){
@@ -69,7 +71,7 @@ export class FormAfiliadoComponent implements OnInit {
     this.rh=["+","-"]
   }
   private listarRazas(){
-    this.razas=["Afro (negros, mulatos, palenqueros y raizales)","Indigena","Gitano", "Otro","Ninguno"]
+    this.razas=["AFRODESCENDIENTE","IDIGENA","ROOM","PALENQUE","RAIZAL", "OTRO","NINGUNO"]
   }
 
 
@@ -115,10 +117,10 @@ export class FormAfiliadoComponent implements OnInit {
     } */
   }
 
-  buttonOptionsUbicacion = {
-    text: 'Ubicación',
+  buttonOptionsAlergias = {
+    text: 'Alergias',
     type: 'default',
-    icon: 'fas fa-map-marker-alt',
+    icon: 'fa-solid fa-virus-covid',
     width: '200',
     useSubmitBehavior: false,
 
