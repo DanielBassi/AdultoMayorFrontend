@@ -194,11 +194,12 @@
             [buttonOptions]="buttonOptionsAlergias">
           </dxi-item> -->
 
+          <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
+            [buttonOptions]="buttonOptionsEstadoSalud">
+          </dxi-item>
          <!--
 
-          <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
-            [buttonOptions]="buttonOptionsCaracteristicas">
-          </dxi-item>
+
 
           <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
             [buttonOptions]="buttonOptionsRecursos">
@@ -217,5 +218,8 @@
   </div>
 </div>
 
-
+<dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Estado de salud" [dragEnabled]="true"
+  [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleEstadosalud">
+  <app-form-estadoSalud [modoView]="modoView" [estadosSalud]="estadosSalud" (estadoSaludEvent)="estadoSaludEvent($event)" (popupEvent)="popupEvent($event)"></app-form-estadoSalud>
+</dx-popup>
 

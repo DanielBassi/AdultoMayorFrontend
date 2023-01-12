@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, SimpleChanges, EventEmitter } from '@
 import { SharedService } from '../../services/shared.service';
 import { IAfiliadoDTO } from '../../models/IAfiliadoDTO'
 import { AffiliateService } from  '../../services/affiliate.service';
+import{ IEstadoSaludAfiliadoDTO } from "../../models/IEstadoSaludAfiliadoDTO"
 @Component({
   selector: 'app-form-afiliado',
   templateUrl: './form-afiliado.component.html',
@@ -16,6 +17,7 @@ export class FormAfiliadoComponent implements OnInit {
   }
 
   afiliados: IAfiliadoDTO[] =[]
+  estadosSalud: IEstadoSaludAfiliadoDTO[]
   modoView: boolean = false
   generos: any[]=[]
   titulo:string=""
@@ -28,7 +30,7 @@ export class FormAfiliadoComponent implements OnInit {
   sabeLeer: boolean = false
   viveSolo: boolean = false
   popupVisibleUbicacion: boolean = false
-  popupVisibleCaracteristicas: boolean = false
+  popupVisibleEstadosalud: boolean = false
   popupVisibleRecursos: boolean = false;
   /* Notificaciones */
   notificaciones: any[] = []
@@ -108,6 +110,17 @@ export class FormAfiliadoComponent implements OnInit {
     return this.notificaciones.length === 0
   }
 
+  estadoSaludEvent(estadosSalud){
+
+    this.crud.entidad.estadosSalud=estadosSalud
+
+
+  }
+  popupEvent(e){
+    console.log(e);
+
+  }
+
   submit(event: Event) {
     event.preventDefault()
     this.crudEvent.emit({...this.crud})
@@ -126,13 +139,13 @@ export class FormAfiliadoComponent implements OnInit {
 
   }
 
-  buttonOptionsCaracteristicas = {
-    text: 'Características',
+  buttonOptionsEstadoSalud = {
+    text: 'Estado de salud',
     type: 'default',
     icon: 'fas fa-info-circle',
     width: '200',
     useSubmitBehavior: false,
-    onClick: (data) => this.popupVisibleCaracteristicas = true
+    onClick: (data) => this.popupVisibleEstadosalud = true
   }
 
   buttonOptionsRecursos = {

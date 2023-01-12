@@ -1,4 +1,5 @@
 import { IAlergiasAfiliadoDTO } from "./IAlergiasAfiliadoDTO"
+import { IEstadoSaludAfiliadoDTO } from "./IEstadoSaludAfiliadoDTO"
 export class IAfiliadoDTO {
 id: string
 estado: boolean
@@ -43,7 +44,7 @@ tipoIdentificacionAcudiente: string
 identificacionAcudiente: string
 huellaAcudiente: string
 asistenciasActividades: Array<any>
-estadosSaludAfiliado: Array<any>
+estadosSalud: Array<IEstadoSaludAfiliadoDTO>
 alergiasAfiliado: Array<IAlergiasAfiliadoDTO>
 enfermedadesBaseAfiliado: Array<any>
 
@@ -94,7 +95,7 @@ constructor() {
   this.identificacionAcudiente = ''
   this.huellaAcudiente = ''
   this.asistenciasActividades = []
-  this.estadosSaludAfiliado = []
+  this.estadosSalud = []
   this.alergiasAfiliado = []
   this.enfermedadesBaseAfiliado = []
 

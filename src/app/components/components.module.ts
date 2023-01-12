@@ -5,6 +5,7 @@ import { DxButtonModule,DxCheckBoxModule, DxSwitchModule, DxValidatorModule,DxFi
 import { FormActividadDetailsComponent } from './form-actividadDetails/form-actividadDetails.component';
 import { FormAfiliadoComponent } from './form-afiliado/form-afiliado.component'
 import { BrowserModule } from '@angular/platform-browser';
+import { FormEstadoSaludComponent } from './form-estadoSalud/form-estadoSalud.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { BrowserModule } from '@angular/platform-browser';
     DxSwitchModule,
     DxCheckBoxModule
   ],
-  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent],
-  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent]
+  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent],
+  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent]
 })
 export class ComponentsModule { }
