@@ -190,20 +190,17 @@
           <dxi-item itemType="group" caption="Agregar detalles del afiliado" name="Agregar" [visible]="true" [colSpan]="3">
           </dxi-item>
 
-          <!-- <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
+          <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
             [buttonOptions]="buttonOptionsAlergias">
-          </dxi-item> -->
+          </dxi-item>
 
           <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
             [buttonOptions]="buttonOptionsEstadoSalud">
           </dxi-item>
-         <!--
-
-
 
           <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom"
-            [buttonOptions]="buttonOptionsRecursos">
-          </dxi-item> -->
+            [buttonOptions]="buttonOptionsEnfermedadesBase">
+          </dxi-item>
         </dxi-item>
 
         <dxi-item itemType="group" [colCount]="1" [colSpan]="4" *ngIf="!modoView">
@@ -220,6 +217,16 @@
 
 <dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Estado de salud" [dragEnabled]="true"
   [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleEstadosalud">
-  <app-form-estadoSalud [modoView]="modoView" [estadosSalud]="estadosSalud" (estadoSaludEvent)="estadoSaludEvent($event)" (popupEvent)="popupEvent($event)"></app-form-estadoSalud>
+  <app-form-estadoSalud [modoView]="modoView" [estadosSaludAfiliado]="crud.entidad.estadosSaludAfiliado" (estadoSaludEvent)="estadoSaludEvent($event)"></app-form-estadoSalud>
+</dx-popup>
+
+<dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Alergias" [dragEnabled]="true"
+  [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleAlergias">
+  <app-form-alergiasAfiliado [modoView]="modoView" [alergiasAfiliado]="crud.entidad.alergiasAfiliado" (alergiaEvent)="alergiaEvent($event)"></app-form-alergiasAfiliado>
+</dx-popup>
+
+<dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Alergias" [dragEnabled]="true"
+  [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleEnfermedades">
+  <app-form-enfermedadBaseAfiliado [modoView]="modoView" [enfermedadesBaseAfiliado]="crud.entidad.enfermedadesBaseAfiliado" (enfermedadEvent)="enfermedadEvent($event)"></app-form-enfermedadBaseAfiliado>
 </dx-popup>
 

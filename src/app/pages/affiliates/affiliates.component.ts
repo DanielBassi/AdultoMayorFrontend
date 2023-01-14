@@ -49,7 +49,7 @@ export class AffiliatesComponent implements OnInit {
   }
 
   detailsAfiliado( afiliado: any ) {
-    console.log(afiliado);
+    /* console.log(afiliado); */
 
     this.crud = {
       entidad: afiliado,

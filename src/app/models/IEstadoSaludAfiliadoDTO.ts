@@ -1,3 +1,5 @@
+
+
 export class IEstadoSaludAfiliadoDTO {
   id: string
   estado: boolean
@@ -13,9 +15,9 @@ export class IEstadoSaludAfiliadoDTO {
    *
    */
   constructor() {
-    this.id = ''
+    this.id = '00000000-0000-0000-0000-000000000000'
     this.estado = true
-    this.afiliado_id = ''
+    this.afiliado_id = '00000000-0000-0000-0000-000000000000'
     this.fecha =new Date
     this.discapacidad = false
     this.descripcionDiscapacidad = ''

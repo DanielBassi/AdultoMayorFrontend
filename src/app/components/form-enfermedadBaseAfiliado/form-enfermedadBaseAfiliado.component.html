@@ -1,20 +1,20 @@
 <div class="m-3">
   <div id="form-container">
-    <form (submit)="agregarAlergia($event)">
-      <dx-form id="formAlergiaAfiliado" name="formAlergiaAfiliado" [colCount]="4" [(formData)]="alergiaAfiliado" labelLocation="top" [readOnly]="modoView" >
+    <form (submit)="agregarEnfermedad($event)">
+      <dx-form id="formEnfermedadAfiliado" name="formEnfermedadAfiliado" [colCount]="4" [(formData)]="enfermedadBaseAfiliado" labelLocation="top" [readOnly]="modoView" >
         <dxi-item itemType="group" [colCount]="4" [colSpan]="4">
           <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha'}" >
             <dxi-validation-rule type="required" ></dxi-validation-rule>
           </dxi-item>
           <dxi-item [colSpan]="2" itemType="empty"></dxi-item>
-          <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcionAlergia" [label]="{ text: 'Descripción de la Alergia' }" ></dxi-item>
-          <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="tratamientoAlergia" [label]="{ text: 'Tratamiento de la Alergia' }" ></dxi-item>
+          <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcionEnfermedadBase" [label]="{ text: 'Descripción de la Enfermedad Base' }" ></dxi-item>
+          <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="tratamientoEnfermedadBase" [label]="{ text: 'Tratamiento de la Enfermedad Base' }" ></dxi-item>
         </dxi-item>
 
         <dxi-item itemType="group" [colCount]="1" [colSpan]="4" *ngIf="!modoView">
           <dxi-item>
             <div>
-              <dx-button width="200" type="success" text="Agregar" icon="fa fa-save" (onClick)="agregarAlergia($event)"></dx-button>
+              <dx-button width="200" type="success" text="Agregar" icon="fa fa-save" (onClick)="agregarEnfermedad($event)"></dx-button>
             </div>
           </dxi-item>
         </dxi-item>
@@ -25,14 +25,14 @@
 
   </div>
 </div>
-<dx-data-grid id="gridContainerEstadosSalud" [dataSource]="alergiasAfiliado" [showBorders]="true">
+<dx-data-grid id="gridContainerEstadosSalud" [dataSource]="enfermedadesBaseAfiliado" [showBorders]="true">
   <dxi-column dataField="fecha" caption="Fecha" dataType="date"></dxi-column>
-  <dxi-column dataField="descripcionAlergia" caption="Descripción de la Alergia" ></dxi-column>
-  <dxi-column dataField="tratamientoAlergia" caption="Tratamiento"></dxi-column>
+  <dxi-column dataField="descripcionEnfermedadBase" caption="Enfermedad Base" ></dxi-column>
+  <dxi-column dataField="tratamientoEnfermedadBase" caption="Tratamiento"></dxi-column>
   <dxi-column caption="acción" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
   </dxi-column>
   <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
     <dx-button *ngIf="!modoView" icon="fas fa-window-close" class="positionButon" hint="Eliminar" type="danger"
-      (onClick)="quitarAlergia(data.data)"></dx-button>
+      (onClick)="quitarEnfermedad(data.data)"></dx-button>
   </div>
 </dx-data-grid>

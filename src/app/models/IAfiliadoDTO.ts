@@ -44,7 +44,7 @@ tipoIdentificacionAcudiente: string
 identificacionAcudiente: string
 huellaAcudiente: string
 asistenciasActividades: Array<any>
-estadosSalud: Array<IEstadoSaludAfiliadoDTO>
+estadosSaludAfiliado: Array<IEstadoSaludAfiliadoDTO>
 alergiasAfiliado: Array<IAlergiasAfiliadoDTO>
 enfermedadesBaseAfiliado: Array<any>
 
@@ -95,7 +95,7 @@ constructor() {
   this.identificacionAcudiente = ''
   this.huellaAcudiente = ''
   this.asistenciasActividades = []
-  this.estadosSalud = []
+  this.estadosSaludAfiliado = []
   this.alergiasAfiliado = []
   this.enfermedadesBaseAfiliado = []
 

@@ -19,7 +19,7 @@
 
           <dxi-item  [colSpan]="1" [label]="{text:'Movilidad autonoma'}" >
             <div>
-              <dx-check-box class="m-1" dataField="movilidadAutonoma"  style="margin: auto" [iconSize]="28" ></dx-check-box>
+              <dx-check-box class="m-1" dataField="movilidadAutonoma"  style="margin: auto" [(value)]="estadoSalud.movilidadAutonoma" [iconSize]="28" ></dx-check-box>
             </div>
           </dxi-item>
 
@@ -29,7 +29,7 @@
             </div>
           </dxi-item>
 
-          <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcionDiscapacidad" [label]="{ text: 'Discapacidad' }" [editorOptions]="{ readOnly: !estadoSalud.discapacidad }" ></dxi-item>
+          <dxi-item [colSpan]="2" [cssClass]="'labelDescripcion'" editorType="dxTextArea" dataField="descripcionDiscapacidad" [label]="{ text: 'Descripción de la discapacidad' }"  [editorOptions]="{ readOnly: !estadoSalud.discapacidad}" ></dxi-item>
 
         </dxi-item>
 
@@ -52,8 +52,12 @@
 
   </div>
 </div>
-<dx-data-grid id="gridContainerEstadosSalud" [dataSource]="estadosSalud" [showBorders]="true">
-  <dxi-column dataField="fecha" caption="fecha"></dxi-column>
+<dx-data-grid id="gridContainerEstadosSalud" [dataSource]="estadosSaludAfiliado" [showBorders]="true">
+  <dxi-column dataField="fecha" caption="Fecha" dataType="date"></dxi-column>
+  <dxi-column dataField="estatura" caption="Estatura" dataType="number"></dxi-column>
+  <dxi-column dataField="peso" caption="Peso" dataType="number"></dxi-column>
+  <dxi-column dataField="movilidadAutonoma" caption="Movilidad autonoma" ></dxi-column>
+  <dxi-column dataField="descripcionDiscapacidad" caption="Discapacidad"></dxi-column>
   <dxi-column caption="acción" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
   </dxi-column>
   <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">

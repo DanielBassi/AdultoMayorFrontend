@@ -17,7 +17,7 @@ export class FormAfiliadoComponent implements OnInit {
   }
 
   afiliados: IAfiliadoDTO[] =[]
-  estadosSalud: IEstadoSaludAfiliadoDTO[]
+  estadosSaludAfiliado: IEstadoSaludAfiliadoDTO[]
   modoView: boolean = false
   generos: any[]=[]
   titulo:string=""
@@ -29,9 +29,9 @@ export class FormAfiliadoComponent implements OnInit {
   colombiaMayor: boolean = false
   sabeLeer: boolean = false
   viveSolo: boolean = false
-  popupVisibleUbicacion: boolean = false
+  popupVisibleAlergias: boolean = false
   popupVisibleEstadosalud: boolean = false
-  popupVisibleRecursos: boolean = false;
+  popupVisibleEnfermedades: boolean = false;
   /* Notificaciones */
   notificaciones: any[] = []
 
@@ -110,20 +110,26 @@ export class FormAfiliadoComponent implements OnInit {
     return this.notificaciones.length === 0
   }
 
-  estadoSaludEvent(estadosSalud){
-
-    this.crud.entidad.estadosSalud=estadosSalud
-
-
+  estadoSaludEvent(estadosSaludAfiliado){
+    this.crud.entidad.estadosSaludAfiliado=estadosSaludAfiliado
   }
+  alergiaEvent(alergiasAfiliado){
+    this.crud.entidad.alergiasAfiliado=alergiasAfiliado
+  }
+  enfermedadEvent(enfermedadesBaseAfiliado){
+    this.crud.entidad.enfermedadesBaseAfiliado=enfermedadesBaseAfiliado
+  }
+
   popupEvent(e){
-    console.log(e);
+    /* console.log(e); */
 
   }
 
   submit(event: Event) {
     event.preventDefault()
+    console.log(this.crud.entidad)
     this.crudEvent.emit({...this.crud})
+
       this.crud.entidad = new IAfiliadoDTO()
     /* if( this.validateDataEmit() ) {
 
@@ -136,7 +142,7 @@ export class FormAfiliadoComponent implements OnInit {
     icon: 'fa-solid fa-virus-covid',
     width: '200',
     useSubmitBehavior: false,
-
+    onClick: (data) => this.popupVisibleAlergias = true
   }
 
   buttonOptionsEstadoSalud = {
@@ -148,13 +154,13 @@ export class FormAfiliadoComponent implements OnInit {
     onClick: (data) => this.popupVisibleEstadosalud = true
   }
 
-  buttonOptionsRecursos = {
-    text: 'Imágenes',
+  buttonOptionsEnfermedadesBase = {
+    text: 'Enfermedades',
     type: 'default',
     icon: 'fas fa-images',
     width: '200',
     useSubmitBehavior: false,
-    onClick: (data) => this.popupVisibleRecursos = true
+    onClick: (data) => this.popupVisibleEnfermedades = true
   }
 
   buttonOptionsSave = {
