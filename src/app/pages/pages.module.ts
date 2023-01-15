@@ -14,6 +14,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import dxTextArea from 'devextreme/ui/text_area';
 import { BrowserModule } from '@angular/platform-browser';
 import { ComponentsModule } from '../components/components.module'
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
@@ -49,7 +50,8 @@ import { ComponentsModule } from '../components/components.module'
     DxTextBoxModule,
 		BrowserModule,
     DxFileUploaderModule,
-    ComponentsModule
+    ComponentsModule,
+    FullCalendarModule
   ],
   exports:[
     UsersComponent,

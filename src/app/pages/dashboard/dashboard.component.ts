@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Calendar, CalendarOptions, renderMicroColGroup } from '@fullcalendar/angular'; // useful for typechecking
+import { CalendarOptions } from '@fullcalendar/core';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { ProgramaService } from 'src/app/services/programa.service';
 import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction';
-
-import esLocale from '@fullcalendar/core/locales/es.js';
+import esLocale from '@fullcalendar/core/locales/es';
 import { IActividadDTO } from 'src/app/models/IActividadDTO';
 
 
@@ -27,6 +27,11 @@ export class DashboardComponent implements OnInit {
   showModal:boolean=false;
 
   calendarOptions:CalendarOptions={
+    plugins: [
+      interactionPlugin,
+      dayGridPlugin
+    ],
+
     headerToolbar: {
       left  : 'prev,next today',
       center: 'title',
