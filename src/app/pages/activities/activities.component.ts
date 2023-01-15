@@ -1,11 +1,11 @@
 import { NgModule, Component, enableProdMode, OnInit, ViewChild } from '@angular/core';
-import { ActivitiesService } from 'src/app/services/activities.service';
-import { ProgramaService } from 'src/app/services/programa.service';
-import { IActividadDTO } from 'src/app/models/IActividadDTO';
-import { EstadoActividadService } from 'src/app/services/estadoActividad.service';
-import { IUsuarioDTO } from 'src/app/models/IUsuarioDTO';
-import { UsersService } from 'src/app/services/users.service';
-import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
+import { ActivitiesService } from '../../services/activities.service';
+import { ProgramaService } from '../../services/programa.service';
+import { IActividadDTO } from '../../models/IActividadDTO';
+import { EstadoActividadService } from '../../services/estadoActividad.service';
+import { IUsuarioDTO } from '../../models/IUsuarioDTO';
+import { UsersService } from '../../services/users.service';
+import { IProgramaDTO } from '../../models/IProgramaDTO';
 
 
 if (!/localhost/.test(document.location.host)) {
@@ -115,17 +115,7 @@ export class ActivitiesComponent implements OnInit {
 	}
 
 	inicializarActividad(){
-		delete this.actividad.created_at;
-		delete this.actividad.descripcion;
-		delete this.actividad.estadoActividad_Descripcion;
-		delete this.actividad.estadoActividad_Id;
-		delete this.actividad.fecha;
-		delete this.actividad.id;
-		delete this.actividad.indicador_Id;
-		delete this.actividad.nombre;
-		delete this.actividad.nombreComprobante;
-		delete this.actividad.programa_nombre;
-		delete this.actividad.subindice_Id;
+		this.actividad=new IActividadDTO()
 	}
 
 	listarProgramas() {
@@ -164,6 +154,7 @@ export class ActivitiesComponent implements OnInit {
 		this.actividad.nombreComprobante="indefinido";
 		this.actividad.indicador_Id = 1;
     	this.actividad.estadoActividad_Id = 4;
+		this.actividad.fecha=new Date(this.actividad.fecha.getTime()-(5*60*60000));
 		this.popupVisible = false;
 		this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
 			this.isVisible = true;
@@ -186,6 +177,7 @@ export class ActivitiesComponent implements OnInit {
 		this.actividad.nombreComprobante="indefinido";
 		this.actividad.indicador_Id = 1;
 		this.popupEditVisible = false;
+		/* this.actividadEdit.fecha=new Date(this.actividad.fecha.getTime()-(5*60*60000)); */
 		this.activitiesService.editActividad(this.actividadEdit).subscribe((res: any) => {
 			this.isEditVisible = true;
 			this.listarActividades();
