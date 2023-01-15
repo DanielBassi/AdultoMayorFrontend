@@ -168,7 +168,7 @@ export class ActivitiesComponent implements OnInit {
 		this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
 			this.isVisible = true;
 			this.listarActividades();
-      console.log(this.actividad)
+      /* console.log(this.actividad) */
 
 		});
 	}

@@ -277,7 +277,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     this.programaService.insertPrograma(this.programa).subscribe((res:any) => {
       this.currentPrograma = res;
       this.programa = res;
-      console.log(this.programa);
+      /* console.log(this.programa); */
       this.isVisible = true;
       this.listarProgramas();
       this.listarComponentes(this.currentPrograma.id);
@@ -301,7 +301,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       this.manualesEdit.nombre=programaEdit.nombreManual
       this.listaDeManualesEdit.push(this.manualesEdit)
     }
-    console.log(programaEdit);
+    /* console.log(programaEdit); */
 
 	}
 
@@ -342,14 +342,14 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
     if (this.listaDeManuales.length == 0) {
 
-      console.log(event);
+      /* console.log(event); */
       this.manuales=event
       this.manuales.programa_id=this.programa.id
       this.programa.manuales=this.manuales
 
       this.programaService.editPrograma(this.programa).subscribe((res:any) => {
         this.programa = res;
-        console.log(this.programa);
+        /* console.log(this.programa); */
         this.listarProgramas();
         this.listarComponentes(this.programa.id);
         this.listarSubindices(this.programa.id);
@@ -367,7 +367,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
 
   editManual(event){
-    console.log(event);
+    /* console.log(event); */
     if (this.listaDeManualesEdit.length == 0) {
 
       this.manualesEdit=event
@@ -376,7 +376,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 
       this.programaService.editPrograma(this.programaEdit).subscribe((res:any) => {
         this.programaEdit = res;
-        console.log(this.programaEdit);
+        /* console.log(this.programaEdit); */
         this.listarProgramas();
         this.listarComponentes(this.currentProgramaEdit.id);
         this.listarSubindices(this.currentProgramaEdit.id);
@@ -391,15 +391,15 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
 
   deleteManual(event){
-    console.log(event);
+    /* console.log(event); */
     this.programa.manuales=event;
     this.programa.guidManual="";
     this.programa.nombreManual="";
-    console.log(this.programa);
+    /* console.log(this.programa); */
     this.listaDeManuales.pop();
     this.programaService.editPrograma(this.programa).subscribe((res:any) => {
       this.programa = res;
-      console.log(this.programa);
+      /* console.log(this.programa); */
       this.listarProgramas();
       this.listarComponentes(this.programa.id);
       this.listarSubindices(this.programa.id);
@@ -407,15 +407,15 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   }
 
   deleteManualEdit(event){
-    console.log(event);
+    /* console.log(event); */
     this.programaEdit.manuales=event;
     this.programaEdit.guidManual="";
     this.programaEdit.nombreManual="";
-    console.log(this.programaEdit);
+    /* console.log(this.programaEdit); */
     this.listaDeManualesEdit.pop();
     this.programaService.editPrograma(this.programaEdit).subscribe((res:any) => {
       this.programaEdit = res;
-      console.log(this.programaEdit);
+      /* console.log(this.programaEdit); */
       this.listarProgramas();
       this.listarComponentes(this.programaEdit.id);
       this.listarSubindices(this.programaEdit.id);
@@ -464,7 +464,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
 	}
 
   formSubindiceDelete() {
-    console.log(this.subindiceDelete.id);
+    /* console.log(this.subindiceDelete.id); */
 
     this.subindiceService.deleteSubindice(this.subindiceDelete.id).subscribe((res:any) => {
       let x = res;

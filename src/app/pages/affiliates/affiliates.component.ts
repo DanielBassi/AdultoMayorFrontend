@@ -59,7 +59,7 @@ export class AffiliatesComponent implements OnInit {
 
   }
 
-  crudEvento(crud: any) {
+  /* crudEvento(crud: any) {
     this.popupVisible = false
     switch (crud.accion) {
       case 'INSERT':
@@ -76,9 +76,9 @@ export class AffiliatesComponent implements OnInit {
         })
       break;
     }
-  }
+  } */
 
-  deleteAfiliado( afiliado: IAfiliadoDTO ) {
+  /* deleteAfiliado( afiliado: IAfiliadoDTO ) {
     Swal.fire({
       title: `¿Estás seguro que deseas eliminar el afiliado (${afiliado.nombre})?`,
       showCancelButton: true,
@@ -92,6 +92,6 @@ export class AffiliatesComponent implements OnInit {
         })
       }
     })
-  }
+  } */
 
 }

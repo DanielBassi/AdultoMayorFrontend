@@ -40,11 +40,11 @@ export class DashboardComponent implements OnInit {
 
   clickEvent(arg: any) {
     this.actividadId=arg.event.id;
-    console.log(this.actividadId);
-    console.log(this.actividades);
+    /* console.log(this.actividadId);
+    console.log(this.actividades); */
     this.actividadDetails=null;
     this.actividadDetails = this.actividades.find(f=>f.id==this.actividadId);
-    console.log(this.actividadDetails);
+    /* console.log(this.actividadDetails); */
     this.popupDetailsVisible = true;
   }
 
@@ -55,8 +55,8 @@ export class DashboardComponent implements OnInit {
     this.listarActividades();
     this.listarActividadesCalendario();
     this.listarProgramas();
-    console.log(this.actividades);
-    console.log(this.actividadDetails);
+    /* console.log(this.actividades);
+    console.log(this.actividadDetails); */
   }
 
   listarActividadesCalendario() {

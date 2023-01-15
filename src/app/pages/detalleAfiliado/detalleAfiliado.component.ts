@@ -30,9 +30,9 @@ export class DetalleAfiliadoComponent implements OnInit {
       })
       this.crud.accion=this.metodo
     }
-    console.log(this.id);
+    /* console.log(this.id);
     console.log(this.metodo);
-    console.log(this.crud);
+    console.log(this.crud); */
 
 
 
@@ -57,7 +57,7 @@ export class DetalleAfiliadoComponent implements OnInit {
         })
       break;
     }
-    console.log(e);
+    /* console.log(e); */
     this.router.navigate(['/affiliates']);
     /* this.navigateTo('/dashboard/affiliates') */
   }

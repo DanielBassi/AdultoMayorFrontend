@@ -127,7 +127,7 @@ export class FormAfiliadoComponent implements OnInit {
 
   submit(event: Event) {
     event.preventDefault()
-    console.log(this.crud.entidad)
+    /* console.log(this.crud.entidad) */
     this.crudEvent.emit({...this.crud})
 
       this.crud.entidad = new IAfiliadoDTO()
@@ -144,20 +144,20 @@ export class FormAfiliadoComponent implements OnInit {
     useSubmitBehavior: false,
     onClick: (data) => this.popupVisibleAlergias = true
   }
-
+  
   buttonOptionsEstadoSalud = {
     text: 'Estado de salud',
     type: 'default',
-    icon: 'fas fa-info-circle',
+    icon: 'fa-sharp fa-solid fa-notes-medical',
     width: '200',
     useSubmitBehavior: false,
     onClick: (data) => this.popupVisibleEstadosalud = true
   }
-
+  
   buttonOptionsEnfermedadesBase = {
-    text: 'Enfermedades',
+    text: ' Enfermedades',
     type: 'default',
-    icon: 'fas fa-images',
+    icon: 'fa-solid fa-bed-pulse',
     width: '200',
     useSubmitBehavior: false,
     onClick: (data) => this.popupVisibleEnfermedades = true
