@@ -19,9 +19,9 @@ export class AffiliatesComponent implements OnInit {
     accion: 'INSERT'
   }
 
-  constructor(private affiliateService: AffiliateService, private sharedService: SharedService,private router:Router) {
-      router.events.subscribe(val => {this.listarAfiliados()})
-    }
+  constructor(private affiliateService: AffiliateService, private sharedService: SharedService, private router: Router) {
+    router.events.subscribe(val => { this.listarAfiliados() })
+  }
 
   ngOnInit() {
     this.listarAfiliados();
@@ -40,22 +40,22 @@ export class AffiliatesComponent implements OnInit {
     this.popupVisible = true
   }
 
-  editAfiliado( afiliado: IAfiliadoDTO ) {
+  editAfiliado(afiliado: IAfiliadoDTO) {
     this.crud = {
       entidad: afiliado,
       accion: 'UPDATE'
     }
-    this.router.navigate(['/affiliates/edit',afiliado.id,this.crud.accion])
+    this.router.navigate(['/affiliates/edit', afiliado.id, this.crud.accion])
   }
 
-  detailsAfiliado( afiliado: any ) {
+  detailsAfiliado(afiliado: any) {
     /* console.log(afiliado); */
 
     this.crud = {
       entidad: afiliado,
       accion: 'VIEW'
     }
-    this.router.navigate(['/affiliates/detail',afiliado.id,this.crud.accion])
+    this.router.navigate(['/affiliates/detail', afiliado.id, this.crud.accion])
 
   }
 
@@ -78,7 +78,7 @@ export class AffiliatesComponent implements OnInit {
     }
   } */
 
-  /* deleteAfiliado( afiliado: IAfiliadoDTO ) {
+  deleteAfiliado(afiliado: IAfiliadoDTO) {
     Swal.fire({
       title: `¿Estás seguro que deseas eliminar el afiliado (${afiliado.nombre})?`,
       showCancelButton: true,
@@ -87,11 +87,11 @@ export class AffiliatesComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.affiliateService.deleteDeleteAfiliado(afiliado.id).subscribe((res: any) => {
-          this.sharedService.notify('Servicio eliminado exitosamente', 'success')
+          this.sharedService.notify('Afiliado eliminado exitosamente', 'success')
           this.listarAfiliados();
         })
       }
     })
-  } */
+  }
 
 }

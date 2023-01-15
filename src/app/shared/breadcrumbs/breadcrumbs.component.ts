@@ -14,11 +14,11 @@ export class BreadcrumbsComponent implements OnDestroy {
   public tituloSubs$: Subscription;
 
 
-  constructor(private router:Router) { 
+  constructor(private router:Router) {
     this.tituloSubs$=this.getArgumentos().subscribe(({titulo}) => {
 
       this.titulo = titulo;
-      document.title= `adminlte - ${titulo}`;
+      document.title= `Adulto Mayor - ${titulo}`;
     })
   }
 
@@ -32,7 +32,7 @@ export class BreadcrumbsComponent implements OnDestroy {
       filter((event:any) => event instanceof ActivationEnd),
       filter((event:ActivationEnd) => event.snapshot.firstChild === null),
       map((event:ActivationEnd) =>event.snapshot.data)
-      
+
     )
   }
 

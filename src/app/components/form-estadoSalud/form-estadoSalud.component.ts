@@ -29,20 +29,12 @@ export class FormEstadoSaludComponent implements OnInit {
   }
 
   agregarEstadoSalud(event) {
-
-    /* console.log(this.estadoSalud); */
-
-
     if(this.estadosSaludAfiliado===undefined){
       this.estadosSaludAfiliado=[]
     }
-    /* this.estadoSalud.fecha.setHours(0,0,0,0) */
-    /* console.log(this.estadoSalud.fecha.getTime()); */
     if (this.estadosSaludAfiliado.map(e => moment(e.fecha).format('DD/MM/YYYY')).indexOf(moment({ ...this.estadoSalud }.fecha).format('DD/MM/YYYY')) === -1) {
 
-      /* this.estadosSalud.push(this.estadoSalud) */
       this.estadoSaludEvent.emit([...this.estadosSaludAfiliado,{...this.estadoSalud}].sort((a, b) => (a.fecha > b.fecha) ? 1 : -1))
-      /* console.log(this.estadosSalud); */
       this.estadoSalud = new IEstadoSaludAfiliadoDTO();
     }
 

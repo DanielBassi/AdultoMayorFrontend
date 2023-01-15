@@ -5,8 +5,10 @@ import { IJwtResponse } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment'
-
-
+import { CookieService } from "ngx-cookie-service"
+import { AppState } from '../store/app.reducers'
+import * as reduxActions from '../store/actions'
+import { Store } from '@ngrx/store'
 
 @Injectable()
 export class AuthService {
@@ -16,7 +18,7 @@ export class AuthService {
   private token: string;
   private Id: number;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cookies: CookieService,private store: Store<AppState>,) { }
 
 
   register(user: IUser): Observable<IJwtResponse> {
@@ -69,7 +71,7 @@ export class AuthService {
     this.token = any;
   }
 
-  private getToken(): string {
+  private getTokenPrivate(): string {
     if (!this.token) {
       this.token = localStorage.getItem("ACCESS_TOKEN");
     }
@@ -77,6 +79,14 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return !!this.getToken()
+    return !!this.getTokenPrivate()
+  }
+
+  getToken() {
+    return this.cookies.get("access_token") !== '' ? JSON.parse(this.cookies.get("access_token")) : null
+  }
+
+  setLoadingVisible (loadingVisible: boolean) {
+    this.store.dispatch( reduxActions.setLoadingVisible( { loadingVisible: loadingVisible } ) )
   }
 }
