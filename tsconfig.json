@@ -19,7 +19,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
     "lib": [
       "es2020",
@@ -41,7 +41,8 @@
       "jszip": [
         "node_modules/jszip/dist/jszip.min.js"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
