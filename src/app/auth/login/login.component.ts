@@ -25,5 +25,4 @@ export class LoginComponent implements OnInit {
   navigateHome(){
     this.router.navigate(['/auth/home'])
   }
-
 }
