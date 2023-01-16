@@ -6,11 +6,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-
-
+import { StoreModule } from '@ngrx/store';
+import { JwtModule } from '@auth0/angular-jwt';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesModule } from './pages/pages.module';
 import { HttpRequestInterceptor } from './Interceptor/HttpRequest.interceptor';
+import { appReducers } from './store/app.reducers'
 
 
 @NgModule({
@@ -39,9 +40,28 @@ import { HttpRequestInterceptor } from './Interceptor/HttpRequest.interceptor';
     DxValidatorModule,
     DxValidationSummaryModule,
     DxFileUploaderModule,
-    DxSwitchModule
+    DxSwitchModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        allowedDomains: ["example.com"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      },
+    }),
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+      autoPause: true,
+      features: {
+        pause: false,
+        lock: true,
+        persist: true
+      }
+    }),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },StoreDevtoolsModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },StoreDevtoolsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
