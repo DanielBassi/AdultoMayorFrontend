@@ -29,6 +29,13 @@ export class AffiliateService {
 		return this.http.put(`${this.ROOT_SERVE}/api/Afiliado`, { ...afiliado });
 	}
 
+  putReactiveAfiliado(afiliado_id: string) {
+    let params = new HttpParams({
+      fromObject: { afiliado_id:afiliado_id },
+    });
+    return this.http.delete(`${this.ROOT_SERVE}/api/Afiliado/ReactivarAfiliado`, {params});
+  }
+
   deleteDeleteAfiliado(afiliado_id: string) {
     let params = new HttpParams({
       fromObject: { afiliado_id:afiliado_id },

@@ -94,4 +94,22 @@ export class AffiliatesComponent implements OnInit {
     })
   }
 
+  reactiveAfiliado(afiliado: IAfiliadoDTO) {
+    Swal.fire({
+      title: `¿Estás seguro que deseas reactivar el afiliado (${afiliado.nombre})?`,
+      showCancelButton: true,
+      confirmButtonText: 'Si, reactivar',
+      cancelButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.affiliateService.putReactiveAfiliado(afiliado.id).subscribe((res: any) => {
+          this.sharedService.notify('Afiliado reactivado exitosamente', 'success')
+          this.listarAfiliados();
+        })
+      }
+    })
+  }
+
+
+
 }
