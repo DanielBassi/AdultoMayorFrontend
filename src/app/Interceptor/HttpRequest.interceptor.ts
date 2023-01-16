@@ -32,7 +32,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         }),
         catchError((error: HttpErrorResponse) => {
 
-          notify(`${error.error.message}`, 'error', 2000)
+          notify(`${error.error}`, 'error', 2000)
           this.authService.setLoadingVisible(false)
 
           /* if( error.error.statusError === 401 )
