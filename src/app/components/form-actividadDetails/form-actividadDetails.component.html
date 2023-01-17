@@ -1,3 +1,4 @@
+
 <form (submit)="formHide()">
   <dx-form [(formData)]="actividad">
     <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
@@ -14,8 +15,20 @@
       <dxi-item [colSpan]="2" dataField="estadoActividad_Descripcion" [label]="{ text: 'Estado' }"  [editorOptions]="{ readOnly: true }"></dxi-item>
       <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}" [editorOptions]="{ readOnly: true }"></dxi-item>
     </dxi-item>
-    <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-        [buttonOptions]="buttonOptionsClose">
+    <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+      <dxi-item [colSpan]="1"  horizontalAlignment="center" verticalAlignment="bottom">
+        <div style="margin: auto;">
+          <dx-button horizontalAlignment="center" icon="fa fa-check" text="Agregar asistentes" class="positionButon" hint="Aprobación"  type="success"  (onClick)="showPopUp()"></dx-button>
+        </div>
+      </dxi-item>
+      <dxi-item [colSpan]="1" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+      [buttonOptions]="buttonOptionsClose">
+      </dxi-item>
     </dxi-item>
+
   </dx-form>
 </form>
+<dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Asistencias" [dragEnabled]="true"
+  [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleAsistencia">
+  <app-form-asistenciaActividad [actividad]="actividad"></app-form-asistenciaActividad>
+</dx-popup>

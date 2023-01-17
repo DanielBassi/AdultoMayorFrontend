@@ -11,6 +11,8 @@ export class FormActividadDetailsComponent implements OnInit , OnChanges {
   @Input() actividad: IActividadDTO = new IActividadDTO()
   @Output() visibleEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  popupVisibleAsistencia:boolean=false
+
   constructor() { }
 
   buttonOptionsClose = {
@@ -23,6 +25,10 @@ export class FormActividadDetailsComponent implements OnInit , OnChanges {
 	}
 
   ngOnInit() {
+  }
+
+  showPopUp(){
+    this.popupVisibleAsistencia=true
   }
 
   ngOnChanges(actividad:SimpleChanges) {

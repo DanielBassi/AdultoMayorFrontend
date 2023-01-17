@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormEstadoSaludComponent } from './form-estadoSalud/form-estadoSalud.component';
 import { FormAlergiasAfiliadoComponent } from './form-alergiasAfiliado/form-alergiasAfiliado.component'
 import { FormEnfermedadBaseAfiliadoComponent } from './form-enfermedadBaseAfiliado/form-enfermedadBaseAfiliado.component';
+import { FormAsistenciaActividadComponent } from './form-asistenciaActividad/form-asistenciaActividad.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -31,7 +32,7 @@ import { FormEnfermedadBaseAfiliadoComponent } from './form-enfermedadBaseAfilia
     DxCheckBoxModule,
     DxDateBoxModule
   ],
-  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent],
-  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent]
+  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent],
+  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent]
 })
 export class ComponentsModule { }

@@ -21,6 +21,13 @@ export class AffiliateService {
     return this.http.get(`${this.ROOT_SERVE}/api/Afiliado/InfoAfiliado`,{params});
   }
 
+  getListAfiliadosActivosByActividad(actividad_id: number){
+    let params = new HttpParams({
+      fromObject: { actividad_id:actividad_id },
+    });
+    return this.http.get(`${this.ROOT_SERVE}/api/Afiliado/ListarByActividad`,{params});
+  }
+
   postInsertAfiliado(afiliado: any) {
 		return this.http.post(`${this.ROOT_SERVE}/api/Afiliado`, { ...afiliado });
 	}

@@ -39,5 +39,22 @@ export class ActivitiesService {
     return this.http.delete(`${this.ROOT_SERVE}/api/Actividad`, {params});
   }
 
+  postInsertAsistencia(actividad_id:number,afiliado_id:string) {
+    const asistencia = {
+      'actividad_id':actividad_id,
+      'afiliado_id':afiliado_id
+    }
+
+    return this.http.post(`${this.ROOT_SERVE}/api/AsistenciasActividades`,{...asistencia  });
+  }
+
+  deleteDeleteAsistencia(actividad_id:number,afiliado_id:string) {
+    const asistencia2 = {
+      'actividad_id':actividad_id,
+      'afiliado_id':afiliado_id
+    }
+
+    return this.http.post(`${this.ROOT_SERVE}/api/AsistenciasActividades/Delete`,{...asistencia2 });
+  }
 
 }
