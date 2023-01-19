@@ -9,10 +9,13 @@ import { FormEstadoSaludComponent } from './form-estadoSalud/form-estadoSalud.co
 import { FormAlergiasAfiliadoComponent } from './form-alergiasAfiliado/form-alergiasAfiliado.component'
 import { FormEnfermedadBaseAfiliadoComponent } from './form-enfermedadBaseAfiliado/form-enfermedadBaseAfiliado.component';
 import { FormAsistenciaActividadComponent } from './form-asistenciaActividad/form-asistenciaActividad.component';
+import { DxReportViewerModule } from 'devexpress-reporting-angular';
+import { ReporteComponent } from './reporte/reporte.component';
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
+    DxReportViewerModule,
     DxDataGridModule,
     DxButtonModule,
     DxSelectBoxModule,
@@ -32,7 +35,7 @@ import { FormAsistenciaActividadComponent } from './form-asistenciaActividad/for
     DxCheckBoxModule,
     DxDateBoxModule
   ],
-  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent],
-  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent]
+  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent],
+  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent]
 })
 export class ComponentsModule { }
