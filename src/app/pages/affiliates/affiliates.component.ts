@@ -59,24 +59,6 @@ export class AffiliatesComponent implements OnInit {
 
   }
 
-  /* crudEvento(crud: any) {
-    this.popupVisible = false
-    switch (crud.accion) {
-      case 'INSERT':
-        this.affiliateService.postInsertAfiliado(crud.entidad).subscribe(res=> {
-          this.sharedService.notify('Afiliado creado exitosamente', 'success')
-          this.listarAfiliados()
-        })
-      break;
-
-      case 'UPDATE':
-        this.affiliateService.putEditAfiliado(crud.entidad).subscribe(res=> {
-          this.sharedService.notify('Afiliado actualizado exitosamente', 'success')
-          this.listarAfiliados()
-        })
-      break;
-    }
-  } */
 
   deleteAfiliado(afiliado: IAfiliadoDTO) {
     Swal.fire({

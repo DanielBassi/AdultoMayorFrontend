@@ -1,0 +1,58 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="col-lg-2 mb-2">
+            <dx-button type="success" text="Agregar afiliado" icon="fa fa-plus" (onClick)="showFormPrograma()"></dx-button>
+
+          </div>
+          <div class="card">
+            <div id="data-grid-demo">
+              <dx-data-grid
+                id="gridContainer"
+                [dataSource]="programas"
+                [remoteOperations]="false"
+                [allowColumnReordering]="true"
+                [rowAlternationEnabled]="true"
+                [showBorders]="true"
+              >
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-paging [enabled]="true"></dxo-paging>
+                <dxi-column dataField="nombre" caption="Nombre Programa"></dxi-column>
+                <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
+                  <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+                    <dx-button icon="fas fa-info" class="positionButon ml-1" hint="Detalles"  type="success"  (onClick)="detailsPrograma(data.data)"></dx-button>
+                    <!-- <dx-button icon="fas fa-folder" class="positionButon ml-1" hint="Ver manual"  type="success"  stylingMode="outlined"></dx-button> -->
+                    <dx-button icon="fas fa-edit" class="positionButon ml-1" hint="Editar"  type="default"  (onClick)="editPrograma(data.data)"></dx-button>
+                    <dx-button icon="fas fa-window-close"class="positionButon ml-1" hint="Eliminar"  type="danger" (onClick)="deletePrograma(data.data)"></dx-button>
+
+
+                  </div>
+                </dxi-column>
+
+              </dx-data-grid>
+            </div>
+
+            <dx-popup [width]="800" [height]="600" [showTitle]="true" title="Formulario de programa" [dragEnabled]="true" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible" (onHidden)="inicializarPrograma()">
+              <dx-scroll-view width="100%" height="100%">
+                <app-form-programa (crudEvent)="crudEvento($event)" [crud]="crud"></app-form-programa>
+              </dx-scroll-view>
+            </dx-popup>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

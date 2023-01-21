@@ -11,6 +11,7 @@ import { AffiliatesComponent } from './affiliates/affiliates.component';
 import { DetalleAfiliadoComponent } from './detalleAfiliado/detalleAfiliado.component';
 import { AuthGuard } from '../guard/auth.guard';
 import { ReporteComponent } from '../components/reporte/reporte.component';
+import { ProgramaComponent } from './programa/programa.component'
 
 const routes:Routes=[
   {
@@ -28,7 +29,8 @@ const routes:Routes=[
       {path:'affiliates/insert',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}},
       {path:'affiliates/detail/:id/:metodo',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}},
       {path:'affiliates/edit/:id/:metodo',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}},
-      {path:'reports',component:ReporteComponent, data:{titulo: 'Reportes'}}
+      {path:'reports',component:ReporteComponent, data:{titulo: 'Reportes'}},
+      {path:'borrador',component:ProgramaComponent, data:{titulo: 'borrador'}}
 
     ]
   }

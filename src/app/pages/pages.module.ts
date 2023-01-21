@@ -15,7 +15,7 @@ import dxTextArea from 'devextreme/ui/text_area';
 import { BrowserModule } from '@angular/platform-browser';
 import { ComponentsModule } from '../components/components.module'
 import { FullCalendarModule } from '@fullcalendar/angular';
-
+import { ProgramaComponent } from './programa/programa.component'
 
 
 
@@ -27,7 +27,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ActivitiesComponent,
     IndicatorsComponent,
     AffiliatesComponent,
-    DetalleAfiliadoComponent
+    DetalleAfiliadoComponent,
+    ProgramaComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +60,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ActivitiesComponent,
     IndicatorsComponent,
     AffiliatesComponent,
-    DetalleAfiliadoComponent
+    DetalleAfiliadoComponent,
+    ProgramaComponent
   ]
 })
 export class PagesModule { }

@@ -11,6 +11,8 @@ import { FormEnfermedadBaseAfiliadoComponent } from './form-enfermedadBaseAfilia
 import { FormAsistenciaActividadComponent } from './form-asistenciaActividad/form-asistenciaActividad.component';
 import { DxReportViewerModule } from 'devexpress-reporting-angular';
 import { ReporteComponent } from './reporte/reporte.component';
+import { FormSubindiceComponent } from './form-subindice/form-subindice.component'
+import { FormProgramaComponent } from './form-programa/form-programa.component'
 @NgModule({
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { ReporteComponent } from './reporte/reporte.component';
     DxCheckBoxModule,
     DxDateBoxModule
   ],
-  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent],
-  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent]
+  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent,FormSubindiceComponent,FormProgramaComponent],
+  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent,FormSubindiceComponent,FormProgramaComponent]
 })
 export class ComponentsModule { }
