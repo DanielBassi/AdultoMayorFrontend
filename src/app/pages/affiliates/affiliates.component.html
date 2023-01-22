@@ -39,7 +39,7 @@
                     <dx-button icon="fas fa-edit" class="positionButon ml-1" hint="Editar"  type="default"  (onClick)="editAfiliado(data.data)"></dx-button>
                     <dx-button icon="{{data.data.estado==1?'fas fa-window-close':'fas fa-check'}}" class="positionButon ml-1" hint="{{data.data.estado==1?'Inactivar afiliado':'Activar afiliado'}}" type="{{data.data.estado==1?'danger':'success'}}"
                     (onClick)="data.data.estado==1?deleteAfiliado(data.data):reactiveAfiliado(data.data)"></dx-button>
-
+                    <dx-button icon="fas fa-print" class="positionButon ml-1" hint="Imprimir ficha tecnica"  type="default"  (onClick)="printAfiliado(data.data)"></dx-button>
                   </div>
                 </dxi-column>
               </dx-data-grid>

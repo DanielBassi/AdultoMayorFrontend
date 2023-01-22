@@ -59,6 +59,9 @@ export class AffiliatesComponent implements OnInit {
 
   }
 
+  printAfiliado(afiliado: any) {
+    this.router.navigate(['/reports', afiliado.id])
+  }
 
   deleteAfiliado(afiliado: IAfiliadoDTO) {
     Swal.fire({
