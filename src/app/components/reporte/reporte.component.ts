@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -20,7 +21,7 @@ export class ReporteComponent implements OnInit {
   afiliado_id: string ;
   title = 'DXReportViewerSample';
   reportUrl: string = 'FichaTecnica/';
-  hostUrl: string = 'https://localhost:44317/api/';
+  hostUrl: string = `${environment.API_URL}/api/`;
   // Use this line if you use an ASP.NET MVC backend
   //invokeAction: string = "/WebDocumentViewer/Invoke";
   // Use this line if you use an ASP.NET Core backend
@@ -31,6 +32,5 @@ export class ReporteComponent implements OnInit {
   ngOnInit() {
     this.afiliado_id=this.rutaActiva.snapshot.paramMap.get('afiliado_id')
     this.reportUrl += this.afiliado_id
-    console.log(this.reportUrl)
   }
 }

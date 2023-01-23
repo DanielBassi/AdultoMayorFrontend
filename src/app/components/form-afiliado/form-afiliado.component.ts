@@ -63,7 +63,7 @@ export class FormAfiliadoComponent implements OnInit {
     }
   }
   private listarGeneros(){
-    this.generos=["Masculino","Femenino", "Otro"]
+    this.generos=["Masculino","Femenino"]
   }
   private listarTipos(){
     this.tipos=["c.c.","t.i.","r.c."]
