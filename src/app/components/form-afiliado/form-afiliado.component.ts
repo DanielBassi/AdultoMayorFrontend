@@ -73,7 +73,7 @@ export class FormAfiliadoComponent implements OnInit {
     this.rh=["+","-"]
   }
   private listarRazas(){
-    this.razas=["AFRODESCENDIENTE","IDIGENA","ROOM","PALENQUE","RAIZAL", "OTRO","NINGUNO"]
+    this.razas=["AFRODESCENDIENTE","INDIGENA","ROOM","PALENQUE","RAIZAL", "OTRO","NINGUNO"]
   }
 
 
@@ -144,7 +144,7 @@ export class FormAfiliadoComponent implements OnInit {
     useSubmitBehavior: false,
     onClick: (data) => this.popupVisibleAlergias = true
   }
-  
+
   buttonOptionsEstadoSalud = {
     text: 'Estado de salud',
     type: 'default',
@@ -153,7 +153,7 @@ export class FormAfiliadoComponent implements OnInit {
     useSubmitBehavior: false,
     onClick: (data) => this.popupVisibleEstadosalud = true
   }
-  
+
   buttonOptionsEnfermedadesBase = {
     text: ' Enfermedades',
     type: 'default',
