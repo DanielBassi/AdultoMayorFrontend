@@ -215,18 +215,27 @@
   </div>
 </div>
 
-<dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Estado de salud" [dragEnabled]="true"
+<dx-popup [maxWidth]="'700'" [maxHeight]="'600'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Estado de salud" [dragEnabled]="true"
   [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleEstadosalud">
-  <app-form-estadoSalud [modoView]="modoView" [estadosSaludAfiliado]="crud.entidad.estadosSaludAfiliado" (estadoSaludEvent)="estadoSaludEvent($event)"></app-form-estadoSalud>
+  <dx-scroll-view width="100%" height="100%">
+    <app-form-estadoSalud [modoView]="modoView" [estadosSaludAfiliado]="crud.entidad.estadosSaludAfiliado" (estadoSaludEvent)="estadoSaludEvent($event)"></app-form-estadoSalud>
+  </dx-scroll-view>
+  
 </dx-popup>
 
-<dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Alergias" [dragEnabled]="true"
+<dx-popup [maxWidth]="'700'" [maxHeight]="'600'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Alergias" [dragEnabled]="true"
   [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleAlergias">
-  <app-form-alergiasAfiliado [modoView]="modoView" [alergiasAfiliado]="crud.entidad.alergiasAfiliado" (alergiaEvent)="alergiaEvent($event)"></app-form-alergiasAfiliado>
+  <dx-scroll-view width="100%" height="100%">
+    <app-form-alergiasAfiliado [modoView]="modoView" [alergiasAfiliado]="crud.entidad.alergiasAfiliado" (alergiaEvent)="alergiaEvent($event)"></app-form-alergiasAfiliado>
+  </dx-scroll-view>
+  
 </dx-popup>
 
-<dx-popup [maxWidth]="'700'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Alergias" [dragEnabled]="true"
+<dx-popup [maxWidth]="'700'" [maxHeight]="'600'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Alergias" [dragEnabled]="true"
   [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleEnfermedades">
-  <app-form-enfermedadBaseAfiliado [modoView]="modoView" [enfermedadesBaseAfiliado]="crud.entidad.enfermedadesBaseAfiliado" (enfermedadEvent)="enfermedadEvent($event)"></app-form-enfermedadBaseAfiliado>
+  <dx-scroll-view width="100%" height="100%">
+    <app-form-enfermedadBaseAfiliado [modoView]="modoView" [enfermedadesBaseAfiliado]="crud.entidad.enfermedadesBaseAfiliado" (enfermedadEvent)="enfermedadEvent($event)"></app-form-enfermedadBaseAfiliado>
+  </dx-scroll-view>
+  
 </dx-popup>
 
