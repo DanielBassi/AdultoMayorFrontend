@@ -1,9 +1,9 @@
 export class ISubindiceDTO {
     id:number
     nombre: string
-    programa_Id:number
-    indicador:string
     estado:boolean
+    indicador:string
+    programa_Id:number
     created_at:Date
 
     /**
@@ -13,8 +13,8 @@ export class ISubindiceDTO {
     this.id = 0
     this.nombre = ''
     this.estado = true
-    this.programa_Id = 0
     this.indicador = ''
+    this.programa_Id = 0
     this.created_at = new Date
 
     }

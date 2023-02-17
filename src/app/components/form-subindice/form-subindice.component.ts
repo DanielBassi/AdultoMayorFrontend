@@ -30,6 +30,7 @@ export class FormSubindiceComponent implements OnInit {
     if(this.subindices===undefined){
       this.subindices=[]
     }
+    console.log(this.subindice);
     this.subindices.push(this.subindice)
     this.subindiceEvent.emit([...this.subindices,{...this.subindice}])
       this.subindice = new ISubindiceDTO();
@@ -48,7 +49,7 @@ export class FormSubindiceComponent implements OnInit {
   }
 
   buttonOptionsSave = {
-    text: 'Guardar',
+    text: 'Agregar subindice',
     type: 'success',
     icon: 'fa fa-save',
     width: '200',

@@ -30,7 +30,7 @@ const routes:Routes=[
       {path:'affiliates/detail/:id/:metodo',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}},
       {path:'affiliates/edit/:id/:metodo',component:DetalleAfiliadoComponent, data:{titulo: 'Formulario de afiliado'}},
       {path:'reports/:afiliado_id',component:ReporteComponent, data:{titulo: 'Reportes'}},
-      {path:'borrador',component:ProgramaComponent, data:{titulo: 'borrador'}}
+      {path:'borrador',component:ProgramaComponent, data:{titulo: 'Programas'}}
 
     ]
   }

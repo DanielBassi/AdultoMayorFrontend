@@ -3,15 +3,15 @@
 
 
 
-- programas crud front (falta detalles)
-
-- fecha por hora en actividad (hecho pero se adelanta 5 horas)
 
 
-- div colores por programa (FALTA ESPECIFICAR EL MES)
 
 
-- borrado en cascada
+
+
+
+
+
 
 - eliminacion de entidades
 

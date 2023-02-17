@@ -3,7 +3,7 @@
     <form (submit)="agregarSubindice($event)" >
       <dx-form id="form" [colCount]="2" [(formData)]="subindice" labelLocation="top" [disabled]="false" [readOnly]="modoView">
 
-        <dxi-item [colSpan]="2" [label]="{text:'Nombre subindice'}" dataField="nombre">
+        <dxi-item [colSpan]="2" [label]="{text:'Nombre componente'}" dataField="nombre">
           <dxi-validation-rule type="required" ></dxi-validation-rule>
           <dxi-validation-rule
             type="stringLength"
@@ -11,7 +11,7 @@
             message="Este campo debe tener al menos 2 caracteres"
           ></dxi-validation-rule>
         </dxi-item>
-        <dxi-item [colSpan]="2" editorType="dxTextArea" [label]="{text:'Indicador'}" dataField="indicador">
+        <dxi-item [colSpan]="2" editorType="dxTextArea" [label]="{text:'Indicadores'}" dataField="indicador">
           <dxi-validation-rule type="required" ></dxi-validation-rule>
           <dxi-validation-rule
             type="stringLength"
@@ -25,11 +25,7 @@
             <dxi-item [colSpan]="1" itemType="button" horizontalAlignment="center" verticalAlignment="bottom" [buttonOptions]="buttonOptionsSave">
             </dxi-item>
           </dxi-item>
-          <dxi-item>
-            <div>
-              <dx-button width="200" type="success" text="Agregar subindice" icon="fa fa-save" (onClick)="agregarSubindice($event)"></dx-button>
-            </div>
-          </dxi-item>
+
         </dxi-item>
 
       </dx-form>
@@ -38,8 +34,8 @@
 </div>
 
 <dx-data-grid id="gridContainerSubindices" [dataSource]="subindices" [showBorders]="true">
-  <dxi-column dataField="nombre" caption="Nombre subindice"></dxi-column>
-  <dxi-column dataField="indicador" caption="Indicador"></dxi-column>
+  <dxi-column dataField="nombre" caption="Nombre componente"></dxi-column>
+  <dxi-column dataField="indicador" caption="Indicadores"></dxi-column>
   <dxi-column caption="acción" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
   </dxi-column>
   <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">

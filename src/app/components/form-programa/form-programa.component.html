@@ -29,7 +29,7 @@
         <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
           <dxi-item>
             <div class="mb-2">
-              <dx-button type="success" text="Subindices" icon="fa fa-plus" (onClick)="showSubindicePopUp()"></dx-button>
+              <dx-button type="success" text="Componentes" icon="fa fa-plus" (onClick)="showSubindicePopUp()"></dx-button>
             </div>
           </dxi-item>
 
@@ -43,7 +43,7 @@
 </div>
 
 
-<dx-popup [width]="600" [height]="600" [showTitle]="true" title="Crear nuevo subindice" [dragEnabled]="false"
+<dx-popup [width]="600" [height]="600" [showTitle]="true" title="Crear nuevo componente" [dragEnabled]="false"
   [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceVisible">
   <dx-scroll-view width="100%" height="100%">
     <app-form-subindice [modoView]="modoView" [subindices]="crud.entidad.subindices" (subindiceEvent)="subindiceEvent($event)"></app-form-subindice>
