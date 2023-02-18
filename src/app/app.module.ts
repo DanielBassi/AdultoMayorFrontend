@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesModule } from './pages/pages.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { PagesModule } from './pages/pages.module';
     DxSwitchModule,
     HttpClientModule
   ],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
