@@ -1,0 +1,42 @@
+
+
+
+.m-signature-pad--body canvas {
+  border: 1px solid black;
+}
+.m-signature-pad--footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.m-signature-pad--footer .button.clear {
+  left: 0;
+  width: 173px;
+  height: 34px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Helvetica Neue","Segoe UI",helvetica,verdana,sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  background: #d9534f;
+  border: none;
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+.m-signature-pad--footer .button.save {
+  right: 0;
+  width: 173px;
+  height: 34px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Helvetica Neue","Segoe UI",helvetica,verdana,sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  background: #337ab7;
+  border: none;
+  color: #ffffff;
+  margin-top: 5px;
+}

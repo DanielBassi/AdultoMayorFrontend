@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, SimpleChanges, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, SimpleChanges, EventEmitter,ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { IAfiliadoDTO } from '../../models/IAfiliadoDTO'
 import { AffiliateService } from  '../../services/affiliate.service';
@@ -8,13 +8,16 @@ import{ IEstadoSaludAfiliadoDTO } from "../../models/IEstadoSaludAfiliadoDTO"
   templateUrl: './form-afiliado.component.html',
   styleUrls: ['./form-afiliado.component.css']
 })
-export class FormAfiliadoComponent implements OnInit {
-
+export class FormAfiliadoComponent implements OnInit, AfterViewInit {
+  @ViewChild('myCanvasFirmaAfiliado')
+  /* @ViewChild('myCanvasFirmaAcudiente') */
   @Output() crudEvent: EventEmitter<any> = new EventEmitter<any>()
   @Input() crud: any = {
     entidad: new IAfiliadoDTO(),
     accion: 'INSERT'
   }
+  canvas: ElementRef<HTMLCanvasElement> = {} as ElementRef;
+  context: CanvasRenderingContext2D;
 
   afiliados: IAfiliadoDTO[] =[]
   estadosSaludAfiliado: IEstadoSaludAfiliadoDTO[]
@@ -30,6 +33,7 @@ export class FormAfiliadoComponent implements OnInit {
   sabeLeer: boolean = false
   viveSolo: boolean = false
   popupVisibleAlergias: boolean = false
+  popupVisibleFirma: boolean = false
   popupVisibleEstadosalud: boolean = false
   popupVisibleEnfermedades: boolean = false;
   /* Notificaciones */
@@ -39,13 +43,17 @@ export class FormAfiliadoComponent implements OnInit {
 
 
   constructor(private sharedService : SharedService, private affiliateService : AffiliateService) { }
-
+  ngAfterViewInit(): void {
+    this.context = this.canvas.nativeElement.getContext('2d');
+  }
   ngOnInit() {
     this.listarGeneros()
     this.listarGrupoSanguineo()
     this.listarTipos()
     this.listarRazas()
     this.iniciarTitulo()
+
+    this.context = this.canvas.nativeElement.getContext('2d');
   }
   ngOnChanges(crud: SimpleChanges) {
     this.modoView = this.crud.accion === 'VIEW'
@@ -124,6 +132,14 @@ export class FormAfiliadoComponent implements OnInit {
     /* console.log(e); */
 
   }
+  firmaAfiliadoEvent(event){
+    let image = new Image()
+    image.onload = (event) => {
+      this.context.drawImage(image, 0, 0);
+    };
+    image.src = "data:image/png;base64,"+event;
+
+  }
 
   submit(event: Event) {
     event.preventDefault()
@@ -143,6 +159,15 @@ export class FormAfiliadoComponent implements OnInit {
     width: '200',
     useSubmitBehavior: false,
     onClick: (data) => this.popupVisibleAlergias = true
+  }
+
+  buttonOptionsFirma = {
+    text: 'Firmar',
+    type: 'normal',
+    icon: 'fa-solid fa-plus',
+    width: '200',
+    useSubmitBehavior: false,
+    onClick: (data) => this.popupVisibleFirma = true
   }
 
   buttonOptionsEstadoSalud = {

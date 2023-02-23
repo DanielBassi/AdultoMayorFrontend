@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormManualComponent } from './form-manual/form-manual.component';
-import { DxButtonModule, DxDateBoxModule, DxCheckBoxModule, DxSwitchModule, DxValidatorModule,DxFileUploaderModule, DxColorBoxModule, DxTabPanelModule, DxScrollViewModule, DxValidationGroupModule, DxTextAreaModule, DxDataGridModule, DxFormModule, DxPopupModule, DxSelectBoxModule ,DxToastModule,DxTemplateModule, DxTextBoxModule} from 'devextreme-angular';
+import { DxButtonModule, DxDateBoxModule, DxCheckBoxModule, DxSwitchModule, DxValidatorModule, DxFileUploaderModule, DxColorBoxModule, DxTabPanelModule, DxScrollViewModule, DxValidationGroupModule, DxTextAreaModule, DxDataGridModule, DxFormModule, DxPopupModule, DxSelectBoxModule, DxToastModule, DxTemplateModule, DxTextBoxModule } from 'devextreme-angular';
 import { FormActividadDetailsComponent } from './form-actividadDetails/form-actividadDetails.component';
 import { FormAfiliadoComponent } from './form-afiliado/form-afiliado.component'
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +13,10 @@ import { DxReportViewerModule } from 'devexpress-reporting-angular';
 import { ReporteComponent } from './reporte/reporte.component';
 import { FormSubindiceComponent } from './form-subindice/form-subindice.component'
 import { FormProgramaComponent } from './form-programa/form-programa.component'
+import { SignPadComponent } from './SignPadComponent/SignPadComponent.component';
+import { FormUsuarioComponent } from './form-usuario/form-usuario.component'
+
+const components = [FormManualComponent, FormActividadDetailsComponent, FormAfiliadoComponent, FormEstadoSaludComponent, FormAlergiasAfiliadoComponent, FormEnfermedadBaseAfiliadoComponent, FormAsistenciaActividadComponent, ReporteComponent, FormSubindiceComponent, FormProgramaComponent, SignPadComponent, FormUsuarioComponent]
 @NgModule({
   imports: [
     BrowserModule,
@@ -35,9 +39,9 @@ import { FormProgramaComponent } from './form-programa/form-programa.component'
     DxFileUploaderModule,
     DxSwitchModule,
     DxCheckBoxModule,
-    DxDateBoxModule
+    DxDateBoxModule,
   ],
-  declarations: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent,FormSubindiceComponent,FormProgramaComponent],
-  exports: [FormManualComponent,FormActividadDetailsComponent,FormAfiliadoComponent,FormEstadoSaludComponent,FormAlergiasAfiliadoComponent,FormEnfermedadBaseAfiliadoComponent,FormAsistenciaActividadComponent,ReporteComponent,FormSubindiceComponent,FormProgramaComponent]
+  declarations: components,
+  exports: components
 })
 export class ComponentsModule { }

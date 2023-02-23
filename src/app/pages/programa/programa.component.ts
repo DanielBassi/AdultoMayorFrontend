@@ -53,7 +53,7 @@ export class ProgramaComponent implements OnInit {
 
       case 'UPDATE':
         this.programaService.editPrograma(this.crud.entidad).subscribe(res=> {
-          this.sharedService.notify('Afiliado actualizado exitosamente', 'success')
+          this.sharedService.notify('Programa actualizado exitosamente', 'success')
           this.listarProgramas()
         })
       break;

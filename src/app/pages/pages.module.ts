@@ -16,6 +16,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ComponentsModule } from '../components/components.module'
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ProgramaComponent } from './programa/programa.component'
+import { UsuarioComponent } from './usuario/usuario.component'
 
 
 
@@ -28,7 +29,8 @@ import { ProgramaComponent } from './programa/programa.component'
     IndicatorsComponent,
     AffiliatesComponent,
     DetalleAfiliadoComponent,
-    ProgramaComponent
+    ProgramaComponent,
+    UsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { ProgramaComponent } from './programa/programa.component'
     IndicatorsComponent,
     AffiliatesComponent,
     DetalleAfiliadoComponent,
-    ProgramaComponent
+    ProgramaComponent,
+    UsuarioComponent
   ]
 })
 export class PagesModule { }
