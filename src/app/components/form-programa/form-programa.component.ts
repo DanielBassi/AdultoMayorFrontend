@@ -25,10 +25,23 @@ export class FormProgramaComponent implements OnInit {
   constructor(private programaService: ProgramaService,private sharedService: SharedService) { }
 
   ngOnInit() {
-
+    this.iniciarTitulo()
   }
   ngOnChanges(crud: SimpleChanges) {
     this.modoView = this.crud.accion === 'VIEW'
+  }
+
+  private iniciarTitulo(){
+    switch(this.crud.accion){
+      case 'INSERT':
+        this.titulo="Ingresar nuevo programa"
+      break;
+      case 'UPDATE':
+        this.titulo="Editar programa"
+      break;
+      case 'VIEW':
+        this.titulo="Detalles del programaa"
+    }
   }
 
 

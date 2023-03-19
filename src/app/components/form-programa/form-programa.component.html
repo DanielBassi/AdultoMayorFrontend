@@ -1,5 +1,8 @@
 <div class="m-3">
   <div id="form-container">
+    <div>
+      <h3 class="m-4">{{titulo}}</h3>
+    </div>
     <form (submit)="submit($event)" enctype="multipart/form-data">
 
       <dx-form id="form" [colCount]="2" [(formData)]="crud.entidad" labelLocation="top" [disabled]="false" [readOnly]="modoView">

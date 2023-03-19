@@ -17,8 +17,10 @@ export class SignPadComponent {
   @Output() firmaEvent: EventEmitter<string> = new EventEmitter<string>();
   @ViewChild('canvas') canvas: GenericElementRef<HTMLCanvasElement>;
   ctx: CanvasRenderingContext2D;
-  dimension = { width: 770, height: 400 };
+  dimension = { width: 650, height: 200 };
   isWriting = false;
+
+  constructor() {}
 
   ngAfterViewInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d');
@@ -82,9 +84,7 @@ export class SignPadComponent {
   }
 
   onSaveClick() {
-    const dataURL = this.canvas.nativeElement.toDataURL().split(",",2)[1];
-    console.log(dataURL);
-    this.firmaEvent.emit(dataURL);
-
+    const dataURL = this.canvas.nativeElement.toDataURL().split(",",2)[1]
+    this.firmaEvent.emit(dataURL)
   }
 }

@@ -34,6 +34,9 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
   viveSolo: boolean = false
   popupVisibleAlergias: boolean = false
   popupVisibleFirma: boolean = false
+  popupVisibleFirmaAcudiente: boolean = false
+  popupVisibleHuella: boolean = false
+  popupVisibleHuellaAcudiente: boolean = false
   popupVisibleEstadosalud: boolean = false
   popupVisibleEnfermedades: boolean = false;
   /* Notificaciones */
@@ -41,19 +44,21 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
 
   /* pop-ups */
 
+  /*firmas y huellas*/
+  imgFirmaAfiliado:string
+  imgFirmaAcudiente:string
+  imgHuella:string
+  imgHuellaAcudiente:string
 
   constructor(private sharedService : SharedService, private affiliateService : AffiliateService) { }
-  ngAfterViewInit(): void {
-    this.context = this.canvas.nativeElement.getContext('2d');
-  }
+  ngAfterViewInit(): void {  }
+
   ngOnInit() {
     this.listarGeneros()
     this.listarGrupoSanguineo()
     this.listarTipos()
     this.listarRazas()
     this.iniciarTitulo()
-
-    this.context = this.canvas.nativeElement.getContext('2d');
   }
   ngOnChanges(crud: SimpleChanges) {
     this.modoView = this.crud.accion === 'VIEW'
@@ -133,12 +138,13 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
 
   }
   firmaAfiliadoEvent(event){
-    let image = new Image()
-    image.onload = (event) => {
-      this.context.drawImage(image, 0, 0);
-    };
-    image.src = "data:image/png;base64,"+event;
+    this.imgFirmaAfiliado = "data:image/png;base64,"+event;
+    this.popupVisibleFirma= false;
+  }
 
+  firmaAcudienteEvent(event){
+    this.imgFirmaAcudiente = "data:image/png;base64,"+event;
+    this.popupVisibleFirmaAcudiente= false;
   }
 
   submit(event: Event) {
@@ -162,12 +168,31 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
   }
 
   buttonOptionsFirma = {
-    text: 'Firmar',
     type: 'normal',
     icon: 'fa-solid fa-plus',
-    width: '200',
     useSubmitBehavior: false,
     onClick: (data) => this.popupVisibleFirma = true
+  }
+
+  buttonOptionsFirmaAcudiente = {
+    type: 'normal',
+    icon: 'fa-solid fa-plus',
+    useSubmitBehavior: false,
+    onClick: (data) => this.popupVisibleFirmaAcudiente = true
+  }
+
+  buttonOptionsHuella = {
+    type: 'normal',
+    icon: 'fa-solid fa-plus',
+    useSubmitBehavior: false,
+    onClick: (data) => this.popupVisibleHuella = true
+  }
+
+  buttonOptionsHuellaAcudiente = {
+    type: 'normal',
+    icon: 'fa-solid fa-plus',
+    useSubmitBehavior: false,
+    onClick: (data) => this.popupVisibleHuellaAcudiente = true
   }
 
   buttonOptionsEstadoSalud = {
@@ -195,8 +220,4 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
     width: '200',
     useSubmitBehavior: true,
   }
-
-
-
-
 }
