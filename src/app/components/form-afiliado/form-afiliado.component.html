@@ -184,14 +184,14 @@
 
           <dxi-item itemType="group" caption="Huella" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="imgHuella" alt="">
+              <img width="200" [src]="imgHuella" height="200">
             </dxi-item>
             <dxi-item  itemType="button" dataField="huella" [label]="{ text: 'Huella' }" [buttonOptions]="buttonOptionsHuella"></dxi-item>
           </dxi-item>
 
           <dxi-item itemType="group" caption="Firma acudiente" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="imgFirmaAcudiente" alt="">
+              <img width="200" [src]="imgFirmaAcudiente">
             </dxi-item>
             <dxi-item  itemType="button" dataField="firmaAcudiente" [label]="{ text: 'Firma acudiente' }" [buttonOptions]="buttonOptionsFirmaAcudiente"></dxi-item>
           </dxi-item>
@@ -199,9 +199,9 @@
 
           <dxi-item itemType="group" caption="Huella acudiente" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="imgHuellaAcudiente" alt="">
+              <img width="200" [src]="imgHuellaAcudiente" height="200">
             </dxi-item>
-            <dxi-item  itemType="button" dataField="huellaAcudiente" [label]="{ text: 'Huella Acudiente' }" [buttonOptions]="buttonOptionsHuella"></dxi-item>
+            <dxi-item  itemType="button" dataField="huellaAcudiente" [label]="{ text: 'Huella Acudiente' }" [buttonOptions]="buttonOptionsHuellaAcudiente"></dxi-item>
           </dxi-item>
         </dxi-item>
 
@@ -271,5 +271,19 @@
   [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleFirmaAcudiente">
   <dx-scroll-view width="100%" height="100%">
     <dfs-sign-pad (firmaEvent)="firmaAcudienteEvent($event)"></dfs-sign-pad>
+  </dx-scroll-view>
+</dx-popup>
+
+<dx-popup [maxWidth]="'700'" [maxHeight]="'460'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Huella afiliado" [dragEnabled]="true"
+  [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleHuella" (onHiding)="onHiding('Afiliado')">
+  <dx-scroll-view width="100%" height="100%">
+    <iframe src="http://190.131.195.10:3563/adultomayorapp/fingerprint/" frameborder="0"></iframe>
+  </dx-scroll-view>
+</dx-popup>
+
+<dx-popup [maxWidth]="'700'" [maxHeight]="'460'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Huella acudiente" [dragEnabled]="true"
+  [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleHuellaAcudiente" (onHiding)="onHiding('Acudiente')">
+  <dx-scroll-view width="100%" height="100%">
+    <iframe src="http://190.131.195.10:3563/adultomayorapp/fingerprint/" frameborder="0"></iframe>
   </dx-scroll-view>
 </dx-popup>

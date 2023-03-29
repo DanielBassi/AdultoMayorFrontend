@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, SimpleChanges, EventEmitter,ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, SimpleChanges,ViewChild, ElementRef, AfterViewInit, EventEmitter } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { IAfiliadoDTO } from '../../models/IAfiliadoDTO'
 import { AffiliateService } from  '../../services/affiliate.service';
@@ -10,7 +10,6 @@ import{ IEstadoSaludAfiliadoDTO } from "../../models/IEstadoSaludAfiliadoDTO"
 })
 export class FormAfiliadoComponent implements OnInit, AfterViewInit {
   @ViewChild('myCanvasFirmaAfiliado')
-  /* @ViewChild('myCanvasFirmaAcudiente') */
   @Output() crudEvent: EventEmitter<any> = new EventEmitter<any>()
   @Input() crud: any = {
     entidad: new IAfiliadoDTO(),
@@ -134,28 +133,43 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
   }
 
   popupEvent(e){
-    /* console.log(e); */
 
   }
   firmaAfiliadoEvent(event){
+    this.crud.entidad.huella=event
     this.imgFirmaAfiliado = "data:image/png;base64,"+event;
     this.popupVisibleFirma= false;
   }
 
   firmaAcudienteEvent(event){
+    this.crud.entidad.huellaAcudiente=event
     this.imgFirmaAcudiente = "data:image/png;base64,"+event;
     this.popupVisibleFirmaAcudiente= false;
   }
 
-  submit(event: Event) {
+  submit = (event: Event) => {
     event.preventDefault()
-    /* console.log(this.crud.entidad) */
-    this.crudEvent.emit({...this.crud})
+    const emit = {...this.crud}
+    this.crudEvent.emit(emit)
 
       this.crud.entidad = new IAfiliadoDTO()
     /* if( this.validateDataEmit() ) {
 
     } */
+  }
+
+  public onHiding(type: string): void {
+    if(type === 'Afiliado') {
+      this.crud.entidad.fingerPrintAfiliate = localStorage.getItem('Base_64_fingerPrint')
+      this.imgHuella = "data:image/png;base64,"+this.crud.entidad.fingerPrintAfiliate
+    }
+
+    if(type === 'Acudiente') {
+      this.crud.entidad.fingerPrintAcudiente = localStorage.getItem('Base_64_fingerPrint')
+      this.imgHuellaAcudiente = "data:image/png;base64,"+this.crud.entidad.fingerPrintAcudiente
+    }
+
+    localStorage.clear()
   }
 
   buttonOptionsAlergias = {
