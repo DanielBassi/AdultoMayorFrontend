@@ -149,8 +149,9 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
 
   submit = (event: Event) => {
     event.preventDefault()
-    const emit = {...this.crud}
-    this.crudEvent.emit(emit)
+    debugger;
+    const payload = {...this.crud}
+    this.crudEvent.emit(payload)
 
       this.crud.entidad = new IAfiliadoDTO()
     /* if( this.validateDataEmit() ) {
