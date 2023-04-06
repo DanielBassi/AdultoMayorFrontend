@@ -36,7 +36,6 @@ export class AuthService {
 
 
   login(user: IUser): Observable<IJwtResponse> {
-    /* debugger; */
     return this.httpClient.post<IJwtResponse>(`${this.AUTH_SERVE}/api/Login`,
       user).pipe(tap(
         (res: IJwtResponse) => {

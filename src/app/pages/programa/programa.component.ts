@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./programa.component.css']
 })
 export class ProgramaComponent implements OnInit {
-
+  public titulo: string = ''
   programas: IProgramaDTO[] = []
   popupVisible: boolean = false;
   crud: any = {
@@ -24,7 +24,20 @@ export class ProgramaComponent implements OnInit {
 
   ngOnInit() {
     this.listarProgramas()
+    this.iniciarTitulo()
+  }
 
+  private iniciarTitulo(){
+    switch(this.crud.accion){
+      case 'INSERT':
+        this.titulo="Ingresar nuevo programa"
+      break;
+      case 'UPDATE':
+        this.titulo="Editar programa"
+      break;
+      case 'VIEW':
+        this.titulo="Detalles del programaa"
+    }
   }
 
   listarProgramas(){
@@ -42,7 +55,7 @@ export class ProgramaComponent implements OnInit {
   }
   crudEvento(e){
 
-
+    debugger
     switch (this.crud.accion) {
       case 'INSERT':
         this.programaService.insertPrograma(this.crud.entidad).subscribe(res=> {

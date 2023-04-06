@@ -9,8 +9,8 @@ import{ IEstadoSaludAfiliadoDTO } from "../../models/IEstadoSaludAfiliadoDTO"
   styleUrls: ['./form-afiliado.component.css']
 })
 export class FormAfiliadoComponent implements OnInit, AfterViewInit {
-  @ViewChild('myCanvasFirmaAfiliado')
-  @Output() crudEvent: EventEmitter<any> = new EventEmitter<any>()
+  //@ViewChild('myCanvasFirmaAfiliado')
+  @Output() crudEvent = new EventEmitter<any>()
   @Input() crud: any = {
     entidad: new IAfiliadoDTO(),
     accion: 'INSERT'
@@ -42,14 +42,7 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
   notificaciones: any[] = []
 
   /* pop-ups */
-
-  /*firmas y huellas*/
-  imgFirmaAfiliado:string
-  imgFirmaAcudiente:string
-  imgHuella:string
-  imgHuellaAcudiente:string
-
-  constructor(private sharedService : SharedService, private affiliateService : AffiliateService) { }
+  constructor(private sharedService : SharedService, private affiliateService : AffiliateService){}
   ngAfterViewInit(): void {  }
 
   ngOnInit() {
@@ -136,39 +129,29 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
 
   }
   firmaAfiliadoEvent(event){
-    this.crud.entidad.huella=event
-    this.imgFirmaAfiliado = "data:image/png;base64,"+event;
+    this.crud.entidad.firma=event
     this.popupVisibleFirma= false;
   }
 
   firmaAcudienteEvent(event){
-    this.crud.entidad.huellaAcudiente=event
-    this.imgFirmaAcudiente = "data:image/png;base64,"+event;
+    this.crud.entidad.firmaAcudiente=event
     this.popupVisibleFirmaAcudiente= false;
   }
 
   submit = (event: Event) => {
     event.preventDefault()
-    debugger;
-    const payload = {...this.crud}
-    this.crudEvent.emit(payload)
+    this.crudEvent.emit({...this.crud})
 
-      this.crud.entidad = new IAfiliadoDTO()
-    /* if( this.validateDataEmit() ) {
-
-    } */
+    this.crud.entidad = new IAfiliadoDTO()
   }
 
   public onHiding(type: string): void {
-    if(type === 'Afiliado') {
-      this.crud.entidad.fingerPrintAfiliate = localStorage.getItem('Base_64_fingerPrint')
-      this.imgHuella = "data:image/png;base64,"+this.crud.entidad.fingerPrintAfiliate
-    }
 
-    if(type === 'Acudiente') {
-      this.crud.entidad.fingerPrintAcudiente = localStorage.getItem('Base_64_fingerPrint')
-      this.imgHuellaAcudiente = "data:image/png;base64,"+this.crud.entidad.fingerPrintAcudiente
-    }
+    if(localStorage.getItem('Base_64_fingerPrint') === null) return
+
+    if(type === 'Afiliado') this.crud.entidad.huella = localStorage.getItem('Base_64_fingerPrint')
+
+    if(type === 'Acudiente') this.crud.entidad.huellaAcudiente = localStorage.getItem('Base_64_fingerPrint')
 
     localStorage.clear()
   }

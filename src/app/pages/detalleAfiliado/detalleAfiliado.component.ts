@@ -40,13 +40,10 @@ export class DetalleAfiliadoComponent implements OnInit {
 
   }
 
-  crudEvento(e){
-
-
+  recivedData(e){
     switch (this.crud.accion) {
       case 'INSERT':
         this.affiliateService.postInsertAfiliado(this.crud.entidad).subscribe(res=> {
-          debugger
           this.sharedService.notify('Afiliado creado exitosamente', 'success')
 
         })

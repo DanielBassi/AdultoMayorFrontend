@@ -487,7 +487,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       		e.preventDefault();
     if (this.currentPrograma.id!=0){
       this.componente.programa_Id = this.currentPrograma.id;
-      debugger;
+
     }
     else{
       this.componente.programa_Id = this.currentProgramaEdit.id;

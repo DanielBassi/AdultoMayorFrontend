@@ -16,82 +16,59 @@ export class FormProgramaComponent implements OnInit {
     accion: 'INSERT'
   }
   programas: IProgramaDTO[] = []
-  listaDeManuales: IManualDTO[];
   modoView: boolean = false
-  titulo:string=""
   popupSubindiceVisible: boolean = false
   /* Notificaciones */
   notificaciones: any[] = []
+
+  public componentes: any[] = []
+
   constructor(private programaService: ProgramaService,private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.iniciarTitulo()
   }
   ngOnChanges(crud: SimpleChanges) {
     this.modoView = this.crud.accion === 'VIEW'
   }
 
-  private iniciarTitulo(){
-    switch(this.crud.accion){
-      case 'INSERT':
-        this.titulo="Ingresar nuevo programa"
-      break;
-      case 'UPDATE':
-        this.titulo="Editar programa"
-      break;
-      case 'VIEW':
-        this.titulo="Detalles del programaa"
-    }
+  AgregarComponente(){
+    this.crud.entidad.componentes.push({
+      nombre: '',
+      indicadores: []
+    })
   }
 
-
-  showSubindicePopUp(){
-    this.popupSubindiceVisible=true
+  RemoverComponente(data: any) {
+    const index = this.crud.entidad.componentes.findIndex(f => f === data)
+    this.crud.entidad.componentes.splice(index, 1)
   }
+
+  RemoverIndicador(data: any) {
+    const componente = this.crud.entidad.componentes.find(f => f.indicadores.find(find => find === data))
+    const index = componente.indicadores.findIndex(find => find === data)
+    componente.indicadores.splice(index, 1)
+  }
+
+  AgregarIndicador(data: any) {
+    const componente = this.crud.entidad.componentes.find(f => f === data)
+    componente.indicadores.push({
+      nombre: ''
+    })
+  }
+
   subindiceEvent(subindices){
-    this.crud.entidad.subindice=subindices
+    this.crud.entidad.subindice = subindices
   }
+
   submit(event: Event) {
     event.preventDefault()
+    this.crud.entidad.componentes = this.componentes
     this.crudEvent.emit({...this.crud})
     this.crud.entidad = new IProgramaDTO()
   }
   /* manual de usuario */
 
-  addManual(event){
-    if (this.listaDeManuales==undefined){
-      this.listaDeManuales=[]
-    }
-
-    if (this.listaDeManuales.length == 0) {
-
-      /* console.log(event); */
-      this.crud.entidad.manuales=event
-      this.crud.entidad.manuales.programa_id=this.crud.entidad.id
-
-      this.programaService.editPrograma(this.crud.entidad).subscribe((res:any) => {
-        this.crud.entidad = res;
-      });
-
-      this.listaDeManuales.push(this.crud.entidad.manuales);
-    }
-
-    else {
-      this.sharedService.notify("Debe eliminar el manual antes de ingresar uno nuevo","danger")
-    }
-
-
-  }
-
-  deleteManual(event){
-    this.crud.entidad.manuales=event;
-    this.crud.entidad.guidManual="";
-    this.crud.entidad.nombreManual="";
-    this.listaDeManuales.pop();
-    this.programaService.editPrograma(this.crud.entidad).subscribe((res:any) => {
-      this.crud.entidad = res;
-    });
-  }
+  addManual = (event) => this.crud.entidad.manuales = event
 
   buttonOptionsSave = {
     text: 'Guardar',
@@ -99,6 +76,15 @@ export class FormProgramaComponent implements OnInit {
     icon: 'fa fa-save',
     width: '200',
     useSubmitBehavior: true,
+  }
+
+  buttonOptionsComponente = {
+    text: 'Componentes',
+    type: 'success',
+    icon: 'fa fa-plus-circle',
+    width: '200',
+    useSubmitBehavior: false,
+    onclick:this.AgregarComponente()
   }
 
 

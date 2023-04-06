@@ -1,55 +1,57 @@
 <div class="m-3">
   <div id="form-container">
-    <div>
-      <h3 class="m-4">{{titulo}}</h3>
-    </div>
     <form (submit)="submit($event)" enctype="multipart/form-data">
-
-      <dx-form id="form" [colCount]="2" [(formData)]="crud.entidad" labelLocation="top" [disabled]="false" [readOnly]="modoView">
-         <!-- - - - creacion del programa -->
-        <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-          <dxi-item [colSpan]="1" [label]="{text:'Nombre Programa'}" dataField="nombre" >
-            <dxi-validation-rule type="required" ></dxi-validation-rule>
-          </dxi-item>
-          <dxi-item [colSpan]="1" [label]="{text:'Color'}">
-            <div *dxTemplate >
-              <dx-color-box id="color_id" dataField="programa.color" [(value)]="crud.entidad.color"  ></dx-color-box>
-            </div>
-
-            <dxi-validation-rule type="required" ></dxi-validation-rule>
-          </dxi-item>
+      <dx-form id="form" [colCount]="6" [(formData)]="crud.entidad" labelLocation="top" [disabled]="false" [readOnly]="modoView">
+        <dxi-item [colSpan]="4" [label]="{text:'Nombre Programa'}" dataField="nombre" >
+          <dxi-validation-rule type="required" ></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item [colSpan]="1" [label]="{text:'Color'}">
+          <div *dxTemplate>
+            <dx-color-box id="color_id" dataField="programa.color" [(value)]="crud.entidad.color"  ></dx-color-box>
+          </div>
+          <dxi-validation-rule type="required" ></dxi-validation-rule>
         </dxi-item>
 
-
-         <!-- - - - -pestañas -->
-        <dxi-item [colSpan]="2" >
-          <dx-tab-panel [loop]="true" [animationEnabled]="true" [swipeEnabled]="true">
-            <dxi-item title="Manual de usuario">
-              <app-form-manual [manuales]="crud.entidad.manuales" [listaDeManuales]="listaDeManuales" (manualEvent)="addManual($event)" (quitarManualEvent)="deleteManual($event)"></app-form-manual>
-            </dxi-item>
-          </dx-tab-panel>
+        <dxi-item itemType="button"  [colSpan]="1" verticalAlignment="bottom" [buttonOptions]="buttonOptionsComponente">
         </dxi-item>
-        <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
-          <dxi-item>
-            <div class="mb-2">
-              <dx-button type="success" text="Componentes" icon="fa fa-plus" (onClick)="showSubindicePopUp()"></dx-button>
-            </div>
-          </dxi-item>
 
-          <dxi-item itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
-            [buttonOptions]="buttonOptionsSave" [editorOptions]="{ disabled: modoView }">
+        <dxi-item [colSpan]="6">
+          <dx-data-grid id="components" [dataSource]="crud.entidad.componentes" [showBorders]="true" key="nombre">
+            <dxo-editing mode="cell" [allowUpdating]="true"></dxo-editing>
+            <dxi-column dataField="nombre" [allowEditing]="true" caption="Nombre"></dxi-column>
+            <dxi-column caption="Acción" cellTemplate="template" alignment="center" width="120">
+              <div *dxTemplate="let data of 'template'">
+                <dx-button icon="fas fa-plus-circle" class="mr-2" hint="Agregar Indicador" type="success" (onClick)="AgregarIndicador(data.data)"></dx-button>
+                <dx-button icon="fas fa-window-close" hint="Eliminar" type="danger" (onClick)="RemoverComponente(data.data)"></dx-button>
+              </div>
+            </dxi-column>
+            <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+              <div *dxTemplate="let data of 'detail'">
+                <h6>Indicadores del componente</h6>
+                <dx-data-grid id="indicadores" [dataSource]="data.data.indicadores" [showBorders]="true" key="nombre">
+                  <dxo-editing mode="cell" [allowUpdating]="true"></dxo-editing>
+                  <dxi-column dataField="nombre" caption="Nombre" [allowEditing]="true"></dxi-column>
+                  <dxi-column caption="Acción" cellTemplate="template" alignment="center" width="60">
+                    <div *dxTemplate="let data of 'template'">
+                      <dx-button icon="fas fa-window-close" hint="Eliminar" type="danger" (onClick)="RemoverIndicador(data.data)"></dx-button>
+                    </div>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+          </dx-data-grid>
+        </dxi-item>
+
+        <dxi-item [colSpan]="6" >
+          <div *dxTemplate>
+            <app-form-manual [programa]="crud.entidad" (manualEvent)="addManual($event)"></app-form-manual>
+          </div>
+        </dxi-item>
+
+        <dxi-item itemType="group" [colCount]="6" [colSpan]="6">
+          <dxi-item itemType="button" horizontalAlignment="center" verticalAlignment="bottom" [buttonOptions]="buttonOptionsSave" [editorOptions]="{ disabled: modoView }">
           </dxi-item>
         </dxi-item>
       </dx-form>
     </form>
   </div>
 </div>
-
-
-<dx-popup [width]="600" [height]="600" [showTitle]="true" title="Crear nuevo componente" [dragEnabled]="false"
-  [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupSubindiceVisible">
-  <dx-scroll-view width="100%" height="100%">
-    <app-form-subindice [modoView]="modoView" [subindices]="crud.entidad.subindices" (subindiceEvent)="subindiceEvent($event)"></app-form-subindice>
-  </dx-scroll-view>
-
-</dx-popup>

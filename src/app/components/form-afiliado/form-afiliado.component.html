@@ -18,10 +18,8 @@
 
             <dxi-item editorType="dxDateBox" dataField="fechaRetiro" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de retiro'}" value=""></dxi-item>
 
-            <dxi-item dataField="tipoIdentificacion" [label]="{ text: 'Tipo de identificación' }" editorType="dxSelectBox"
-              [editorOptions]="{ dataSource: tipos, showClearButton:'true' }">
+            <dxi-item dataField="tipoIdentificacion" [label]="{ text: 'Tipo de identificación' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: tipos, showClearButton:'true' }">
               <dxi-validation-rule type="required"></dxi-validation-rule>
-
             </dxi-item>
 
 
@@ -121,17 +119,8 @@
           <dxi-item  dataField="nombreAcudiente" [colSpan]="2" [label]="{ text: 'Nombre del acudiente' }">
             <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
           </dxi-item>
-          <dxi-item dataField="tipoIdentificacionAcudiente" [label]="{ text: 'Tipo de identificación' }" editorType="dxSelectBox"
-          [editorOptions]="{ dataSource: tipos, showClearButton:'true' }">
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-
+          <dxi-item dataField="tipoIdentificacionAcudiente" [label]="{ text: 'Tipo de identificación' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: tipos, showClearButton:'true' }">
           </dxi-item>
-          <!-- <dxi-item  dataField="tipoIdentificacionAcudiente" alignment="bottom" [colSpan]="1" [label]="{ text: 'Tipo de identificación' }" isRequired="true">
-            <div *dxTemplate>
-              <dx-select-box [disabled]="modoView" [dataSource]="tipos" [value]="" id="id" [showClearButton]="true"></dx-select-box>
-            </div>
-            <dxi-validation-rule type="required"></dxi-validation-rule>
-          </dxi-item> -->
 
           <dxi-item  dataField="identificacionAcudiente" [label]="{ text: 'Identificacion' }">
             <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
@@ -176,7 +165,7 @@
         <dxi-item itemType="group" [colSpan]="4" [colCount]="4">
           <dxi-item itemType="group" caption="Firma" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="imgFirmaAfiliado" alt="">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.firma" alt="">
             </dxi-item>
             <dxi-item  itemType="button" dataField="firma" [label]="{ text: 'Firma' }" [buttonOptions]="buttonOptionsFirma"></dxi-item>
           </dxi-item>
@@ -184,14 +173,14 @@
 
           <dxi-item itemType="group" caption="Huella" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="imgHuella" height="200">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.huella" height="200">
             </dxi-item>
             <dxi-item  itemType="button" dataField="huella" [label]="{ text: 'Huella' }" [buttonOptions]="buttonOptionsHuella"></dxi-item>
           </dxi-item>
 
           <dxi-item itemType="group" caption="Firma acudiente" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="imgFirmaAcudiente">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.firmaAcudiente">
             </dxi-item>
             <dxi-item  itemType="button" dataField="firmaAcudiente" [label]="{ text: 'Firma acudiente' }" [buttonOptions]="buttonOptionsFirmaAcudiente"></dxi-item>
           </dxi-item>
@@ -199,7 +188,7 @@
 
           <dxi-item itemType="group" caption="Huella acudiente" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="imgHuellaAcudiente" height="200">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.huellaAcudiente" height="200">
             </dxi-item>
             <dxi-item  itemType="button" dataField="huellaAcudiente" [label]="{ text: 'Huella Acudiente' }" [buttonOptions]="buttonOptionsHuellaAcudiente"></dxi-item>
           </dxi-item>

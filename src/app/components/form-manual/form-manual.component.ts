@@ -9,6 +9,7 @@ import {
 import { IManualDTO } from '../../models/IManualDTO';
 import { dxFileUploaderOptions } from 'devextreme/ui/file_uploader';
 import notify from 'devextreme/ui/notify';
+import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
 
 @Component({
   selector: 'app-form-manual',
@@ -17,24 +18,16 @@ import notify from 'devextreme/ui/notify';
 })
 export class FormManualComponent implements OnInit {
 
-  @Input() manuales: IManualDTO = new IManualDTO();
-  @Input() listaDeManuales: IManualDTO[] = [];
+  @Input() programa: IProgramaDTO;
   @Output() manualEvent: EventEmitter<IManualDTO> = new EventEmitter<IManualDTO>();
-  @Output() quitarManualEvent: EventEmitter<any> = new EventEmitter<any>();
-
-
-
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngOnChanges(manuales: SimpleChanges, listaDeManuales : SimpleChanges) {}
-
-
   onUploadedFormatASQ = async (e: File) => {
-
+    debugger
     const reader = new FileReader();
     let base64Data;
     reader.onloadend = () => {
@@ -50,10 +43,6 @@ export class FormManualComponent implements OnInit {
 
     reader.readAsDataURL(e);
   };
-
-  quitarRecurso(manualQuitar: any) {
-    this.quitarManualEvent.emit(null);
-  }
 
 }
 

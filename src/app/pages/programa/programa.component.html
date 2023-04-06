@@ -39,7 +39,7 @@
               </dx-data-grid>
             </div>
 
-            <dx-popup [width]="800" [height]="600" [showTitle]="true" title="Formulario de programa" [dragEnabled]="true" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible" (onHidden)="inicializarPrograma()">
+            <dx-popup [width]="'70%'" [height]="'80%'" [showTitle]="true" [title]="titulo" [dragEnabled]="false" [hideOnOutsideClick]="false" [showCloseButton]="true" [(visible)]="popupVisible" (onHidden)="inicializarPrograma()">
               <dx-scroll-view width="100%" height="100%">
                 <app-form-programa (crudEvent)="crudEvento($event)" [crud]="crud"></app-form-programa>
               </dx-scroll-view>
