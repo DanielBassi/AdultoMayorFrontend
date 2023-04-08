@@ -6,6 +6,7 @@ import { EstadoActividadService } from '../../services/estadoActividad.service';
 import { IUsuarioDTO } from '../../models/IUsuarioDTO';
 import { UsersService } from '../../services/users.service';
 import { IProgramaDTO } from '../../models/IProgramaDTO';
+import { estadoActividadEnum } from '../../enums/estadoActividadEnum';
 
 
 if (!/localhost/.test(document.location.host)) {
@@ -152,8 +153,7 @@ export class ActivitiesComponent implements OnInit {
 		if (e)
       		e.preventDefault();
 		this.actividad.nombreComprobante="indefinido";
-		this.actividad.indicador_Id = 1;
-    	this.actividad.estadoActividad_Id = 4;
+    	this.actividad.estadoActividad_Id = estadoActividadEnum.ESPERANDO_APROBACION;
 		this.actividad.fecha=new Date(this.actividad.fecha.getTime()-(5*60*60000));
 		this.popupVisible = false;
 		this.activitiesService.insertActividad(this.actividad).subscribe((res: any) => {
@@ -224,7 +224,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   formCheckTrue() {
-    this.actividadCheck.estadoActividad_Id=6
+    this.actividadCheck.estadoActividad_Id=estadoActividadEnum.APROBADA
     this.popupCheckVisible = false;
     this.activitiesService.editActividad(this.actividadCheck).subscribe((res: any) => {
 			this.isCheckTrueVisible = true;
@@ -234,7 +234,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   formCheckFalse() {
-    this.actividadCheck.estadoActividad_Id=5
+    this.actividadCheck.estadoActividad_Id=estadoActividadEnum.NO_APROBADA
     this.popupCheckVisible = false;
     this.activitiesService.editActividad(this.actividadCheck).subscribe((res: any) => {
 			this.isCheckFalseVisible = true;
