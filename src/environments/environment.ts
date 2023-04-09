@@ -6,6 +6,7 @@ export const environment = {
   production: false
   /* , API_URL: "http://190.131.195.10:3563/adultomayorapi" */
   , API_URL: "https://localhost:44317"
+  , COOKIE_SESSION: 'USER'
 };
 
 /*

@@ -13,6 +13,7 @@ import { AuthGuard } from '../guard/auth.guard';
 import { ReporteComponent } from '../components/reporte/reporte.component';
 import { ProgramaComponent } from './programa/programa.component';
 import { UsuarioComponent } from './usuario/usuario.component'
+import { GuardGuard } from '../guard/guard.guard';
 
 const routes:Routes=[
   {

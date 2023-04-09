@@ -10,12 +10,23 @@ export class ActivitiesService {
   ROOT_SERVE: string = environment.API_URL
   constructor(private http: HttpClient) { };
 
+  private setParameter(routeParams:any):HttpParams{
+    let queryParams = new HttpParams()
+    for (const key in routeParams){
+      if (routeParams.hasOwnProperty(key)){
+        queryParams = queryParams.set(key,routeParams[key])
+      }
+    }
+    return queryParams
+  }
+
   actividadesCalendario() {
     return this.http.get(`${this.ROOT_SERVE}/api/Actividad/Calendario`);
   }
-  actividades(){
-    return this.http.get(`${this.ROOT_SERVE}/api/Actividad`);
-  }
+  //actividades(){    return this.http.get(`${this.ROOT_SERVE}/api/Actividad`);  }
+
+  actividades = (param: any = {}) => this.http.get( `${this.ROOT_SERVE}/api/Actividad`,{params:this.setParameter(param)} )
+
 
   subindices(programa_id:number){
     let params = new HttpParams({

@@ -1,17 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from "ngx-cookie-service"
-
 @Injectable({
   providedIn: 'root'
 })
 export class SidebarService {
-  private cookies: CookieService
-
-  getToken() {
-    console.log(this.cookies.get("access_token"))
-    return this.cookies.get("access_token") !== '' ? JSON.parse(this.cookies.get("access_token")) : null
-  }
-
   menu:any[]=[{
     titulo:'Dashboard',
     icono:'nav-icon fas fa-tachometer-alt',

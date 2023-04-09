@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { IUser } from '../../models/user';
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -10,19 +8,14 @@ import { IUser } from '../../models/user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router  ) { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  onLogin(form): void {
-    this.authService.login(form.value).subscribe(res =>{
-      this.router.navigateByUrl('/dashboard');
-    });
-    //this.navigateHome
-  }
-
-  navigateHome(){
-    this.router.navigate(['/auth/home'])
+  public onLogin(form): void {
+    this.authService.login(form.value).subscribe((res: any) => {
+      this.authService.SetAuth(res)
+      this.authService.redirectBy('dashboard')
+    })
   }
 }

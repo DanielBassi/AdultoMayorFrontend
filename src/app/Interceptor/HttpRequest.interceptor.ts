@@ -4,41 +4,35 @@ import { Observable, throwError } from "rxjs";
 import { catchError, map } from 'rxjs/operators';
 import notify from 'devextreme/ui/notify';
 import { AuthService } from '../services/auth.service';
-import { Router } from "@angular/router";
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    const user = this.authService.getToken()
+    const user = this.authService.GetAuth()
 
-    if( user?.token !== undefined ){
+    if( user?.jwtToken !== undefined ){
       request = request.clone({
-        headers: request.headers
-          .set('Authorization', `Bearer ${user.token}`)
-          .set('roles_id', `${user.usuario.rol.id}`)
-      });
+        headers: request.headers.set('Authorization', `Bearer ${user.jwtToken}`)});
     }
 
     return next.handle(request)
       .pipe(
-        map((res: any) => {
-          return res
-        }),
+        map((res: any) => res),
         catchError((error: HttpErrorResponse) => {
+          if( error.status === 401 ) {
+            this.authService.destroyToken()
+            this.authService.redirectBy('login')
+          }
+          else  notify(`${error.error}`, 'error', 2000)
 
-          notify(`${error.error}`, 'error', 2000)
           this.authService.setLoadingVisible(false)
-
-          /* if( error.error.statusError === 401 )
-            this.router.navigateByUrl('/auth') */
-
           return throwError(`${error.error.message}`)
+
         })
       )
   }

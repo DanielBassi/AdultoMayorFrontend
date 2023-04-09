@@ -5,11 +5,13 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-} from '@angular/core';
-import { IManualDTO } from '../../models/IManualDTO';
-import { dxFileUploaderOptions } from 'devextreme/ui/file_uploader';
-import notify from 'devextreme/ui/notify';
-import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
+  ViewChild,
+} from '@angular/core'
+import { IManualDTO } from '../../models/IManualDTO'
+import { dxFileUploaderOptions } from 'devextreme/ui/file_uploader'
+import notify from 'devextreme/ui/notify'
+import { IProgramaDTO } from 'src/app/models/IProgramaDTO'
+import { DxFormComponent } from "devextreme-angular";
 
 @Component({
   selector: 'app-form-manual',
@@ -18,8 +20,10 @@ import { IProgramaDTO } from 'src/app/models/IProgramaDTO';
 })
 export class FormManualComponent implements OnInit {
 
-  @Input() programa: IProgramaDTO;
-  @Output() manualEvent: EventEmitter<IManualDTO> = new EventEmitter<IManualDTO>();
+  @Input() programa: IProgramaDTO
+  @Output() manualEvent: EventEmitter<IManualDTO> = new EventEmitter<IManualDTO>()
+  @ViewChild(DxFormComponent) form: DxFormComponent
+  public isSelected: boolean = false
 
   constructor() { }
 
@@ -27,22 +31,22 @@ export class FormManualComponent implements OnInit {
   }
 
   onUploadedFormatASQ = async (e: File) => {
-    debugger
-    const reader = new FileReader();
-    let base64Data;
+    const reader = new FileReader()
+    let base64Data
     reader.onloadend = () => {
       base64Data = reader.result
-
+      this.isSelected = !this.isSelected
       this.manualEvent.emit({
           nombre: e.name,
           tipo: e.type,
           base64: reader.result,
         },
-      );
-    };
+      )
+    }
 
-    reader.readAsDataURL(e);
-  };
+    reader.readAsDataURL(e)
+    this.form.instance._refresh()
+  }
 
 }
 

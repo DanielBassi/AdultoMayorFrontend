@@ -7,6 +7,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction';
 import esLocale from '@fullcalendar/core/locales/es';
 import { IActividadDTO } from 'src/app/models/IActividadDTO';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -53,7 +54,11 @@ export class DashboardComponent implements OnInit {
     this.popupDetailsVisible = true;
   }
 
-  constructor(private activitiesService : ActivitiesService,private programaService:ProgramaService) { }
+  constructor(
+    private activitiesService : ActivitiesService,
+    private programaService:ProgramaService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.actividadDetails= new IActividadDTO()
@@ -80,6 +85,7 @@ export class DashboardComponent implements OnInit {
   listarProgramas(){
     this.programaService.programas().subscribe((response: any[]) => {
       this.list=response
+      this.authService.setLoadingVisible(false)
     })
   }
 

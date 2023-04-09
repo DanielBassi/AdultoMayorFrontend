@@ -3,6 +3,7 @@ import { IProgramaDTO } from '../../models/IProgramaDTO';
 import { ProgramaService } from '../../services/programa.service';
 import { SharedService } from '../../services/shared.service';
 import Swal from 'sweetalert2'
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-programa',
@@ -20,7 +21,11 @@ export class ProgramaComponent implements OnInit {
 
 
 
-  constructor(private programaService: ProgramaService, private sharedService: SharedService) { }
+  constructor(
+    private programaService: ProgramaService,
+    private sharedService: SharedService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.listarProgramas()
@@ -41,10 +46,9 @@ export class ProgramaComponent implements OnInit {
   }
 
   listarProgramas(){
-    this.programaService
-      .programas()
-      .subscribe((response: any) => {
+    this.programaService.programas().subscribe((response: any) => {
         this.programas = response;
+        this.authService.setLoadingVisible(false)
       });
   }
   inicializarPrograma(){
@@ -54,8 +58,6 @@ export class ProgramaComponent implements OnInit {
     }
   }
   crudEvento(e){
-
-    debugger
     switch (this.crud.accion) {
       case 'INSERT':
         this.programaService.insertPrograma(this.crud.entidad).subscribe(res=> {

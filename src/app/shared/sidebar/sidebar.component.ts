@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { SidebarService } from '../../services/sidebar.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,20 +11,20 @@ export class SidebarComponent implements OnInit {
 
   menuItems:any[];
   user: any = {}
-  constructor(private sideBarServices:SidebarService, private router:Router) {
-    this.menuItems=this.sideBarServices.menu
+  constructor(
+    private sideBarServices:SidebarService,
+    private authService: AuthService
+  )
+  {
+    this.menuItems = this.sideBarServices.menu
+    this.user = this.authService.GetAuth()
   }
 
-  ngOnInit(): void {
-  }
-
-  getUser() {
-    this.user = this.sideBarServices.getToken()
-  }
+  ngOnInit(): void { }
 
   logout(){
-    this.router.navigateByUrl('/login');
-    localStorage.removeItem('ACCESS_TOKEN')
+    this.authService.destroyToken()
+    this.authService.redirectBy('login')
   }
 
 }

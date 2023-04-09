@@ -5,25 +5,24 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { LoadPanelComponent } from './load-panel/load-panel.component'
+import { DxLoadPanelModule } from 'devextreme-angular';
 
-
+const components = [
+  HeaderComponent,
+  SidebarComponent,
+  BreadcrumbsComponent,
+  FooterComponent,
+  LoadPanelComponent
+]
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    SidebarComponent,
-    BreadcrumbsComponent,
-    FooterComponent
-  ],
+  declarations: components,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    DxLoadPanelModule
   ],
-  exports:[
-    HeaderComponent,
-    SidebarComponent,
-    BreadcrumbsComponent,
-    FooterComponent
-  ]
+  exports: components
 })
 export class SharedModule { }

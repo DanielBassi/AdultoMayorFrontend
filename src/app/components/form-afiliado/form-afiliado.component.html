@@ -165,7 +165,7 @@
         <dxi-item itemType="group" [colSpan]="4" [colCount]="4">
           <dxi-item itemType="group" caption="Firma" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.firma" alt="">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.firma" onerror="this.src='./assets/img/firma.png'">
             </dxi-item>
             <dxi-item  itemType="button" dataField="firma" [label]="{ text: 'Firma' }" [buttonOptions]="buttonOptionsFirma"></dxi-item>
           </dxi-item>
@@ -173,14 +173,14 @@
 
           <dxi-item itemType="group" caption="Huella" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.huella" height="200">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.huella" height="200" onerror="this.src='./assets/img/huella.png'">
             </dxi-item>
             <dxi-item  itemType="button" dataField="huella" [label]="{ text: 'Huella' }" [buttonOptions]="buttonOptionsHuella"></dxi-item>
           </dxi-item>
 
           <dxi-item itemType="group" caption="Firma acudiente" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.firmaAcudiente">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.firmaAcudiente" onerror="this.src='./assets/img/firma.png'">
             </dxi-item>
             <dxi-item  itemType="button" dataField="firmaAcudiente" [label]="{ text: 'Firma acudiente' }" [buttonOptions]="buttonOptionsFirmaAcudiente"></dxi-item>
           </dxi-item>
@@ -188,7 +188,7 @@
 
           <dxi-item itemType="group" caption="Huella acudiente" [colSpan]="1" [colCount]="2">
             <dxi-item>
-              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.huellaAcudiente" height="200">
+              <img width="200" [src]="'data:image/png;base64,'+crud.entidad.huellaAcudiente" height="200" onerror="this.src='./assets/img/huella.png'">
             </dxi-item>
             <dxi-item  itemType="button" dataField="huellaAcudiente" [label]="{ text: 'Huella Acudiente' }" [buttonOptions]="buttonOptionsHuellaAcudiente"></dxi-item>
           </dxi-item>
