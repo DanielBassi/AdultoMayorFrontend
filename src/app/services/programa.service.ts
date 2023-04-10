@@ -12,7 +12,6 @@ export class ProgramaService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   programas() {
-    this.authService.setLoadingVisible(true)
     return this.http.get(`${this.ROOT_SERVE}/api/Program`);
   }
 

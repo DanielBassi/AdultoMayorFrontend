@@ -24,8 +24,8 @@
                                 <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
                                 <dxi-column dataField="estadoActividad_Descripcion" cellTemplate="estadoTemplate" alignment="center" caption="Estado" [width]="200"> </dxi-column>
                                 <div *dxTemplate="let data of 'estadoTemplate'">
-                                    <span class="{{data.value=='APROBADA' ?'badge bg-success':data.value=='NO APROBADA' ?'badge bg-danger':data.value=='ESPERANDO APROBACIÓN' ?'badge bg-info':'badge bg-secondary'}}">
-                    {{data.value=='APROBADA' ?'APROBADA':data.value=='NO APROBADA' ?'NO APROBADA':data.value=='ESPERANDO APROBACIÓN' ?'ESPERANDO APROBACIÓN':'DESHABILITADA'}}</span>
+                                    <span class="{{data.value=='APROBADA' ?'badge bg-success':data.value=='NO APROBADA' ?'badge bg-danger':data.value=='ESPERANDO APROBACION' ?'badge bg-info':'badge bg-secondary'}}">
+                    {{data.value=='APROBADA' ?'APROBADA':data.value=='NO APROBADA' ?'NO APROBADA':data.value=='ESPERANDO APROBACION' ?'ESPERANDO APROBACIÓN':'DESHABILITADA'}}</span>
                                 </div>
                                 <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center" [width]="200">
                                     <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
@@ -50,7 +50,7 @@
                                                 <dxi-validation-rule type="required"></dxi-validation-rule>
                                             </dxi-item>
 
-                                            <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" isRequired="true">
+                                            <!-- <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" isRequired="true">
                                                 <div *dxTemplate>
                                                     <dx-select-box [dataSource]="programasDTO" id="programaId" displayExpr="nombre" valueExpr="id" (onSelectionChanged)="getProgramBySelection($event)" [showClearButton]="true">
                                                     </dx-select-box>
@@ -58,6 +58,11 @@
 
                                                 <dxi-validation-rule type="required"></dxi-validation-rule>
 
+                                            </dxi-item> -->
+                                            <dxi-item dataField="programa_Id" [colSpan]="2" [label]="{ text: 'Programa' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: programasDTO, displayExpr: 'nombre',
+                        valueExpr: 'id',
+                        showClearButton:'true' }">
+                                                <dxi-validation-rule type="required"></dxi-validation-rule>
                                             </dxi-item>
 
                                             <dxi-item dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: usuario, displayExpr: 'nombreCompleto',
@@ -103,11 +108,21 @@
 
                                                 <dxi-validation-rule type="required"></dxi-validation-rule>
                                             </dxi-item>
-                                            <dxi-item dataField="programa_nombre" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }"></dxi-item>
-                                            <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                                            <dxi-item dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }"></dxi-item>
-                                            <dxi-item dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item>
-                                            <dxi-item dataField="responsable_Id" [label]="{ text: 'Responsable de la Actividad' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: usuario, displayExpr: 'nombre',
+                                            <dxi-item dataField="programa_Id" [colSpan]="2" [label]="{ text: 'Programa' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: programasDTO, displayExpr: 'nombre',
+                        valueExpr: 'id',
+                        showClearButton:'true' }">
+                                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                                            </dxi-item>
+                                            <dxi-item dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: usuario, displayExpr: 'nombreCompleto',
+                        valueExpr: 'id',
+                        showClearButton:'true' }">
+                                                <dxi-validation-rule type="required"></dxi-validation-rule>
+                                            </dxi-item>
+                                            <!-- <dxi-item dataField="programa_nombre" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }"></dxi-item>
+                                            <dxi-item dataField="programa_Id" alignment="bottom" [colSpan]="2" [label]="{ text: 'Programa' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item> -->
+                                            <!-- <dxi-item dataField="usuario_nombre" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }"></dxi-item>
+                                            <dxi-item dataField="usuario_Id" [label]="{ text: 'Creador de la Actividad' }" [editorOptions]="{ disabled: true }" [visible]="false"></dxi-item> -->
+                                            <dxi-item dataField="responsable_Id" [label]="{ text: 'Responsable de la Actividad' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: usuario, displayExpr: 'nombreCompleto',
                         valueExpr: 'id',
                         showClearButton:'true' }">
                                                 <dxi-validation-rule type="required"></dxi-validation-rule>
