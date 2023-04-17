@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { IAfiliadoDTO } from '../../models/IAfiliadoDTO';
 import { SharedService } from '../../services/shared.service';
 import { AffiliateService } from '../../services/affiliate.service';
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
   templateUrl: './affiliates.component.html',
   styleUrls: ['./affiliates.component.css']
 })
-export class AffiliatesComponent implements OnInit {
+export class AffiliatesComponent implements OnInit, OnChanges{
 
   afiliados: IAfiliadoDTO[] = []
   popupVisible: boolean = false
@@ -24,6 +24,9 @@ export class AffiliatesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listarAfiliados();
+  }
+  ngOnChanges(afiliados:SimpleChanges){
     this.listarAfiliados();
   }
   listarAfiliados() {
