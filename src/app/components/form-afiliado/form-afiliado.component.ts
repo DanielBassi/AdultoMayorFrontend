@@ -35,11 +35,11 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
   popupVisibleFirma: boolean = false
   popupVisibleFirmaAcudiente: boolean = false
   popupVisibleHuella: boolean = false
-  popupVisibleHuellaAcudiente: boolean = false
   popupVisibleEstadosalud: boolean = false
   popupVisibleEnfermedades: boolean = false;
   /* Notificaciones */
   notificaciones: any[] = []
+  opcionesDeHuella: any = {}
 
   /* pop-ups */
   constructor(private sharedService : SharedService, private affiliateService : AffiliateService){}
@@ -145,13 +145,13 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
     this.crud.entidad = new IAfiliadoDTO()
   }
 
-  public onHiding(type: string): void {
+  public onHiding(): void {
 
     if(localStorage.getItem('Base_64_fingerPrint') === null) return
 
-    if(type === 'Afiliado') this.crud.entidad.huella = localStorage.getItem('Base_64_fingerPrint')
+    if(this.opcionesDeHuella?.onHiding === 'Afiliado') this.crud.entidad.huella = localStorage.getItem('Base_64_fingerPrint')
 
-    if(type === 'Acudiente') this.crud.entidad.huellaAcudiente = localStorage.getItem('Base_64_fingerPrint')
+    if(this.opcionesDeHuella?.onHiding === 'Acudiente') this.crud.entidad.huellaAcudiente = localStorage.getItem('Base_64_fingerPrint')
 
     localStorage.clear()
   }
@@ -183,14 +183,26 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
     type: 'normal',
     icon: 'fa-solid fa-plus',
     useSubmitBehavior: false,
-    onClick: (data) => this.popupVisibleHuella = true
+    onClick: (data) => {
+      this.popupVisibleHuella = true
+      this.opcionesDeHuella = {
+        title: 'Huella afiliado',
+        onHiding: 'Afiliado'
+      }
+    }
   }
 
   buttonOptionsHuellaAcudiente = {
     type: 'normal',
     icon: 'fa-solid fa-plus',
     useSubmitBehavior: false,
-    onClick: (data) => this.popupVisibleHuellaAcudiente = true
+    onClick: (data) => {
+      this.popupVisibleHuella = true
+      this.opcionesDeHuella = {
+        title: 'Huella acudiente',
+        onHiding: 'Acudiente'
+      }
+    }
   }
 
   buttonOptionsEstadoSalud = {
