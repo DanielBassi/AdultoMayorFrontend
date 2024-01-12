@@ -1,0 +1,47 @@
+<h3>{{actividad.nombre}}</h3>
+<div class="m-3">
+  <div id="form-container">
+
+
+
+    <dx-form id="formEvidencia" name="formEvidencia" [(formData)]="actividad" labelLocation="top" [colCount]="4">
+      <dxi-item dataField="nombreEvidencia" [label]="{ text:'Evidencia' }">
+        <div *dxTemplate>
+          <dx-file-uploader
+            #fileUploaderDocuments
+            selectButtonText="Seleccionar archivo"
+            labelText=""
+            invalidMaxFileSizeMessage="Fichero es demasiado grande"
+            [uploadMode]="'useButtons'"
+            [maxFileSize]="1000000"
+            [accept]="'image/*, application/pdf'"
+            [showFileList]="true"
+            [multiple]="false"
+            [uploadFile]="onUploadedFormatASQ">
+          </dx-file-uploader>
+        </div>
+      </dxi-item>
+    </dx-form>
+
+
+
+
+    <dx-data-grid id="gridContainerAsistencias" [dataSource]="afiliadosActivos" [showBorders]="true">
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-paging [enabled]="true"></dxo-paging>
+      <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
+      <dxi-column caption="Acción" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
+
+        <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
+          <dx-button icon="fas fa-eye" class="positionButon ml-1" hint="Ver evidencia" type="default"
+          (onClick)="deleteAsistencia(data.data.id)"></dx-button>
+
+          <dx-button icon="fas fa-window-close" class="positionButon ml-1" hint="Quitar evidencia" type="danger"
+          (onClick)="deleteAsistencia(data.data.id)"></dx-button>
+        </div>
+
+      </dxi-column>
+    </dx-data-grid>
+  </div>
+</div>
+

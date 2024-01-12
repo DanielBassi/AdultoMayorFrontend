@@ -12,6 +12,7 @@ export class FormActividadDetailsComponent implements OnInit , OnChanges {
   @Output() visibleEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   popupVisibleAsistencia:boolean=false
+  popupVisibleEvidencia:boolean=false
 
   constructor() { }
 
@@ -29,6 +30,10 @@ export class FormActividadDetailsComponent implements OnInit , OnChanges {
 
   showPopUp(){
     this.popupVisibleAsistencia=true
+  }
+
+  showPopUpEvidencias(){
+    this.popupVisibleEvidencia=true
   }
 
   ngOnChanges(actividad:SimpleChanges) {
