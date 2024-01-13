@@ -4,31 +4,33 @@ import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EvidenciaService {
-  ROOT_SERVE: string = environment.API_URL
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  ROOT_SERVE: string = environment.API_URL;
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  evidencias() {
-    return this.http.get(`${this.ROOT_SERVE}/api/Evidencia`);
-  }
-
-  insertEvidencia(evidencia:any) {
-    this.authService.setLoadingVisible(true)
-    return this.http.post(`${this.ROOT_SERVE}/api/Evidencia`, { ...evidencia });
-  }
-
-  editEvidencia(evidencia:any) {
-    this.authService.setLoadingVisible(true)
-    return this.http.put(`${this.ROOT_SERVE}/api/Evidencia`, { ...evidencia });
-  }
-
-  deleteEvidencia(evidencia_id:number) {
-    this.authService.setLoadingVisible(true)
+  evidencias(actividadId: number) {
     let params = new HttpParams({
-      fromObject: { evidencia_id:evidencia_id },
+      fromObject: { actividadId: actividadId },
     });
-    return this.http.delete(`${this.ROOT_SERVE}/api/Evidencia`, {params});
+    return this.http.get(`${this.ROOT_SERVE}/api/EvidenciasActividades`, {
+      params,
+    });
+  }
+
+  insertEvidencia(evidencia: any) {
+    return this.http.post(`${this.ROOT_SERVE}/api/EvidenciasActividades`, {
+      ...evidencia,
+    });
+  }
+
+  deleteEvidencia(evidenciaId: string) {
+    let params = new HttpParams({
+      fromObject: { evidenciaId: evidenciaId },
+    });
+    return this.http.delete(`${this.ROOT_SERVE}/api/EvidenciasActividades`, {
+      params,
+    });
   }
 }

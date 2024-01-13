@@ -7,37 +7,27 @@
     <dx-form id="formEvidencia" name="formEvidencia" [(formData)]="actividad" labelLocation="top" [colCount]="4">
       <dxi-item dataField="nombreEvidencia" [label]="{ text:'Evidencia' }">
         <div *dxTemplate>
-          <dx-file-uploader
-            #fileUploaderDocuments
-            selectButtonText="Seleccionar archivo"
-            labelText=""
-            invalidMaxFileSizeMessage="Fichero es demasiado grande"
-            [uploadMode]="'useButtons'"
-            [maxFileSize]="1000000"
-            [accept]="'image/*, application/pdf'"
-            [showFileList]="true"
-            [multiple]="false"
-            [uploadFile]="onUploadedFormatASQ">
+          <dx-file-uploader #fileUploaderDocuments selectButtonText="Seleccionar archivo" labelText=""
+            invalidMaxFileSizeMessage="Fichero es demasiado grande" [uploadMode]="'instantly'" [maxFileSize]="100000000"
+            [accept]="'image/*'" [showFileList]="false" [multiple]="false" [uploadFile]="insertEvidencia">
           </dx-file-uploader>
         </div>
       </dxi-item>
     </dx-form>
 
 
-
-
-    <dx-data-grid id="gridContainerAsistencias" [dataSource]="afiliadosActivos" [showBorders]="true">
+    <dx-data-grid id="gridContainerAsistencias" [dataSource]="evidencias" [showBorders]="true">
       <dxo-filter-row [visible]="true"></dxo-filter-row>
       <dxo-paging [enabled]="true"></dxo-paging>
       <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
-      <dxi-column caption="Acción" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
+      <dxi-column caption="Acción" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
 
         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
           <dx-button icon="fas fa-eye" class="positionButon ml-1" hint="Ver evidencia" type="default"
-          (onClick)="deleteAsistencia(data.data.id)"></dx-button>
+            (onClick)="verEvidencia(data.data.id)"></dx-button>
 
           <dx-button icon="fas fa-window-close" class="positionButon ml-1" hint="Quitar evidencia" type="danger"
-          (onClick)="deleteAsistencia(data.data.id)"></dx-button>
+            (onClick)="deleteEvidencia(data.data.id)"></dx-button>
         </div>
 
       </dxi-column>
@@ -45,3 +35,12 @@
   </div>
 </div>
 
+<dx-toast [visible]="isVisible" [type]="type" [message]="message">
+</dx-toast>
+
+<dx-popup [maxWidth]="'auto'" [width]="'840'" [height]="'auto'" [showTitle]="true" title="Ver evidencia"
+  [dragEnabled]="true" [hideOnOutsideClick]="false" [showCloseButton]="true" [(visible)]="popupVisibleImagen">
+  <div *ngIf="imagenBase64Popup">
+    <img style="width: 800px;" [src]="imagenBase64Popup" alt="Imagen">
+  </div>
+</dx-popup>
