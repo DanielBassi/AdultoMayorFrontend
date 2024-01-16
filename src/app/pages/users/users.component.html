@@ -20,7 +20,7 @@
         <dxi-column dataField="numeroIdentificacion" caption="Documento de identidad"></dxi-column>
         <dxi-column dataField="correo" caption="Correo"></dxi-column>
         <dxi-column dataField="rol" caption="Rol"></dxi-column>
-        <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
+        <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
           <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
             <dx-button icon="fas fa-info" class="positionButon ml-1" hint="Detalles"  type="success"  (onClick)="detailsUsuario(data.data)"></dx-button>
             <dx-button icon="fas fa-edit" class="positionButon ml-1" hint="Editar"  type="default"  (onClick)="editUsuario(data.data)"></dx-button>

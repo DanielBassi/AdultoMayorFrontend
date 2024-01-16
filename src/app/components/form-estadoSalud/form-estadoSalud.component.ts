@@ -32,18 +32,20 @@ export class FormEstadoSaludComponent implements OnInit {
     if(this.estadosSaludAfiliado===undefined){
       this.estadosSaludAfiliado=[]
     }
-    if (this.estadosSaludAfiliado.map(e => moment(e.fecha).format('DD/MM/YYYY')).indexOf(moment({ ...this.estadoSalud }.fecha).format('DD/MM/YYYY')) === -1) {
+    if (this.estadoSalud.estatura || this.estadoSalud.peso || (this.estadoSalud.presionSistolica && this.estadoSalud.presionDiastolica))
+    {
+      if (this.estadosSaludAfiliado.map(e => moment(e.fecha).format('DD/MM/YYYY')).indexOf(moment({ ...this.estadoSalud }.fecha).format('DD/MM/YYYY')) === -1)
+      {
+        this.estadoSalud.presionArterial = `${this.estadoSalud.presionSistolica}/${this.estadoSalud.presionDiastolica}`;
 
-      this.estadoSaludEvent.emit([...this.estadosSaludAfiliado,{...this.estadoSalud}].sort((a, b) => (a.fecha > b.fecha) ? 1 : -1))
-      this.estadoSalud = new IEstadoSaludAfiliadoDTO();
+        this.estadoSaludEvent.emit([...this.estadosSaludAfiliado,{...this.estadoSalud}].sort((a, b) => (a.fecha > b.fecha) ? 1 : -1))
+        this.estadoSalud = new IEstadoSaludAfiliadoDTO();
+      }
     }
-
   }
   quitarEstadoSalud(estadoSaludQuitar){
 
     this.estadosSaludAfiliado.splice(this.estadosSaludAfiliado.indexOf(estadoSaludQuitar) ,1);
     this.estadoSaludEvent.emit([...this.estadosSaludAfiliado])
-
   }
-
 }

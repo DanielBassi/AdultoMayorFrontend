@@ -9,7 +9,7 @@ import { ActivitiesComponent } from './activities/activities.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
 import { AffiliatesComponent } from './affiliates/affiliates.component';
 import { DetalleAfiliadoComponent } from './detalleAfiliado/detalleAfiliado.component'
-import { DxButtonModule, DxValidatorModule,DxFileUploaderModule, DxColorBoxModule, DxTabPanelModule, DxScrollViewModule, DxValidationGroupModule, DxTextAreaModule, DxDataGridModule, DxFormModule, DxPopupModule, DxSelectBoxModule ,DxToastModule,DxTemplateModule, DxTextBoxModule} from 'devextreme-angular';
+import { DxButtonModule, DxValidatorModule,DxFileUploaderModule, DxColorBoxModule, DxTabPanelModule, DxScrollViewModule, DxValidationGroupModule, DxTextAreaModule, DxDataGridModule, DxFormModule, DxPopupModule, DxSelectBoxModule ,DxToastModule,DxTemplateModule, DxTextBoxModule, DxAccordionModule} from 'devextreme-angular';
 import { DashboardModule } from './dashboard/dashboard.module';
 import dxTextArea from 'devextreme/ui/text_area';
 import { BrowserModule } from '@angular/platform-browser';
@@ -54,7 +54,7 @@ import { UsuarioComponent } from './usuario/usuario.component'
 		BrowserModule,
     DxFileUploaderModule,
     ComponentsModule,
-    FullCalendarModule
+    FullCalendarModule,
   ],
   exports:[
     UsersComponent,

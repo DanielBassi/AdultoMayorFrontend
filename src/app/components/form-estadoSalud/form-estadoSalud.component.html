@@ -1,67 +1,157 @@
 <div class="m-3">
   <div id="form-container">
     <form (submit)="agregarEstadoSalud($event)">
-      <dx-form id="formEstadoSalud" name="formEstadoSalud" [colCount]="4" [(formData)]="estadoSalud" labelLocation="top" [readOnly]="modoView" >
+      <dx-form
+        id="formEstadoSalud"
+        name="formEstadoSalud"
+        [colCount]="4"
+        [(formData)]="estadoSalud"
+        labelLocation="top"
+        [readOnly]="modoView"
+      >
         <dxi-item itemType="group" [colCount]="4" [colSpan]="4">
-          <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha'}" >
-            <dxi-validation-rule type="required" ></dxi-validation-rule>
+          <dxi-item
+            [colSpan]="1"
+            editorType="dxDateBox"
+            dataField="fecha"
+            [editorOptions]="{ type: 'date', displayFormat: 'dd/MM/yyyy' }"
+            [label]="{ text: 'Fecha' }"
+          >
+            <dxi-validation-rule type="required"></dxi-validation-rule>
           </dxi-item>
 
-          <dxi-item  dataField="estatura" [label]="{ text: 'Estatura' }" editorType="dxNumberBox"
-              [editorOptions]="{ showSpinButtons: false, showClearButton:'true', min: '0'}">
-              <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
+          <dxi-item
+            dataField="estatura"
+            [label]="{ text: 'Estatura' }"
+            editorType="dxNumberBox"
+            [editorOptions]="{
+              showSpinButtons: false,
+              showClearButton: 'true',
+              min: '0'
+            }"
+          >
           </dxi-item>
 
-          <dxi-item  dataField="peso" [label]="{ text: 'Peso' }" editorType="dxNumberBox"
-              [editorOptions]="{ showSpinButtons: false, showClearButton:'true', min: '0'}">
-              <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
+          <dxi-item
+            dataField="peso"
+            [label]="{ text: 'Peso' }"
+            editorType="dxNumberBox"
+            [editorOptions]="{
+              showSpinButtons: false,
+              showClearButton: 'true',
+              min: '0'
+            }"
+          >
           </dxi-item>
 
-          <dxi-item  [colSpan]="1" [label]="{text:'Movilidad autonoma'}" >
+          <dxi-item itemType="group" [colCount]="2" [label]="{ text: 'Presión Arterial' } " labelLocation="hidden">
+            <dxi-item dataField="presionSistolica"  [label]="{ visible:false }"editorType="dxNumberBox" [editorOptions]="{showSpinButtons: false, showClearButton: false, min: '0', max: '999' }" >
+            </dxi-item>
+            <dxi-item dataField="presionDiastolica"  [label]="{ visible:false }" editorType="dxNumberBox" [editorOptions]="{showSpinButtons: false, showClearButton: false, min: '0', max: '999' }" >
+            </dxi-item>
+          </dxi-item>
+          <dxi-item [colSpan]="1" [label]="{ text: 'Movilidad autonoma' }">
             <div>
-              <dx-check-box class="m-1" dataField="movilidadAutonoma"  style="margin: auto" [(value)]="estadoSalud.movilidadAutonoma" [iconSize]="28" ></dx-check-box>
+              <dx-check-box
+                class="m-1"
+                dataField="movilidadAutonoma"
+                style="margin: auto"
+                [(value)]="estadoSalud.movilidadAutonoma"
+                [iconSize]="28"
+              ></dx-check-box>
             </div>
           </dxi-item>
 
-          <dxi-item  [colSpan]="1" [label]="{text:'Presenta discapacidad'}" >
+          <dxi-item [colSpan]="1" [label]="{ text: 'Presenta discapacidad' }">
             <div>
-              <dx-check-box class="m-1" dataField="discapacidad"  style="margin: auto" [iconSize]="28" [(value)]="estadoSalud.discapacidad" ></dx-check-box>
+              <dx-check-box
+                class="m-1"
+                dataField="discapacidad"
+                style="margin: auto"
+                [iconSize]="28"
+                [(value)]="estadoSalud.discapacidad"
+              ></dx-check-box>
             </div>
           </dxi-item>
 
-          <dxi-item [colSpan]="2" [cssClass]="'labelDescripcion'" editorType="dxTextArea" dataField="descripcionDiscapacidad" [label]="{ text: 'Descripción de la discapacidad' }"  [editorOptions]="{ readOnly: !estadoSalud.discapacidad}" ></dxi-item>
-
+          <dxi-item
+            [colSpan]="2"
+            [cssClass]="'labelDescripcion'"
+            editorType="dxTextArea"
+            dataField="descripcionDiscapacidad"
+            [label]="{ text: 'Descripción de la discapacidad' }"
+            [editorOptions]="{ readOnly: !estadoSalud.discapacidad }"
+          ></dxi-item>
         </dxi-item>
 
-
-
-        <dxi-item itemType="group" [colCount]="1" [colSpan]="4" *ngIf="!modoView">
+        <dxi-item
+          itemType="group"
+          [colCount]="1"
+          [colSpan]="4"
+          *ngIf="!modoView"
+        >
           <dxi-item>
             <div>
-              <dx-button width="200" type="success" text="Agregar" icon="fa fa-save" (onClick)="agregarEstadoSalud($event)"></dx-button>
+              <dx-button
+                width="200"
+                type="success"
+                text="Agregar"
+                icon="fa fa-save"
+                (onClick)="agregarEstadoSalud($event)"
+              ></dx-button>
             </div>
           </dxi-item>
 
           <!-- <dxi-item [colSpan]="1" itemType="button" horizontalAlignment="center" verticalAlignment="bottom" [buttonOptions]="buttonOptionsAgregarEstadoSalud">
           </dxi-item> -->
         </dxi-item>
-
       </dx-form>
     </form>
-
-
   </div>
 </div>
-<dx-data-grid id="gridContainerEstadosSalud" [dataSource]="estadosSaludAfiliado" [showBorders]="true">
-  <dxi-column dataField="fecha" caption="Fecha" dataType="date"></dxi-column>
-  <dxi-column dataField="estatura" caption="Estatura" dataType="number"></dxi-column>
+<dx-data-grid
+  id="gridContainerEstadosSalud"
+  [dataSource]="estadosSaludAfiliado"
+  [showBorders]="true"
+>
+  <dxi-column dataField="fecha" caption="Fecha" dataType="date" [format]="'dd/MM/yyyy'" [width]="110"></dxi-column>
+  <dxi-column
+    dataField="estatura"
+    caption="Estatura"
+    dataType="number"
+  ></dxi-column>
   <dxi-column dataField="peso" caption="Peso" dataType="number"></dxi-column>
-  <dxi-column dataField="movilidadAutonoma" caption="Movilidad autonoma" ></dxi-column>
-  <dxi-column dataField="descripcionDiscapacidad" caption="Discapacidad"></dxi-column>
-  <dxi-column caption="acción" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
+  <dxi-column
+    dataField="presionArterial"
+    caption="Presión Arterial"
+  ></dxi-column>
+  <dxi-column
+    dataField="movilidadAutonoma"
+    caption="Movilidad autonoma"
+  ></dxi-column>
+  <dxi-column
+    dataField="descripcionDiscapacidad"
+    caption="Discapacidad"
+  ></dxi-column>
+  <dxi-column
+    caption="acción"
+    cellTemplate="fichaCellTemplate"
+    alignment="center"
+    [width]="150"
+  >
   </dxi-column>
-  <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
-    <dx-button *ngIf="!modoView" icon="fas fa-window-close" class="positionButon" hint="Eliminar" type="danger"
-      (onClick)="quitarEstadoSalud(data.data)"></dx-button>
+  <div
+    *dxTemplate="let data of 'fichaCellTemplate'"
+    style="display: block"
+    class="table-content-icons"
+  >
+    <dx-button
+      *ngIf="!modoView"
+      icon="fas fa-window-close"
+      class="positionButon"
+      hint="Eliminar"
+      type="danger"
+      (onClick)="quitarEstadoSalud(data.data)"
+    ></dx-button>
   </div>
 </dx-data-grid>

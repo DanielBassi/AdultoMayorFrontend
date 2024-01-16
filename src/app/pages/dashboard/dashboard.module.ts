@@ -6,7 +6,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { ComponentsModule } from '../../components/components.module';
 
-import { DxPopupModule } from 'devextreme-angular';
+import { DxAccordionModule, DxPopupModule } from 'devextreme-angular';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { DxPopupModule } from 'devextreme-angular';
     RouterModule,
     ComponentsModule,
     FullCalendarModule,
-    DxPopupModule
+    DxPopupModule,
+    DxAccordionModule
   ],
   exports:[
     DashboardComponent

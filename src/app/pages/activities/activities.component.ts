@@ -8,6 +8,7 @@ import { IUsuarioDTO } from '../../models/IUsuarioDTO';
 import { UsersService } from '../../services/users.service';
 import { IProgramaDTO } from '../../models/IProgramaDTO';
 import { estadoActividadEnum } from '../../enums/estadoActividadEnum';
+import { Router } from '@angular/router';
 
 
 
@@ -46,7 +47,7 @@ export class ActivitiesComponent implements OnInit {
   type = 'success';
   typeDanger = 'danger';
 
-  constructor(private activitiesService: ActivitiesService, private programaService: ProgramaService, private rolParticipanteService: RolParticipanteService, private estadoActividadService: EstadoActividadService, private usuarioService: UsersService) { }
+  constructor(private activitiesService: ActivitiesService, private programaService: ProgramaService, private rolParticipanteService: RolParticipanteService, private estadoActividadService: EstadoActividadService, private usuarioService: UsersService, private router: Router) { }
 
   actividades: any;
   actividad: IActividadDTO;
@@ -181,6 +182,11 @@ export class ActivitiesComponent implements OnInit {
 
     });
   }
+
+  printActividad(actividad: any) {
+    this.router.navigate(['/reports/ActaRegistro', actividad.id])
+  }
+
 
   /* edit actividad */
 

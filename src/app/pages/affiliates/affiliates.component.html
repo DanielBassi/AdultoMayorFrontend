@@ -31,7 +31,7 @@
                     <span
                       class="{{data.value==1 ?'badge bg-success':'badge bg-danger'}}">{{data.value==1?'Activo':'Inactivo'}}</span>
                   </div>
-                <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
+                <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
                   <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
 
                     <dx-button icon="fas fa-info" class="positionButon ml-1" hint="Detalles"  type="success"  (onClick)="detailsAfiliado(data.data)"></dx-button>

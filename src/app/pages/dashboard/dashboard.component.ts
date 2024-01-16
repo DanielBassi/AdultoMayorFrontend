@@ -26,11 +26,13 @@ export class DashboardComponent implements OnInit {
   list:IProgramaDTO[]
   actividades: IActividadDTO[] = [];
   showModal:boolean=false;
+  isCollapsed = true;
+  titleAccordion:any[]=['Programas por colores']
 
   calendarOptions:CalendarOptions={
     plugins: [
       interactionPlugin,
-      dayGridPlugin
+      dayGridPlugin,
     ],
 
     headerToolbar: {
@@ -41,7 +43,15 @@ export class DashboardComponent implements OnInit {
     initialView: 'dayGridMonth',
     locale: esLocale,
     themeSystem: 'bootstrap',
-    eventClick: this.clickEvent.bind(this)
+    eventClick: this.clickEvent.bind(this),
+    eventTimeFormat: {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+      meridiem: false
+    },
+    eventDisplay:'block'
+
   }
 
   clickEvent(arg: any) {
@@ -67,6 +77,10 @@ export class DashboardComponent implements OnInit {
     this.listarProgramas();
     /* console.log(this.actividades);
     console.log(this.actividadDetails); */
+  }
+
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   listarActividadesCalendario() {

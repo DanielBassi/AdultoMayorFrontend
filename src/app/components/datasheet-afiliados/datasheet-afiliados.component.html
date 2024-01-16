@@ -9,7 +9,7 @@
   <dxi-column dataField="fecha" caption="Fecha" dataType="datetime" [width]="150"> </dxi-column>
   <dxi-column dataField="descripcion" caption="Descripcion Actividad"></dxi-column>
   <dxi-column dataField="estadoActividad_Descripcion" caption="Estado" [width]="200"> </dxi-column>
-  <dxi-column caption="acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
+  <dxi-column caption="Acciones" cellTemplate="fichaCellTemplate" alignment="center"[width]="200">
     <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
       <!-- <dx-button icon="fas fa-info" class="positionButon" hint="Detalles"  type="success"  (onClick)="detailsActividad(data.data)"></dx-button> -->
       <!-- <dx-button icon="fa fa-check" class="positionButon" hint="Aprobación"  type="normal"  (onClick)="checkActividad(data.data)"></dx-button> -->

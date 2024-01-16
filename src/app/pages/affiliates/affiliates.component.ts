@@ -63,7 +63,7 @@ export class AffiliatesComponent implements OnInit, OnChanges{
   }
 
   printAfiliado(afiliado: any) {
-    this.router.navigate(['/reports', afiliado.id])
+    this.router.navigate(['/reports/FichaTecnica', afiliado.id])
   }
 
   deleteAfiliado(afiliado: IAfiliadoDTO) {

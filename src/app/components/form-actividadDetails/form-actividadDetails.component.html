@@ -15,11 +15,11 @@
       <dxi-item [colSpan]="2" dataField="responsable_Nombre" [label]="{ text: 'Responsable de la Actividad' }"
         [editorOptions]="{ readOnly: true }"></dxi-item>
       <dxi-item [colSpan]="2" editorType="dxDateBox" dataField="fecha" [label]="{text:'Fecha'}"
-        [editorOptions]="{ readOnly: true , type:'datetime' }"></dxi-item>
+        [editorOptions]="{ readOnly: true , type:'datetime', displayFormat: 'dd/MM/yyyy' }"></dxi-item>
       <dxi-item [colSpan]="2" dataField="estadoActividad_Descripcion" [label]="{ text: 'Estado' }"
         [editorOptions]="{ readOnly: true }"></dxi-item>
       <dxi-item [colSpan]="2" editorType="dxTextArea" dataField="descripcion" [label]="{text:'Descripcion Actividad'}"
-        [editorOptions]="{ readOnly: true }"></dxi-item>
+        [editorOptions]="{ readOnly: true, height:200 }"></dxi-item>
     </dxi-item>
     <dxi-item itemType="group" [colCount]="3" [colSpan]="3">
       <dxi-item [colSpan]="1" horizontalAlignment="center" verticalAlignment="bottom">

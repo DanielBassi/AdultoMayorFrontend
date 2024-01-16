@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { environment } from 'src/environments/environment'
 
 
 
@@ -18,19 +18,14 @@ import { environment } from 'src/environments/environment';
 })
 export class ReporteComponent implements OnInit {
 
-  afiliado_id: string ;
-  title = 'DXReportViewerSample';
-  reportUrl: string = 'FichaTecnica/';
-  hostUrl: string = `${environment.API_URL}/api/`;
-  // Use this line if you use an ASP.NET MVC backend
-  //invokeAction: string = "/WebDocumentViewer/Invoke";
-  // Use this line if you use an ASP.NET Core backend
-  invokeAction: string = 'DXXRDV';
+  title = 'DXReportViewerSample'
+  reportUrl: string
+  hostUrl: string = `${environment.API_URL}/api/`
+  invokeAction: string = 'DXXRDV'
 
   constructor(private rutaActiva:ActivatedRoute) { }
 
   ngOnInit() {
-    this.afiliado_id=this.rutaActiva.snapshot.paramMap.get('afiliado_id')
-    this.reportUrl += this.afiliado_id
+    this.reportUrl = `${this.rutaActiva.snapshot.paramMap.get('name')}/${this.rutaActiva.snapshot.paramMap.get('id')}`
   }
 }

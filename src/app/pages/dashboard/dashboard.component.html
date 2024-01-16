@@ -15,22 +15,34 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-              <div class="card col-md-11">
-                <div class="card-header">
-                <h3 class="card-title">Programas por colores</h3>
-                </div>
-                <div class="card-body">
-                  <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                    <ul class="fc-color-picker" id="color-chooser">
-                      <li *ngFor="let item of list">
-                        <i [style.color]="item.color" [style.font-size]="'15px'" class="fas fa-square"></i>
-                        <span style="font-size:15px;margin-left:5px;margin-right:15px">{{ item.nombre }}</span>
-                      </li>
 
-                    </ul>
-                  </div>
-                </div>
+          <dx-accordion
+            #accordion
+            [dataSource]="titleAccordion"
+            [collapsible]="true"
+            [multiple]="false"
+            [animationDuration]="300"
+            id="accordion-container"
+            class="card col-md-11"
+            [selectedIndex]="-1"
+          >
+            <div *dxTemplate="let company of 'title'">
+              <div class="header">Programas por colores</div>
+            </div>
+            <div *dxTemplate="let company of 'item'">
+              <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                <ul class="fc-color-picker">
+                  <li *ngFor="let item of list">
+                    <i [style.color]="item.color" [style.font-size]="'15px'" class="fas fa-square"></i>
+                    <span style="font-size:15px;margin-left:5px;margin-right:15px">{{ item.nombre }}</span>
+                  </li>
+                </ul>
               </div>
+            </div>
+          </dx-accordion>
+
+
+
 
           <!-- /.col -->
           <div class="col-md-11">
@@ -45,7 +57,7 @@
             </div>
             <!-- /.card -->
           </div>
-          <dx-popup id="popupCalendario" [width]="700" [height]="550" [showTitle]="true" title="Detalles de la actividad" [dragEnabled]="false"
+          <dx-popup id="popupCalendario" [width]="700" height="auto" [showTitle]="true" title="Detalles de la actividad" [dragEnabled]="false"
                 [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupDetailsVisible" (onHidden)="inicializarActividad()">
                 <app-form-actividadDetails [actividad]="actividadDetails" (visibleEvent)="visibleEvent($event)"></app-form-actividadDetails>
           </dx-popup>
@@ -53,23 +65,23 @@
   <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
     <div class="modal-dialog">
       <div class="modal-content">
-      
+
         <!-- Modal Header -->
         <div class="modal-header">
-          
+
           <button type="button" class="close" data-dismiss="modal" ></button>
         </div>
-        
+
         <!-- Modal body -->
         <div class="modal-body">
-          
+
         </div>
-        
+
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
         </div>
-        
+
       </div>
     </div>
   </div>

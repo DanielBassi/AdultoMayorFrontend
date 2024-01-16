@@ -9,6 +9,9 @@ export class IEstadoSaludAfiliadoDTO {
   descripcionDiscapacidad: string
   estatura: Number
   peso: Number
+  presionArterial:string
+  presionSistolica:string
+  presionDiastolica:string
   movilidadAutonoma: boolean
 
   /**
@@ -23,6 +26,9 @@ export class IEstadoSaludAfiliadoDTO {
     this.descripcionDiscapacidad = ''
     this.estatura = 0
     this.peso= 0
+    this.presionArterial = ''
+    this.presionSistolica = ''
+    this.presionDiastolica = ''
     this.movilidadAutonoma= true
 
   }

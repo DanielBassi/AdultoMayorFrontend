@@ -5,7 +5,7 @@
 
 
     <dx-form id="formEvidencia" name="formEvidencia" [(formData)]="actividad" labelLocation="top" [colCount]="4">
-      <dxi-item dataField="nombreEvidencia" [label]="{ text:'Evidencia' }">
+      <dxi-item dataField="nombreEvidencia" [label]="{ visible:false}">
         <div *dxTemplate>
           <dx-file-uploader #fileUploaderDocuments selectButtonText="Seleccionar archivo" labelText=""
             invalidMaxFileSizeMessage="Fichero es demasiado grande" [uploadMode]="'instantly'" [maxFileSize]="100000000"
