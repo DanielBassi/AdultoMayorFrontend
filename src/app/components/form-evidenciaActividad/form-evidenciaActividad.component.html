@@ -9,16 +9,16 @@
         <div *dxTemplate>
           <dx-file-uploader #fileUploaderDocuments selectButtonText="Seleccionar archivo" labelText=""
             invalidMaxFileSizeMessage="Fichero es demasiado grande" [uploadMode]="'instantly'" [maxFileSize]="100000000"
-            [accept]="'image/*'" [showFileList]="false" [multiple]="false" [uploadFile]="insertEvidencia">
+            [accept]="'image/*'" [showFileList]="false" [multiple]="true" [uploadFile]="insertEvidencia">
           </dx-file-uploader>
         </div>
       </dxi-item>
     </dx-form>
 
 
-    <dx-data-grid id="gridContainerAsistencias" [dataSource]="evidencias" [showBorders]="true">
+    <dx-data-grid id="gridContainerEvidencias" [dataSource]="evidencias" [showBorders]="true" [height]="'300'">
       <dxo-filter-row [visible]="true"></dxo-filter-row>
-      <dxo-paging [enabled]="true"></dxo-paging>
+      <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
       <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
       <dxi-column caption="Acción" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
 
@@ -32,6 +32,7 @@
 
       </dxi-column>
     </dx-data-grid>
+
   </div>
 </div>
 

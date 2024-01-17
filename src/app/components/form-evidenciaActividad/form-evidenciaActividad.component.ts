@@ -8,6 +8,7 @@ import {
 import { IActividadDTO } from '../../models/IActividadDTO';
 import { DxFormComponent } from 'devextreme-angular';
 import { EvidenciaService } from 'src/app/services/evidencia.service';
+import { switchMap } from 'rxjs';
 @Component({
   selector: 'app-form-evidenciaActividad',
   templateUrl: './form-evidenciaActividad.component.html',
@@ -82,11 +83,15 @@ export class FormEvidenciaActividadComponent implements OnInit {
         this.form.instance._refresh();
 
         this.evidenciaService
-          .insertEvidencia(this.evidenciaData)
-          .subscribe(() => {
-            this.listarEvidencias(this.actividad.id);
-          });
+        .insertEvidencia(this.evidenciaData)
+        .pipe(
+          switchMap(() => this.evidenciaService.evidencias(this.actividad.id))
+        )
+        .subscribe((response: any) => {
+          this.evidencias = response;
+        });
       };
+
 
       reader.readAsDataURL(e);
     }
