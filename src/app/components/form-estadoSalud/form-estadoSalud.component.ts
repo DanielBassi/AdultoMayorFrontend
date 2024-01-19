@@ -1,51 +1,49 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
-import{ IEstadoSaludAfiliadoDTO } from "../../models/IEstadoSaludAfiliadoDTO"
-import moment from 'moment'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IEstadoSaludAfiliadoDTO } from '../../models/IEstadoSaludAfiliadoDTO';
+import moment from 'moment';
 
 @Component({
   selector: 'app-form-estadoSalud',
   templateUrl: './form-estadoSalud.component.html',
-  styleUrls: ['./form-estadoSalud.component.scss']
+  styleUrls: ['./form-estadoSalud.component.scss'],
 })
 export class FormEstadoSaludComponent implements OnInit {
-
   @Output() estadoSaludEvent: EventEmitter<any> = new EventEmitter<any>();
-  @Input() modoView: boolean = false
-  @Input() estadosSaludAfiliado: IEstadoSaludAfiliadoDTO[]
+  @Input() modoView: boolean = false;
+  @Input() estadosSaludAfiliado: IEstadoSaludAfiliadoDTO[];
 
-  estadoSalud: IEstadoSaludAfiliadoDTO
+  estadoSalud: IEstadoSaludAfiliadoDTO;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.estadoSalud=new IEstadoSaludAfiliadoDTO()
-
+    this.estadoSalud = new IEstadoSaludAfiliadoDTO();
   }
 
   agregarEstadoSalud(event) {
-    if(this.estadosSaludAfiliado===undefined){
-      this.estadosSaludAfiliado=[]
+    if (this.estadosSaludAfiliado === undefined) {
+      this.estadosSaludAfiliado = [];
     }
-    if (this.estadoSalud.estatura || this.estadoSalud.peso || (this.estadoSalud.presionSistolica && this.estadoSalud.presionDiastolica))
-    {
-      if (this.estadosSaludAfiliado.map(e => moment(e.fecha).format('DD/MM/YYYY')).indexOf(moment({ ...this.estadoSalud }.fecha).format('DD/MM/YYYY')) === -1)
-      {
-        this.estadoSalud.presionArterial = `${this.estadoSalud.presionSistolica}/${this.estadoSalud.presionDiastolica}`;
+    if (
+      this.estadoSalud.estatura ||
+      this.estadoSalud.peso ||
+      (this.estadoSalud.presionSistolica && this.estadoSalud.presionDiastolica)
+    ) {
+      this.estadoSalud.presionArterial = `${this.estadoSalud.presionSistolica}/${this.estadoSalud.presionDiastolica}`;
 
-        this.estadoSaludEvent.emit([...this.estadosSaludAfiliado,{...this.estadoSalud}].sort((a, b) => (a.fecha > b.fecha) ? 1 : -1))
-        this.estadoSalud = new IEstadoSaludAfiliadoDTO();
-      }
+      this.estadoSaludEvent.emit(
+        [...this.estadosSaludAfiliado, { ...this.estadoSalud }].sort((a, b) =>
+          a.fecha > b.fecha ? 1 : -1
+        )
+      );
+      this.estadoSalud = new IEstadoSaludAfiliadoDTO();
     }
   }
-  quitarEstadoSalud(estadoSaludQuitar){
-
-    this.estadosSaludAfiliado.splice(this.estadosSaludAfiliado.indexOf(estadoSaludQuitar) ,1);
-    this.estadoSaludEvent.emit([...this.estadosSaludAfiliado])
+  quitarEstadoSalud(estadoSaludQuitar) {
+    this.estadosSaludAfiliado.splice(
+      this.estadosSaludAfiliado.indexOf(estadoSaludQuitar),
+      1
+    );
+    this.estadoSaludEvent.emit([...this.estadosSaludAfiliado]);
   }
 }

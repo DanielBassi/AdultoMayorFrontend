@@ -2,64 +2,75 @@
   <div id="form-container">
     <form (submit)="submit($event)">
 
-      <dx-form id="form" [colCount]="2" [(formData)]="crud.entidad" labelLocation="top" [disabled]="false" [readOnly]="modoView">
-         <!-- - - - creacion del usuario -->
-         <dxi-item [label]="{text:'Nombre'}" dataField="nombre">
-          <dxi-validation-rule type="required" ></dxi-validation-rule>
-          <dxi-validation-rule
-            type="pattern"
-            [pattern]="namePattern"
-            message="Este campo no debe contener numeros"
-          ></dxi-validation-rule>
-          <dxi-validation-rule
-            type="stringLength"
-            [min]="2"
-            message="Este campo debe tener al menos 2 caracteres"
-          ></dxi-validation-rule>
+      <dx-form id="form" [colCount]="2" [(formData)]="crud.entidad" labelLocation="top" [disabled]="false"
+        [readOnly]="modoView">
+        <!-- - - - creacion del usuario -->
+        <dxi-item [label]="{text:'Nombre'}" dataField="nombre">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxi-validation-rule type="pattern" [pattern]="namePattern"
+            message="Este campo no debe contener numeros"></dxi-validation-rule>
+          <dxi-validation-rule type="stringLength" [min]="2"
+            message="Este campo debe tener al menos 2 caracteres"></dxi-validation-rule>
         </dxi-item>
 
         <dxi-item [label]="{text:'Apellido'}" dataField="apellido">
-          <dxi-validation-rule type="required" ></dxi-validation-rule>
-          <dxi-validation-rule
-            type="pattern"
-            [pattern]="namePattern"
-            message="Este campo no debe contener numeros"
-          ></dxi-validation-rule>
-          <dxi-validation-rule
-            type="stringLength"
-            [min]="2"
-            message="Este campo debe tener al menos 2 caracteres"
-          ></dxi-validation-rule>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxi-validation-rule type="pattern" [pattern]="namePattern"
+            message="Este campo no debe contener numeros"></dxi-validation-rule>
+          <dxi-validation-rule type="stringLength" [min]="2"
+            message="Este campo debe tener al menos 2 caracteres"></dxi-validation-rule>
         </dxi-item>
         <dxi-item dataField="tipoIdentificacion" [label]="{ text: 'Tipo de documento' }" editorType="dxSelectBox"
           [editorOptions]="{ dataSource: tiposIdentificacion, showClearButton:'true' }" [visible]="true">
-          <dxi-validation-rule type="required" ></dxi-validation-rule>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
         </dxi-item>
 
 
-        <dxi-item  [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
-          <dxi-validation-rule type="required" ></dxi-validation-rule>
+        <dxi-item [label]="{text:'N° de documento de identidad'}" dataField="numeroIdentificacion">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
         </dxi-item>
 
-        <dxi-item [label]="{text:'Correo electronico'}" [colSpan]="2" dataField="correo">
-          <dxi-validation-rule type="required" ></dxi-validation-rule>
-          <dxi-validation-rule
-            type="email"
-            message="Email invalido (aaa@aaaa.com)"
-          ></dxi-validation-rule>
+        <dxi-item [label]="{text:'usuario'}" [colSpan]="1" dataField="correo">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <!-- <dxi-validation-rule type="text" message="Email invalido (aaa@aaaa.com)"></dxi-validation-rule> -->
         </dxi-item>
 
-        <dxi-item [editorOptions]="{ type: 'password', mode: 'password' }" [label]="{text:'Contraseña'}" dataField="clave" [colSpan]="1" >
-          <dxi-validation-rule type="required" ></dxi-validation-rule>
-
+        <dxi-item [editorOptions]="{ type: 'password', mode: 'password' }" [label]="{text:'Contraseña'}"
+          dataField="clave" [colSpan]="1">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
         </dxi-item>
+
+
 
 
         <dxi-item dataField="rol" [label]="{ text: 'Rol de usuario' }" editorType="dxSelectBox"
           [editorOptions]="{ dataSource: roles, showClearButton:'true' }" [visible]="true">
-          <dxi-validation-rule type="required" ></dxi-validation-rule>
+          <dxi-validation-rule type="required"></dxi-validation-rule>
         </dxi-item>
 
+        <dxi-item [label]="{text:'Cargo'}" dataField="cargo">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item itemType="group" caption="Firma" [colSpan]="2" [colCount]="2">
+
+          <dxi-item *ngIf="crud.entidad.firma; else defaultImage">
+            <img width="200" [src]="'data:image/png;base64,' + crud.entidad.firma">
+          </dxi-item>
+          <ng-template #defaultImage>
+            <dxi-item>
+              <img width="50" src="./assets/img/firma.png">
+            </dxi-item>
+          </ng-template>
+
+          <!-- <dxi-item itemType="button" dataField="firma" [label]="{ text: 'Firma' }" [buttonOptions]="buttonOptionsFirma"
+            [editorOptions]="{ disabled: modoView }"></dxi-item> -->
+
+          <dxi-item itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
+            [buttonOptions]="buttonOptionsFirma" [editorOptions]="{ disabled: modoView }">
+          </dxi-item>
+
+        </dxi-item>
 
         <dxi-item [colSpan]="2" itemType="button" horizontalAlignment="right" verticalAlignment="bottom"
           [buttonOptions]="buttonOptionsSave" [editorOptions]="{ disabled: modoView }">
@@ -69,3 +80,10 @@
   </div>
 </div>
 
+
+<dx-popup [maxWidth]="'700'" [maxHeight]="'400'" [width]="'auto'" [height]="'auto'" [showTitle]="true" title="Firma"
+  [dragEnabled]="true" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisibleFirma">
+  <dx-scroll-view width="100%" height="100%">
+    <dfs-sign-pad (firmaEvent)="firmaUsuarioEvent($event)"></dfs-sign-pad>
+  </dx-scroll-view>
+</dx-popup>

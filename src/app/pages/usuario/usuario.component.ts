@@ -2,64 +2,65 @@ import { Component, OnInit } from '@angular/core';
 import { IUsuarioDTO } from '../../models/IUsuarioDTO';
 import { UsersService } from '../../services/users.service';
 import { SharedService } from '../../services/shared.service';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.css']
+  styleUrls: ['./usuario.component.css'],
 })
 export class UsuarioComponent implements OnInit {
-  usuarios: IUsuarioDTO[] = []
+  usuarios: IUsuarioDTO[] = [];
   popupVisible: boolean = false;
   crud: any = {
     entidad: new IUsuarioDTO(),
-    accion: 'INSERT'
-  }
-  constructor(private usersService: UsersService, private sharedService: SharedService) { }
+    accion: 'INSERT',
+  };
+  constructor(
+    private usersService: UsersService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit() {
-    this.listarUsusarios()
+    this.listarUsusarios();
   }
 
-  listarUsusarios(){
-    this.usersService.listUsuarios()
-      .subscribe((response: any) => {
-        this.usuarios = response;
-      });
+  listarUsusarios() {
+    this.usersService.listUsuarios().subscribe((response: any) => {
+      this.usuarios = response;
+    });
   }
 
-  inicializarUsuario(){
+  inicializarUsuario() {
     this.crud = {
       entidad: new IUsuarioDTO(),
-      accion: 'INSERT'
-    }
+      accion: 'INSERT',
+    };
   }
 
-  crudEvento(e){
-
-
+  crudEvento(e) {
     switch (this.crud.accion) {
       case 'INSERT':
-        this.usersService.insertUsuario(this.crud.entidad).subscribe(res=> {
-          this.sharedService.notify('Usuario creado exitosamente', 'success')
-          this.listarUsusarios()
-        })
-      break;
+        this.usersService.insertUsuario(this.crud.entidad).subscribe((res) => {
+          this.sharedService.notify('Usuario creado exitosamente', 'success');
+          this.listarUsusarios();
+        });
+        break;
 
       case 'UPDATE':
-        this.usersService.editUsuario(this.crud.entidad).subscribe(res=> {
-          this.sharedService.notify('Usuario actualizado exitosamente', 'success')
-          this.listarUsusarios()
-        })
-      break;
+        this.usersService.editUsuario(this.crud.entidad).subscribe((res) => {
+          this.sharedService.notify(
+            'Usuario actualizado exitosamente',
+            'success'
+          );
+          this.listarUsusarios();
+        });
+        break;
     }
-    this.popupVisible=false
-
-
+    this.popupVisible = false;
   }
 
-  deleteUsuario( usuario: IUsuarioDTO ) {
+  deleteUsuario(usuario: IUsuarioDTO) {
     Swal.fire({
       title: `¿Estás seguro que deseas eliminar el Usuario ${usuario.nombre}?`,
       showCancelButton: true,
@@ -67,40 +68,38 @@ export class UsuarioComponent implements OnInit {
       cancelButtonText: `Mejor no`,
     }).then((result) => {
       if (result.isConfirmed) {
-
         this.usersService.deleteUsuario(usuario.id).subscribe((res: any) => {
-
-          this.sharedService.notify('Usuario eliminado satisfactoriamente', 'success')
+          this.sharedService.notify(
+            'Usuario eliminado satisfactoriamente',
+            'success'
+          );
           this.listarUsusarios();
-        })
+        });
       }
-    })
+    });
   }
 
-
-
-  editUsuario( usuario: IUsuarioDTO ){
+  editUsuario(usuario: IUsuarioDTO) {
     this.crud = {
       entidad: usuario,
-      accion: 'UPDATE'
-    }
-    this.popupVisible = true
+      accion: 'UPDATE',
+    };
+    this.popupVisible = true;
   }
 
-  detailsUsuario( usuario: IUsuarioDTO ){
+  detailsUsuario(usuario: IUsuarioDTO) {
     this.crud = {
       entidad: usuario,
-      accion: 'VIEW'
-    }
-    this.popupVisible = true
+      accion: 'VIEW',
+    };
+    this.popupVisible = true;
   }
 
-  showFormUsuario(){
+  showFormUsuario() {
     this.crud = {
       entidad: new IUsuarioDTO(),
-      accion: 'INSERT'
-    }
-    this.popupVisible = true
+      accion: 'INSERT',
+    };
+    this.popupVisible = true;
   }
-
 }

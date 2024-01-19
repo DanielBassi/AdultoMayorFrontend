@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { IActividadDTO } from '../../models/IActividadDTO';
 import { DxFormComponent } from 'devextreme-angular';
 import { EvidenciaService } from 'src/app/services/evidencia.service';
@@ -15,10 +9,18 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./form-evidenciaActividad.component.css'],
 })
 export class FormEvidenciaActividadComponent implements OnInit {
-  @Input() actividad: IActividadDTO = new IActividadDTO();
+  @Input() actividad: any;
   @ViewChild(DxFormComponent) form: DxFormComponent;
 
+  tipoEvidencia: any[] = ['Evidencia de actividad', 'Toma de presión'];
+  tipoEvidenciaSeleccionada: any = this.tipoEvidencia[0];
   evidenciaData: any;
+  radioGroupOption: any = {
+    items: this.tipoEvidencia,
+    value: this.tipoEvidencia[0],
+    valueExpr: 'value',
+    displayExpr: 'display',
+  };
   evidencias: any[];
   isVisible: boolean = false;
   popupVisibleImagen: boolean = false;
@@ -65,7 +67,14 @@ export class FormEvidenciaActividadComponent implements OnInit {
   }
 
   insertEvidencia = async (e: File) => {
-    const existeArchivo = this.evidencias.some((ev) => ev.nombre === e.name);
+    const tipoEvidencia =
+      this.tipoEvidenciaSeleccionada == 'Evidencia de actividad'
+        ? 'EVIDENCIA'
+        : 'PRESION';
+    const nombreEvidencia = `${tipoEvidencia}_${e.name}`;
+    const existeArchivo = this.evidencias.some(
+      (ev) => ev.nombre == nombreEvidencia
+    );
     if (existeArchivo) {
       this.message = `El archivo ${e.name} ya existe en evidencias de la actividad.`;
       this.type = 'error';
@@ -75,7 +84,7 @@ export class FormEvidenciaActividadComponent implements OnInit {
 
       reader.onloadend = () => {
         this.evidenciaData = {
-          nombre: e.name,
+          nombre: nombreEvidencia,
           actividadId: this.actividad.id,
           tipo: e.type,
           base64str: reader.result as string,
@@ -83,15 +92,14 @@ export class FormEvidenciaActividadComponent implements OnInit {
         this.form.instance._refresh();
 
         this.evidenciaService
-        .insertEvidencia(this.evidenciaData)
-        .pipe(
-          switchMap(() => this.evidenciaService.evidencias(this.actividad.id))
-        )
-        .subscribe((response: any) => {
-          this.evidencias = response;
-        });
+          .insertEvidencia(this.evidenciaData)
+          .pipe(
+            switchMap(() => this.evidenciaService.evidencias(this.actividad.id))
+          )
+          .subscribe((response: any) => {
+            this.evidencias = response;
+          });
       };
-
 
       reader.readAsDataURL(e);
     }

@@ -1,24 +1,28 @@
-<h3>{{actividad.nombre}}</h3>
+<h4>{{actividad.nombre}}</h4>
 <div class="m-3">
   <div id="form-container">
     <dx-data-grid id="gridContainerAsistencias" [dataSource]="afiliadosActivos" [showBorders]="true">
       <dxo-filter-row [visible]="true"></dxo-filter-row>
       <dxo-paging [enabled]="true"></dxo-paging>
       <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
-      <dxi-column dataField="identificacion" caption="Identificacion" ></dxi-column>
+      <dxi-column dataField="identificacion" caption="Identificacion"></dxi-column>
       <dxi-column caption="Asistencia" cellTemplate="cellTemplate" alignment="center" [width]="80"></dxi-column>
-        <div *dxTemplate="let data of 'cellTemplate'">
-          <span class="{{data.data.asistenciasActividades.length!=0 ?'badge bg-success':'badge bg-danger'}}">{{data.data.asistenciasActividades.length!=0?'Asistió':'No asistió'}}</span>
-        </div>
-      <dxi-column caption="Agregar asistencia" cellTemplate="fichaCellTemplate" alignment="center"[width]="150">
+      <div *dxTemplate="let data of 'cellTemplate'">
+        <span
+          class="{{data.data.asistenciasActividades.length!=0 ?'badge bg-success':'badge bg-danger'}}">{{data.data.asistenciasActividades.length!=0?'Asistió':'No
+          asistió'}}</span>
+      </div>
+      <dxi-column caption="Agregar asistencia" cellTemplate="fichaCellTemplate" alignment="center" [width]="150">
         <div *dxTemplate="let data of 'fichaCellTemplate'" style="display: block;" class="table-content-icons">
 
-          <dx-button icon="{{data.data.asistenciasActividades.length!=0?'fas fa-window-close':'fas fa-check'}}" class="positionButon ml-1" hint="{{data.data.asistenciasActividades.length!=0?'Quitar asistencia':'Agregar asistencia'}}" type="{{data.data.asistenciasActividades.length!=0?'danger':'success'}}"
-          (onClick)="data.data.asistenciasActividades.length!=0?deleteAsistencia(data.data.id):insertAsistencia(data.data.id)"></dx-button>
+          <dx-button icon="{{data.data.asistenciasActividades.length!=0?'fas fa-window-close':'fas fa-check'}}"
+            class="positionButon ml-1"
+            hint="{{data.data.asistenciasActividades.length!=0?'Quitar asistencia':'Agregar asistencia'}}"
+            type="{{data.data.asistenciasActividades.length!=0?'danger':'success'}}"
+            (onClick)="data.data.asistenciasActividades.length!=0?deleteAsistencia(data.data.id):insertAsistencia(data.data.id)"></dx-button>
 
         </div>
       </dxi-column>
     </dx-data-grid>
   </div>
 </div>
-
