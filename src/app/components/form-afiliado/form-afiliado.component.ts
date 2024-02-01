@@ -141,8 +141,7 @@ export class FormAfiliadoComponent implements OnInit, AfterViewInit {
   submit = (event: Event) => {
     event.preventDefault()
     this.crudEvent.emit({...this.crud})
-
-    this.crud.entidad = new IAfiliadoDTO()
+    /* this.crud.entidad = new IAfiliadoDTO() */
   }
 
   public onHiding(): void {

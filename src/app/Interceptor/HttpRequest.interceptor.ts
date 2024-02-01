@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
-import { catchError, map } from 'rxjs/operators';
+import { catchError, finalize, map } from 'rxjs/operators';
 import notify from 'devextreme/ui/notify';
 import { AuthService } from '../services/auth.service';
 @Injectable()
@@ -12,6 +12,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
+    this.authService.setLoadingVisible(true)
 
     const user = this.authService.GetAuth()
 
@@ -30,9 +32,11 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           }
           else  notify(`${error.error}`, 'error', 2000)
 
-          this.authService.setLoadingVisible(false)
           return throwError(`${error.error.message}`)
 
+        }),
+        finalize(() => {
+          this.authService.setLoadingVisible(false)
         })
       )
   }

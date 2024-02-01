@@ -18,7 +18,6 @@ export class DetalleAfiliadoComponent implements OnInit {
   metodo: string;
 
   constructor(private router:Router, private affiliateService:AffiliateService, private sharedService:SharedService, private rutaActiva:ActivatedRoute ) {
-
   }
 
   ngOnInit() {
@@ -30,14 +29,6 @@ export class DetalleAfiliadoComponent implements OnInit {
       })
       this.crud.accion=this.metodo
     }
-    /* console.log(this.id);
-    console.log(this.metodo);
-    console.log(this.crud); */
-
-
-
-
-
   }
 
   recivedData(e){
@@ -45,19 +36,16 @@ export class DetalleAfiliadoComponent implements OnInit {
       case 'INSERT':
         this.affiliateService.postInsertAfiliado(this.crud.entidad).subscribe(res=> {
           this.sharedService.notify('Afiliado creado exitosamente', 'success')
-
+          this.router.navigate(['/affiliates']);
         })
       break;
 
       case 'UPDATE':
         this.affiliateService.putEditAfiliado(this.crud.entidad).subscribe(res=> {
           this.sharedService.notify('Afiliado actualizado exitosamente', 'success')
+          this.router.navigate(['/affiliates']);
         })
       break;
     }
-    /* console.log(e); */
-    this.router.navigate(['/affiliates']);
-    /* this.navigateTo('/dashboard/affiliates') */
   }
-
 }

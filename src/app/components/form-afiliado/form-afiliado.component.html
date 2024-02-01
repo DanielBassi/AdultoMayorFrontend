@@ -12,11 +12,11 @@
 
 
 
-            <dxi-item editorType="dxDateBox" dataField="fechaIncorporacion" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de incorporación'}" >
+            <dxi-item editorType="dxDateBox" dataField="fechaIncorporacion" [editorOptions]="{ type: 'date', displayFormat: 'dd/MM/yyyy' }" [label]="{text:'Fecha de incorporación'}" >
               <dxi-validation-rule type="required" ></dxi-validation-rule>
             </dxi-item>
 
-            <dxi-item editorType="dxDateBox" dataField="fechaRetiro" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de retiro'}" value=""></dxi-item>
+            <dxi-item editorType="dxDateBox" dataField="fechaRetiro" [editorOptions]="{ type: 'date', displayFormat: 'dd/MM/yyyy' }" [label]="{text:'Fecha de retiro'}" value=""></dxi-item>
 
             <dxi-item dataField="tipoIdentificacion" [label]="{ text: 'Tipo de identificación' }" editorType="dxSelectBox" [editorOptions]="{ dataSource: tipos, showClearButton:'true' }">
               <dxi-validation-rule type="required"></dxi-validation-rule>
@@ -27,14 +27,14 @@
               <dxi-validation-rule type="required"></dxi-validation-rule>
             </dxi-item>
 
-            <dxi-item editorType="dxDateBox" dataField="fechaExpedicionIdentificacion" [colSpan]="1" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de expedicion'}" >
+            <dxi-item editorType="dxDateBox" dataField="fechaExpedicionIdentificacion" [colSpan]="1" [editorOptions]="{ type: 'date', displayFormat: 'dd/MM/yyyy' }" [label]="{text:'Fecha de expedicion'}" >
               <!-- <dxi-validation-rule type="required" ></dxi-validation-rule> -->
             </dxi-item>
             <dxi-item dataField="lugarNacimiento" [colSpan]="1" [label]="{text:'Lugar de nacimiento'}">
               <!-- <dxi-validation-rule type="required"></dxi-validation-rule> -->
             </dxi-item>
 
-            <dxi-item editorType="dxDateBox" dataField="fechaNacimiento" [editorOptions]="{ type:'date' }" [label]="{text:'Fecha de nacimiento'}" >
+            <dxi-item editorType="dxDateBox" dataField="fechaNacimiento" [editorOptions]="{ type: 'date', displayFormat: 'dd/MM/yyyy' }" [label]="{text:'Fecha de nacimiento'}" >
               <dxi-validation-rule type="required" ></dxi-validation-rule>
             </dxi-item>
 
